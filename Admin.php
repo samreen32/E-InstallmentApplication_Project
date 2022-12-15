@@ -53,7 +53,7 @@
                         </ul>
                         <span style="margin-right: 40px">
                             <a><i class="fa fa-user fa-2x img-fluid mx-3" aria-hidden="true"></i>
-                                Welcome! Admin</a>
+                                Welcome! Shopkeeper</a>
                         </span>
                     </div>
                 </div>
@@ -75,7 +75,8 @@
             <div class="col">
                 <div class="card modal-body">
                     <div class="card-body">
-                        <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;">
+                        <a type="button" class="button button--flex my-3" href="profile.php"
+                         style="height: 50px; width:100%;">
                             <i class="fa fa-user img-fluid mx-2" aria-hidden="true"></i>
                             Profile</a>
                             <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"><i
@@ -108,11 +109,8 @@
     <!--Body -->
     <div class="main" style="background-color: #9575CD;">
         <div class="row my-5">
-
             <div class="col" style="margin-top: 80px;">
-
                 <div class="col mx-5">
-
                     <div class="row row-header my-3">
                         <div class="col-12 col-sm-6">
                             <div class="card modal-body">

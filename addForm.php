@@ -30,7 +30,7 @@
 <body>
 
 
-    <!-- Body -->
+    <!-- header -->
     <div class="container my-5">
         <div class="nav__bar">
             <nav class="navbar navbar-dark navbar-expand-sm fixed-top">
@@ -52,8 +52,8 @@
         </div>
     </div>
 
-    <!--Body -->
 
+    <!--Body -->
     <div class="container" style="background-color: #d1c4e9;">
         <div style="margin-top: 100px;">
             <h1 style="text-align: center;"></h1>

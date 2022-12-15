@@ -1,10 +1,8 @@
 /*=============== GOOGLE FONTS ===============*/
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
-
 /*=============== VARIABLES CSS ===============*/
 :root {
   --header-height: 3.5rem; /*56px*/
-
   /*========== Font and typography ==========*/
   /*.5rem = 8px | 1rem = 16px ...*/
   --body-font: "Poppins", sans-serif;
@@ -15,16 +13,13 @@
   --normal-font-size: 0.938rem;
   --small-font-size: 0.813rem;
   --smaller-font-size: 0.75rem;
-
   /*========== Font weight ==========*/
   --font-medium: 500;
   --font-semi-bold: 600;
-
   /*========== z index ==========*/
   --z-tooltip: 10;
   --z-fixed: 100;
 }
-
 /* Responsive typography */
 @media screen and (min-width: 968px) {
   :root {
@@ -37,13 +32,10 @@
     --smaller-font-size: 0.813rem;
   }
 }
-
 /*=============== BASE ===============*/
-
 html {
   scroll-behavior: smooth;
 }
-
 body,
 button,
 input,
@@ -51,62 +43,49 @@ textarea {
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
 }
-
 button {
   background-color: rgb(207, 207, 201);
 }
-
 button {
   cursor: pointer;
   border: none;
   outline: none;
 }
-
 h1,
 h2,
 h3 {
   color: var(--title-color);
   font-weight: var(--font-semi-bold);
 }
-
 ul {
   list-style: none;
 }
-
 a {
   text-decoration: none;
 }
-
 a:hover {
   color: black;
 }
-
 li:hover {
   color: black;
 }
 span:hover {
   color: black;
 }
+
 img{
   width: auto;
   height: auto;
 }
 /*=============== REUSABLE CSS CLASSES ===============*/
 
-.container {
-  max-width: 968px;
-  margin-left: var(--mb-1-5);
-  margin-right: var(--mb-1-5);
-}
-
 .grid {
   display: grid;
 }
-
 .main {
-  overflow: hidden; /*For animation*/
+  overflow: hidden;
+  /*For animation*/
 }
-
 /*=============== NAV ===============*/
 .nav {
   height: var(--header-height);
@@ -118,7 +97,6 @@ img{
   background-color: #512da8;
   color: floralwhite;
 }
-
 .nav__bar {
   background-color: #512da8;
 }
@@ -127,7 +105,6 @@ img{
 .nav__close {
   color: var(--title-color);
 }
-
 .nav__logo {
   text-transform: uppercase;
   font-weight: 700;
@@ -140,7 +117,6 @@ img{
 .nav__logo:hover {
   color: black;
 }
-
 .nav__close {
   font-size: 1.5rem;
   position: absolute;
@@ -148,23 +124,19 @@ img{
   right: 1.25rem;
   cursor: pointer;
 }
-
 .nav__list {
   display: flex;
   flex-direction: column;
   row-gap: 1.5rem;
 }
-
 .nav__link {
   color: var(--title-color);
   font-weight: var(--font-medium);
   transition: 0.3s;
 }
-
 .nav__link:hover {
   color: black;
 }
-
 .modal-content .modal-header {
   background-color: #512da8;
   color: floralwhite;
@@ -172,7 +144,6 @@ img{
 .modal-content .modal-header .close {
   color: black;
 }
-
 .modal-body {
   background-color: #d1c4e9;
   color: black;
@@ -191,6 +162,10 @@ img{
   transition: 0.3s;
 }
 
+/* Change background header */
+.scroll-header {
+  box-shadow: 0 1px 4px hsla(var(--hue), 4%, 15%, 0.1);
+}
 .jumbotron {
   margin-top: 7%;
   padding: 70px 30px;
@@ -206,8 +181,7 @@ img{
   margin: 0px auto;
   padding: 50px 0px;
   border-bottom: 1px ridge;
-  min-height: 1000px; }
-
+  min-height: 400px; }
 
 
 /* Active link */
@@ -215,7 +189,6 @@ img{
   position: relative;
   color: var(--first-color);
 }
-
 .active-link::after {
   content: "";
   position: absolute;
@@ -225,10 +198,10 @@ img{
   height: 2px;
   background-color: var(--first-color);
 }
-
 /*=============== BUTTONS ===============*/
 
 .button:hover {
+  background-color: var(--first-color-alt);
   background-color: black;
   color: #fff;
 }
@@ -236,68 +209,130 @@ img{
 .button__icon {
   transition: 0.3s;
 }
-
 .button:hover .button__icon {
   transform: translateX(0.25rem);
 }
-
 .button--flex {
   display: inline-flex;
   align-items: center;
   column-gap: 0.5rem;
 }
-
 .button--link {
   color: var(--first-color);
   font-weight: var(--font-medium);
 }
-
 .button--link:hover .button__icon {
   transform: translateX(0.25rem);
 }
-
 /*=============== FOOTER ===============*/
 .footer__container {
   row-gap: 3rem;
 }
+
+.footer__logo {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  color: var(--title-color);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-bottom: var(--mb-2-5);
+  transition: 0.3s;
+}
+
+.footer__logo-icon {
+  font-size: 1.15rem;
+  color: var(--first-color);
+}
+
+.footer__logo:hover {
+  color: var(--first-color);
+}
+
 .footer {
   background-color: #9575CD;
   margin: 0px auto;
-  padding: 20px 0px; 
+  padding: 20px 0px; }
+
+
+.footer__subscribe {
+  background-color: var(--first-color-lighten);
+  padding: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 0.5rem;
 }
 
+.footer__input {
+  width: 70%;
+  padding: 0 0.5rem;
+  background: none;
+  color: var(--text-color);
+  border: none;
+  outline: none;
+}
 
+.footer__button {
+  padding: 1rem;
+}
 
+.footer__data {
+  display: grid;
+  row-gap: 0.75rem;
+}
 
+.footer__information {
+  font-size: var(--small-font-size);
+}
+
+.footer__social {
+  display: inline-flex;
+  column-gap: 0.75rem;
+}
+
+.footer__social-link {
+  font-size: 1rem;
+  color: var(--text-color);
+  transition: 0.3s;
+}
+
+.footer__social-link:hover {
+  transform: translateY(-0.25rem);
+}
+
+.footer__cards {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.5rem;
+}
+.footer__card {
+  width: 35px;
+}
 
 /*=============== Form ===============*/
 .gradient-custom {
   background: -webkit-linear-gradient(left, #3931af, #00c6ff);
 }
-
 .card-custom {
   border-bottom-left-radius: 10% 50%;
   border-top-left-radius: 10% 50%;
   background-color: #f8f9fa;
 }
-
 .input-custom {
   background-color: white;
 }
-
 .white-text {
   color: hsl(52, 0%, 98%);
   font-weight: 100;
   font-size: 14px;
 }
-
 .back-button {
   background-color: hsl(52, 0%, 98%);
   font-weight: 700;
   color: black;
   margin-top: 50px;
 }
-
 /*=============== SCROLL UP ===============*/
 .scrollup {
   position: fixed;
@@ -311,33 +346,27 @@ img{
   opacity: 0.8;
   transition: 0.4s;
 }
-
 .scrollup__icon {
   font-size: 1rem;
   color: #fff;
 }
-
 .scrollup:hover {
   background-color: var(--first-color-alt);
   opacity: 1;
 }
-
 /* Show Scroll Up*/
 .show-scroll {
   bottom: 3rem;
 }
-
 /*=============== SCROLL BAR ===============*/
 ::-webkit-scrollbar {
   width: 0.6rem;
   background: hsl(var(--hue), 4%, 53%);
 }
-
 ::-webkit-scrollbar-thumb {
   background: hsl(var(--hue), 4%, 29%);
   border-radius: 0.5rem;
 }
-
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
 @media screen and (max-width: 320px) {
@@ -345,12 +374,31 @@ img{
     margin-left: var(--mb-1);
     margin-right: var(--mb-1);
   }
+
+  .home__img {
+    width: 180px;
+  }
+  .home__title {
+    font-size: var(--h1-font-size);
+  }
+
+  .steps__bg {
+    padding: 2rem 1rem;
+  }
+  .steps__card {
+    padding: 1.5rem;
+  }
+
+  .product__container {
+    grid-template-columns: 0.6fr;
+    justify-content: center;
+  }
 }
+
 @media screen and (min-width: 767px) {
   body {
     margin: 0;
   }
-
   .nav {
     height: calc(var(--header-height) + 1.5rem);
     column-gap: 3rem;
@@ -366,11 +414,9 @@ img{
   .nav__menu {
     margin-left: auto;
   }
-
   .footer__container {
     grid-template-columns: repeat(2, 1fr);
   }
-
   .footer__container {
     column-gap: 3rem;
   }
@@ -378,14 +424,12 @@ img{
     width: initial;
   }
 }
-
 /* For large devices */
 @media screen and (min-width: 992px) {
   .container {
     margin-left: auto;
     margin-right: auto;
   }
-
   .footer__logo {
     font-size: var(--h3-font-size);
   }

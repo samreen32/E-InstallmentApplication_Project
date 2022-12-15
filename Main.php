@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="node_modules/bootstrap-social/bootstrap-social.css">
+
     <!--=============== CSS ===============-->
     <link rel="stylesheet" href="assets/css/styles.css">
     <title>Customer Installment-Application</title>
@@ -44,13 +45,14 @@
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 More
                             </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <ul class="dropdown-menu modal-body">
+                                <li><a class="dropdown-item" href="#">About</a></li>
+                                <li><a class="dropdown-item" href="#">Contact Us</a></li>
+                                <li><a class="dropdown-item" href="#">Installment Plans</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" href="#">Help</a></li>
                             </ul>
                         </li>
                         <form class="d-flex" role="search" style="margin-left: 100px; width: 500px">
@@ -60,15 +62,17 @@
                     </ul>
 
                     <span style="margin-right: 40px" data-toggle="modal" data-target="#exampleModalCenter">
-                        <!-- <a> <span class="fa fa-sign-in fa-lg mx-3">Sign Up</span></a> -->
                         <a> <span class="fa fa-sign-in fa-lg mx-2 button__icon"></span>Login</a>
+                    </span>
+                    <span style="margin-right: 40px" data-toggle="modal" data-target="#exampleModalCenter1">
+                        <a> <span class="fa fa-sign-in fa-lg mx-2 button__icon"></span>Sign Up</a>
                     </span>
                 </div>
             </div>
         </nav>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal Login-->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -103,33 +107,7 @@
         </div>
     </div>
 
-
-    <header class="jumbotron">
-        <div class="">
-            <div class="row row-header">
-                <div class="col-12 col-sm align-self-center">
-                    <img src="./assets/img/loan.png" style="width: 200px;" class="img-fluid">
-                </div>
-                <div class="col-12 col-sm-4" style="margin-left: -300px">
-                    <h1>Don't have money? Totally fine you
-                        can pay later.</h1>
-
-                    <p>Create your account so we take good care of your installments in the future!!</p>
-                    <a type="button" class="button button--flex nav-link btn-warning text-white" id="plans">Explore
-                        Installment Plans<i class="ri-arrow-right-down-line button__icon"></i>
-                    </a>
-                </div>
-
-                <!-- button -->
-                <span class="col-12 col-sm align-self-center" style="margin-right: 100px" data-toggle="modal"
-                    data-target="#exampleModalCenter1">
-                    <a type="button" class="button button--flex nav-link btn-warning text-white"
-                        id="createAccount">Craete Account</a>
-                </span>
-            </div>
-        </div>
-    </header>
-    <!-- Modal -->
+    <!-- Modal Register-->
     <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -165,16 +143,34 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="button button--flex" style="height: 40px;">Sign up</button>
+                    <a type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</a>
+                    <a type="button" class="button button--flex" style="height: 40px;" href="./Admin.php">Sign up</a>
                 </div>
             </div>
         </div>
     </div>
 
 
+    <header class="jumbotron">
+        <div class="row row-header">
+            <div class="col-12 col-sm align-self-center">
+                <img src="./assets/img/loan.png" style="width: 200px;" class="img-fluid">
+            </div>
+            <div class="col-12 col-sm-4 align-self-center" style="margin-right: 600px;">
+                <h1>Don't have money? Totally fine you
+                    can pay later.</h1>
+
+                <p>Create your account so we take good care of your installments in the future!!</p>
+                <a type="button" class="button button--flex nav-link btn-warning text-white" id="plans">Explore
+                    Installment Plans<i class="ri-arrow-right-down-line button__icon"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+
     <!-- Body -->
-    <div class="container my-5">
+    <div class="container my-5" >
         <div class="row row-cols-1 row-cols-md-2 g-4" id="plansCard">
             <div class="col">
                 <div class="card modal-body">
@@ -242,8 +238,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-4 offset-1 col-sm-2">
-                    <h5>Links</h5>
-                    <ul class="list-unstyled">
+                    <h4>Links</h4>
+                    <ul class="list-unstyled" style="color: white;">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">About</a></li>
                         <li><a href="#">Plans</a></li>
@@ -277,7 +273,9 @@
                         <a class="btn btn-social-icon" href="mailto:"><i class="fa fa-envelope-o"></i></a>
                     </div>
                 </div>
+           
             </div>
+
             <div class="row justify-content-center">
                 <div class="col-auto">
                     <p>© Copyright 2021 E-Installment</p>
@@ -294,6 +292,9 @@
 </body>
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+</script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
 </script>

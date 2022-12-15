@@ -20,7 +20,7 @@
 
 <body>
     <?php 
-        require_once('./components/Main.php'); 
+        require_once('./Main.php'); 
     ?>
 </body>
 

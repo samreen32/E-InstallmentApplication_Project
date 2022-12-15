@@ -116,7 +116,8 @@
             <div class="col">
                 <div class="card modal-body">
                     <div class="card-body">
-                        <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"><i
+                        <a type="button" class="button button--flex my-3" href="changePassword.php" 
+                        style="height: 50px; width:100%;"><i
                                 class="fa fa-key img-fluid mx-2" aria-hidden="true"></i>Change Password</a>
 
                         <a type="button" class="button button--flex my-3" style="height: 50px; 

@@ -9,7 +9,8 @@ var loadFile = function (event) {
     image.src = URL.createObjectURL(event.target.files[0]);
   };
 
-  //change text on button click
-  $('#btn').on('click', function() {
-    $('#changeText').text($('#changeAbout').val());
-  });
+  
+//change text on button click
+$('#btn').on('click', function() {
+  $('#changeText').text($('#changeAbout').val());
+});

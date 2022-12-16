@@ -118,19 +118,19 @@
                     <div class="card-body">
                         <a type="button" class="button button--flex my-3" href="changePassword.php" 
                         style="height: 50px; width:100%;"><i
-                                class="fa fa-key img-fluid mx-2" aria-hidden="true"></i>Change Password</a>
+                                class="fa fa-key img-fluid mx-2 button__icon" aria-hidden="true"></i>Change Password</a>
 
                         <a type="button" class="button button--flex my-3" style="height: 50px; 
-                                width:100%;"><i class="fa fa-eye img-fluid mx-2" aria-hidden="true"></i>Add
+                                width:100%;"><i class="fa fa-eye img-fluid mx-2 button__icon" aria-hidden="true"></i>Add
                             Customer Details</a>
                         <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"><i
-                                class="fa fa-pencil-square img-fluid mx-2" aria-hidden="true"></i>Update
+                                class="fa fa-pencil-square img-fluid mx-2 button__icon" aria-hidden="true"></i>Update
                             Installments</a>
 
                         <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"><i
-                                class="fa fa-cogs img-fluid mx-2" aria-hidden="true"></i>Settings</a>
+                                class="fa fa-cogs img-fluid mx-2 button__icon" aria-hidden="true"></i>Settings</a>
                         <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"><i
-                                class="fa fa-sign-out img-fluid mx-2" aria-hidden="true"></i>Logout</a>
+                                class="fa fa-sign-out img-fluid mx-2 button__icon" aria-hidden="true"></i>Logout</a>
                     </div>
                 </div>
             </div>
@@ -192,7 +192,7 @@
                         <div class="card mx-3 modal-body" style="width: 15rem;">
                             <div class="card-body my-3">
                                 <h5 class="card-title">Your About
-                                    <i class="fa fa-quote-left fa-3x fa-pull-left fa-border" aria-hidden="true"></i>
+                                    <i class="fa fa-quote-left fa-3x fa-pull-left fa-border button__icon" aria-hidden="true"></i>
                                 </h5>
                                 <p class="card-text"><i id='changeText'>Just there to make people life easier
                                         by providing them installment.</i>

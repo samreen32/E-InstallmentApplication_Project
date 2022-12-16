@@ -51,6 +51,9 @@ button {
   border: none;
   outline: none;
 }
+a,div{
+  cursor: pointer;
+}
 h1,
 h2,
 h3 {
@@ -161,7 +164,6 @@ img{
   font-weight: var(--font-medium);
   transition: 0.3s;
 }
-
 
 /* Change background header */
 .scroll-header {

@@ -65,7 +65,8 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true){
                             </form>
                         </ul>
                         <span style="margin-right: 40px">
-                            <a><i class="fa fa-user fa-2x img-fluid mx-3" aria-hidden="true"></i>
+                            <a style="cursor: pointer;"><i class="fa fa-user fa-2x img-fluid mx-3 button__icon"
+                                    aria-hidden="true"></i>
                                 Welcome! <?php echo $_SESSION['fname'] ?></a>
                         </span>
                     </div>
@@ -88,29 +89,32 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true){
             <div class="col">
                 <div class="card modal-body">
                     <div class="card-body">
-                        <a type="button" class="button button--flex my-3" href="profile.php"
-                         style="height: 50px; width:100%;">
-                            <i class="fa fa-user img-fluid mx-2" aria-hidden="true"></i>
+                        <a type="button" class="button button--flex my-3 button__icon" href="profile.php"
+                            style="height: 50px; width:100%;">
+                            <i class="fa fa-user img-fluid mx-2 button__icon" aria-hidden="true"></i>
                             Profile</a>
-                            <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"><i
-                                class="fa fa-plus img-fluid mx-2" aria-hidden="true"></i>Add Products for installment</a>
+                        <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"><i
+                                class="fa fa-plus img-fluid mx-2 button__icon" aria-hidden="true"></i>Add Products for
+                            installment</a>
                         <a type="button" class="button button--flex my-3" href="addForm.php"
-                            style="height: 50px; width:100%;"><i class="fa fa-plus img-fluid mx-2"
+                            style="height: 50px; width:100%;"><i class="fa fa-plus img-fluid mx-2 button__icon"
                                 aria-hidden="true"></i>
                             Add Customers</a>
                         <a type="button" class="button button--flex my-3" style="height: 50px; 
-                                width:100%;"><i class="fa fa-eye img-fluid mx-2" aria-hidden="true"></i>View
+                                width:100%;"><i class="fa fa-eye img-fluid mx-2 button__icon"
+                                aria-hidden="true"></i>View
                             Customer Details</a>
                         <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"><i
-                                class="fa fa-pencil-square img-fluid mx-2" aria-hidden="true"></i>Update
+                                class="fa fa-pencil-square img-fluid mx-2 button__icon" aria-hidden="true"></i>Update
                             Installments</a>
                         <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"><i
-                                class="fa fa-trash img-fluid mx-2" aria-hidden="true"></i>Remove
+                                class="fa fa-trash img-fluid mx-2 button__icon" aria-hidden="true"></i>Remove
                             Installments</a>
                         <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"><i
-                                class="fa fa-cogs img-fluid mx-2" aria-hidden="true"></i>Settings</a>
-                        <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"><i
-                                class="fa fa-sign-out img-fluid mx-2" aria-hidden="true"></i>Logout</a>
+                                class="fa fa-cogs img-fluid mx-2 button__icon" aria-hidden="true"></i>Settings</a>
+                        <a type="button" class="button button--flex my-3"
+                            style="height: 50px; cursor: pointer; width:100%;"><i
+                                class="fa fa-sign-out img-fluid mx-2 button__icon" aria-hidden="true"></i>Logout</a>
                     </div>
                 </div>
             </div>

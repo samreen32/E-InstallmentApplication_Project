@@ -54,7 +54,8 @@
 
 
     <!--Body -->
-    <div class="container" style="background-color: #d1c4e9;">
+    <div class="container"  style="background-color: #9575CD;" >
+    <div class="container">
         <div style="margin-top: 100px;">
             <h1 style="text-align: center;"></h1>
         </div><br>
@@ -160,7 +161,7 @@
         </div><br>
 
     </div>
-
+</div>
 
 
 </body>

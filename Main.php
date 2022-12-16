@@ -9,8 +9,8 @@ if(isset($_POST) & !empty($_POST)){
     $password = $database->sanitize($_POST['password']);
     $cPassword = $database->sanitize($_POST['cPassword']);
    
-    $exists=false;
-    if(($password == $cPassword) && (!empty($_POST["fname"])) && (!empty($_POST["email"])) && $exists==false ){
+   // $exists=false;
+    if(($password == $cPassword) && (!empty($_POST["fname"])) && (!empty($_POST["email"]))  ){
         $res = $database->createSignup($fname, $email, $password, $cPassword);
         if($res){
            $showAlert = true;
@@ -33,23 +33,21 @@ require_once('database.php');
 if(isset($_POST) & !empty($_POST)){
     
     $fname = $database->sanitize($_POST['fname']);
-    $email = $database->sanitize($_POST['email']);
     $password = $database->sanitize($_POST['password']);
 
-    $res = $database->createLogin($fname, $email, $password);
+    $res = $database->createLogin($fname, $password);
     $num = mysqli_num_rows($res);
     if($num == 1){
         $login = true;
         session_start();
         $_SESSION['loggedin'] = true;
+        // $_SESSION["id"] = $id;
         $_SESSION['fname'] = $fname;
         header("location: Admin.php");
-        
     }
     else{
         $showError = "Invalid Credentials";
     }
-   
 }
 ?>
 
@@ -118,10 +116,10 @@ if(isset($_POST) & !empty($_POST)){
                     </ul>
 
                     <span style="margin-right: 40px" data-toggle="modal" data-target="#exampleModalCenter">
-                        <a> <span class="fa fa-sign-in fa-lg mx-2 button__icon"></span>Login</a>
+                        <a style="cursor: pointer;"> <span class="fa fa-sign-in fa-lg mx-2 button__icon"></span>Login</a>
                     </span>
                     <span style="margin-right: 40px" data-toggle="modal" data-target="#exampleModalCenter1">
-                        <a> <span class="fa fa-sign-in fa-lg mx-2 button__icon"></span>Sign Up</a>
+                        <a style="cursor: pointer;"> <span class="fa fa-sign-in fa-lg mx-2 button__icon"></span>Sign Up</a>
                     </span>
                 </div>
             </div>
@@ -158,29 +156,30 @@ if(isset($_POST) & !empty($_POST)){
                 <div class="modal-body">
                     <form method="post">
                         <div class="mb-3">
-                            <label for="fname" class="form-label">Full Name</label>
+                            <label for="fname" class="form-label">User Name</label>
                             <input type="text" class="form-control" id="fname" name="fname"
                                 aria-describedby="emailHelp">
                         </div>
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                             <label for="email" class="form-label">Email address</label>
                             <input type="email" class="form-control" id="email" name="email"
-                                aria-describedby="emailHelp">
-                        </div>
+                             required aria-describedby="emailHelp">
+                        </div> -->
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password">
+                            <input type="password" class="form-control" id="password" name="password" required>
                         </div>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Check me out</label>
                         </div>
-                        <input type="submit" class="button button--flex" value="Login" style="height: 40px;" />
+                        <div style="align-items: left;">
+                            <a type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</a>
+                            <input type="submit" style="background-color: #512da8; color: #fff;
+                             padding: 0.4rem 1.75rem; border-radius: 0.5rem; transition: 0.3s;" value="Login"
+                                style="height: 40px; text-align: center" />
+                        </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="button button--flex" style="height: 40px;">Sign in</button>
                 </div>
             </div>
         </div>
@@ -219,27 +218,28 @@ if(isset($_POST) & !empty($_POST)){
                         <div class="mb-3">
                             <label for="fname" class="form-label">Full Name</label>
                             <input type="text" class="form-control" id="fname" name="fname"
-                                aria-describedby="emailHelp">
+                                required aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email address</label>
                             <input type="email" class="form-control" id="email" name="email"
-                                aria-describedby="emailHelp">
+                            required  aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password">
+                            <input type="password" class="form-control" id="password" name="password" required>
                         </div>
                         <div class="mb-3">
                             <label for="cPassword" class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control" id="cPassword" name="cPassword">
+                            <input type="password" class="form-control" id="cPassword" name="cPassword" required>
                         </div>
-                        <input type="submit" class="button button--flex" value="Sign up" style="height: 40px;" />
+                        <div class="">
+                            <input type="submit" style="background-color: #512da8; color: #fff;
+                             padding: 0.4rem 1.75rem; border-radius: 0.5rem; transition: 0.3s;" 
+                             value="Sign up" style="height: 40px;" />
+                            <a type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</a>
+                        </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <a type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</a>
-
                 </div>
             </div>
         </div>

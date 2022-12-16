@@ -16,7 +16,7 @@ class Database{
 	}
  
 	public function createSignup($fname, $email, $password, $cPassword){
-		$sql = "INSERT INTO `signup` (fname, email, password, cPassword) 
+		$sql = "INSERT INTO signup (fname, email, password, cPassword) 
 		VALUES ('$fname', '$email', '$password', '$cPassword')";
 		$res = mysqli_query($this->connection, $sql);
 		if($res){
@@ -27,8 +27,8 @@ class Database{
 		}
 	}
  
-	public function createLogin($fname, $email, $password){
-		$sql = "SELECT * FROM `signup` WHERE fname= '$fname' AND email= '$email' AND password= '$password'";
+	public function createLogin($fname, $password){
+		$sql = "SELECT * FROM signup WHERE fname= '$fname' AND password= '$password'";
 		$res = mysqli_query($this->connection, $sql);
 		return $res;
 	}

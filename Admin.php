@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true){
+    header("location: Main.php");
+    exit;
+}
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,7 +66,7 @@
                         </ul>
                         <span style="margin-right: 40px">
                             <a><i class="fa fa-user fa-2x img-fluid mx-3" aria-hidden="true"></i>
-                                Welcome! Shopkeeper</a>
+                                Welcome! <?php echo $_SESSION['fname'] ?></a>
                         </span>
                     </div>
                 </div>

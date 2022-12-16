@@ -1,3 +1,59 @@
+<?php
+$showAlert = false;
+$showError = false;
+require_once('database.php');
+if(isset($_POST) & !empty($_POST)){
+    
+    $fname = $database->sanitize($_POST['fname']);
+    $email = $database->sanitize($_POST['email']);
+    $password = $database->sanitize($_POST['password']);
+    $cPassword = $database->sanitize($_POST['cPassword']);
+   
+    $exists=false;
+    if(($password == $cPassword) && (!empty($_POST["fname"])) && (!empty($_POST["email"])) && $exists==false ){
+        $res = $database->createSignup($fname, $email, $password, $cPassword);
+        if($res){
+           $showAlert = true;
+        }else{
+            echo "Failed to create account";
+        }
+    }
+    else{
+        $showError = "Fields do not match or empty";
+    }
+   
+}
+?>
+
+<!--login-->
+<?php
+$login = false;
+$showError = false;
+require_once('database.php');
+if(isset($_POST) & !empty($_POST)){
+    
+    $fname = $database->sanitize($_POST['fname']);
+    $email = $database->sanitize($_POST['email']);
+    $password = $database->sanitize($_POST['password']);
+
+    $res = $database->createLogin($fname, $email, $password);
+    $num = mysqli_num_rows($res);
+    if($num == 1){
+        $login = true;
+        session_start();
+        $_SESSION['loggedin'] = true;
+        $_SESSION['fname'] = $fname;
+        header("location: Admin.php");
+        
+    }
+    else{
+        $showError = "Invalid Credentials";
+    }
+   
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -81,22 +137,45 @@
                     <h5 class="modal-title" id="exampleModalLongTitle">Login</h5>
                     <button type="button" class="close" data-dismiss="modal">x</button>
                 </div>
+
+                <?php
+                    //Alert for successful login
+                    if($login){
+                        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>Success!</strong> You have been logged in.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>';
+                        }
+                    //Alert when passwords do not match as well as any field is empty.
+                    if($showError){
+                        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>Oops!</strong> '.$showError.'
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>';
+                    }
+                ?>
+
                 <div class="modal-body">
-                    <form>
+                    <form method="post">
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1"
+                            <label for="fname" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="fname" name="fname"
                                 aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
+                            <label for="email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="email" name="email"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password">
                         </div>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Check me out</label>
                         </div>
-
+                        <input type="submit" class="button button--flex" value="Login" style="height: 40px;" />
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -116,35 +195,51 @@
                     <h5 class="modal-title" id="exampleModalLongTitle">Create Account</h5>
                     <button type="button" class="close" data-dismiss="modal">x</button>
                 </div>
+
+                <?php
+                    //Alert for successful signup
+                    if($showAlert){
+                        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>Success!</strong> Your account has been created. Now please Login to render to dashboard.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>';
+                        }
+                    //Alert when passwords do not match as well as any field is empty.
+                    if($showError){
+                        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>Oops!</strong> '.$showError.'
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>';
+                    }
+                ?>
+
+
                 <div class="modal-body">
-                    <form>
+                    <form method="post">
                         <div class="mb-3">
-                            <label for="name" class="form-label">Full Name</label>
-                            <input type="text" class="form-control" id="name" aria-describedby="emailHelp">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1"
+                            <label for="fname" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="fname" name="fname"
                                 aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
+                            <label for="email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="email" name="email"
+                                aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputPassword2" class="form-label">Re-Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword2">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password">
                         </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        <div class="mb-3">
+                            <label for="cPassword" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="cPassword" name="cPassword">
                         </div>
-
+                        <input type="submit" class="button button--flex" value="Sign up" style="height: 40px;" />
                     </form>
                 </div>
                 <div class="modal-footer">
                     <a type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</a>
-                    <a type="button" class="button button--flex" style="height: 40px;" href="./Admin.php">Sign up</a>
+
                 </div>
             </div>
         </div>
@@ -170,7 +265,7 @@
 
 
     <!-- Body -->
-    <div class="container my-5" >
+    <div class="container my-5">
         <div class="row row-cols-1 row-cols-md-2 g-4" id="plansCard">
             <div class="col">
                 <div class="card modal-body">
@@ -273,7 +368,7 @@
                         <a class="btn btn-social-icon" href="mailto:"><i class="fa fa-envelope-o"></i></a>
                     </div>
                 </div>
-           
+
             </div>
 
             <div class="row justify-content-center">

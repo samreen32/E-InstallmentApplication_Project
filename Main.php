@@ -37,17 +37,21 @@ require_once('database.php');
 if(isset($_POST) & !empty($_POST)){
     
     $fname = $database->sanitize($_POST['fname']);
-    $password = $database->sanitize($_POST['password']);
+    //$password = $database->sanitize($_POST['password']);
 
-    $res = $database->createLogin($fname, $password);
+    $res = $database->createLogin($fname);
     $num = mysqli_num_rows($res);
     if($num == 1){
-        $login = true;
-        session_start();
-        $_SESSION['loggedin'] = true;
-        // $_SESSION["id"] = $id;
-        $_SESSION['fname'] = $fname;
-        header("location: Admin.php");
+        while($rows = mysqli_fetch_assoc($res)){
+            if(password_verify($password, $rows['password'])){
+                $login = true;
+                session_start();
+                $_SESSION['loggedin'] = true;
+                // $_SESSION["id"] = $id;
+                $_SESSION['fname'] = $fname;
+                header("location: Admin.php");
+            }
+        }
     }
     else{
         $showError = "Invalid Credentials";

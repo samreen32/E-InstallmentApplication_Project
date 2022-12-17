@@ -17,8 +17,9 @@ class Database{
  
 	public function createSignup($fname, $email, $password){
 	   //insert login credentials in db.
+	   	$hash = password_hash($password, PASSWORD_DEFAULT);
 		$sql = "INSERT INTO signup (fname, email, password)
-		VALUES ('$fname', '$email', '$password')";
+		VALUES ('$fname', '$email', '$hash')";
 		$res = mysqli_query($this->connection, $sql);
 		if($res){
 	 		return true;
@@ -35,39 +36,13 @@ class Database{
 		return $result;
 	}
 
-	public function createLogin($fname, $password){
-		$sql = "SELECT * FROM signup WHERE fname= '$fname' AND password= '$password'";
+	public function createLogin($fname){
+		$sql = "SELECT * FROM signup WHERE fname = '$fname'";
 		$res = mysqli_query($this->connection, $sql);
 		return $res;
 	}
  
-	public function read($id=null){
-		$sql = "SELECT t1.*,t2.stud_course FROM task t1 INNER JOIN student_record t2 ON t1.id = t2.task_id";
- 		$res = mysqli_query($this->connection, $sql);
- 		return $res;
-	}
-
 	
-	public function update($title, $fname, $lname, $gender, $address, $address2, $city, $state, $zip, $textarea, $id){
-		$sql = "UPDATE `signup` SET title='$title', first_name='$fname', last_name='$lname', gender='$gender', address='$address', address2='$address2', city='$city', state='$state', zip='$zip', textarea='$textarea' WHERE id=$id";
-		$res = mysqli_query($this->connection, $sql);
-		if($res){
-			return true;
-		}else{
-			return false;
-		}
-	}
- 
-	public function delete($id){
-		$sql = "DELETE FROM `signup` WHERE id=$id";
- 		$res = mysqli_query($this->connection, $sql);
- 		if($res){
- 			return true;
- 		}else{
- 			return false;
- 		}
-	}
-
 	public function sanitize($var){
 		$return = mysqli_real_escape_string($this->connection, $var);
 		return $return;

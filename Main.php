@@ -7,21 +7,25 @@ if(isset($_POST) & !empty($_POST)){
     $fname = $database->sanitize($_POST['fname']);
     $email = $database->sanitize($_POST['email']);
     $password = $database->sanitize($_POST['password']);
-    $cPassword = $database->sanitize($_POST['cPassword']);
-   
-   // $exists=false;
-    if(($password == $cPassword) && (!empty($_POST["fname"])) && (!empty($_POST["email"]))  ){
-        $res = $database->createSignup($fname, $email, $password, $cPassword);
-        if($res){
-           $showAlert = true;
-        }else{
-            echo "Failed to create account";
-        }
+    $cPassword = $_POST['cPassword'];          
+ 
+    //check whethere email already exists or not.
+    $result = $database->emailValidation($email);
+    $numExistRows = mysqli_num_rows($result);
+    if($numExistRows > 0){
+        $showError = "Email already exists.";
     }
     else{
-        $showError = "Fields do not match or empty";
+        if(($password == $cPassword) && (!empty($_POST["fname"])) && (!empty($_POST["email"]))){
+            $res = $database->createSignup($fname, $email, $password);
+            if($res){
+            $showAlert = true;
+            }
+        }
+        else{
+            $showError = true;
+        }
     }
-   
 }
 ?>
 
@@ -116,10 +120,12 @@ if(isset($_POST) & !empty($_POST)){
                     </ul>
 
                     <span style="margin-right: 40px" data-toggle="modal" data-target="#exampleModalCenter">
-                        <a style="cursor: pointer;"> <span class="fa fa-sign-in fa-lg mx-2 button__icon"></span>Login</a>
+                        <a style="cursor: pointer;"> <span
+                                class="fa fa-sign-in fa-lg mx-2 button__icon"></span>Login</a>
                     </span>
                     <span style="margin-right: 40px" data-toggle="modal" data-target="#exampleModalCenter1">
-                        <a style="cursor: pointer;"> <span class="fa fa-sign-in fa-lg mx-2 button__icon"></span>Sign Up</a>
+                        <a style="cursor: pointer;"> <span class="fa fa-sign-in fa-lg mx-2 button__icon"></span>Sign
+                            Up</a>
                     </span>
                 </div>
             </div>
@@ -199,7 +205,7 @@ if(isset($_POST) & !empty($_POST)){
                     //Alert for successful signup
                     if($showAlert){
                         echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <strong>Success!</strong> Your account has been created. Now please Login to render to dashboard.
+                                <strong>Success!</strong> Your account has been created.
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>';
                         }
@@ -217,13 +223,13 @@ if(isset($_POST) & !empty($_POST)){
                     <form method="post">
                         <div class="mb-3">
                             <label for="fname" class="form-label">Full Name</label>
-                            <input type="text" class="form-control" id="fname" name="fname"
-                                required aria-describedby="emailHelp">
+                            <input type="text" class="form-control" id="fname" name="fname" required
+                                aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="email" name="email"
-                            required  aria-describedby="emailHelp">
+                            <input type="email" class="form-control" id="email" name="email" required
+                                aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
@@ -235,8 +241,8 @@ if(isset($_POST) & !empty($_POST)){
                         </div>
                         <div class="">
                             <input type="submit" style="background-color: #512da8; color: #fff;
-                             padding: 0.4rem 1.75rem; border-radius: 0.5rem; transition: 0.3s;" 
-                             value="Sign up" style="height: 40px;" />
+                             padding: 0.4rem 1.75rem; border-radius: 0.5rem; transition: 0.3s;" value="Sign up"
+                                style="height: 40px;" />
                             <a type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</a>
                         </div>
                     </form>

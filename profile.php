@@ -95,7 +95,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                         <span style="margin-left: 950px">
-                            <a> <span class="fa fa-sign-in fa-lg img-fluid mx-2 button__icon"></span>Logout</a>
+                            <a style="color: white;" href="logout.php"> <span class="fa fa-sign-in fa-lg img-fluid mx-2 button__icon"></span>Logout</a>
 
                         </span>
                     </div>
@@ -129,7 +129,8 @@
 
                         <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"><i
                                 class="fa fa-cogs img-fluid mx-2 button__icon" aria-hidden="true"></i>Settings</a>
-                        <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"><i
+                        <a type="button" class="button button--flex my-3" href="logout.php" 
+                            style="height: 50px; width:100%;"><i
                                 class="fa fa-sign-out img-fluid mx-2 button__icon" aria-hidden="true"></i>Logout</a>
                     </div>
                 </div>

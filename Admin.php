@@ -1,14 +1,11 @@
 <?php
-session_start();
+    session_start();
 
-if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true){
-    header("location: Main.php");
-    exit;
-}
-
-
+    if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true){
+        header("location: Main.php");
+        exit;
+    }
 ?>
-
 
 
 <!DOCTYPE html>
@@ -113,7 +110,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true){
                         <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"><i
                                 class="fa fa-cogs img-fluid mx-2 button__icon" aria-hidden="true"></i>Settings</a>
                         <a type="button" class="button button--flex my-3"
-                            style="height: 50px; cursor: pointer; width:100%;"><i
+                            style="height: 50px; cursor: pointer; width:100%;" href="logout.php"><i
                                 class="fa fa-sign-out img-fluid mx-2 button__icon" aria-hidden="true"></i>Logout</a>
                     </div>
                 </div>

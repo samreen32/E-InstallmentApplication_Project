@@ -51,7 +51,7 @@ button {
   border: none;
   outline: none;
 }
-a,div{
+a{
   cursor: pointer;
 }
 h1,

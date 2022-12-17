@@ -15,9 +15,10 @@ class Database{
 		}
 	}
  
-	public function createSignup($fname, $email, $password, $cPassword){
-		$sql = "INSERT INTO signup (fname, email, password, cPassword) 
-		VALUES ('$fname', '$email', '$password', '$cPassword')";
+	public function createSignup($fname, $email, $password){
+	   //insert login credentials in db.
+		$sql = "INSERT INTO signup (fname, email, password)
+		VALUES ('$fname', '$email', '$password')";
 		$res = mysqli_query($this->connection, $sql);
 		if($res){
 	 		return true;
@@ -27,6 +28,13 @@ class Database{
 		}
 	}
  
+	public function emailValidation($email){
+		//check whethere email already exists or not.
+		$exist_email = "SELECT * FROM signup WHERE email = '$email'";
+		$result = mysqli_query($this->connection, $exist_email);
+		return $result;
+	}
+
 	public function createLogin($fname, $password){
 		$sql = "SELECT * FROM signup WHERE fname= '$fname' AND password= '$password'";
 		$res = mysqli_query($this->connection, $sql);

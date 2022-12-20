@@ -37,19 +37,21 @@ require_once('database.php');
 if(isset($_POST) & !empty($_POST)){
     
     $fname = $database->sanitize($_POST['fname']);
-    //$password = $database->sanitize($_POST['password']);
 
     $res = $database->createLogin($fname);
     $num = mysqli_num_rows($res);
     if($num == 1){
         while($rows = mysqli_fetch_assoc($res)){
-            if(password_verify($password, $rows['password'])){
+            if(password_verify($password, $rows['password'])){      //verify given hash matches the given password.
                 $login = true;
                 session_start();
                 $_SESSION['loggedin'] = true;
                 // $_SESSION["id"] = $id;
                 $_SESSION['fname'] = $fname;
                 header("location: Admin.php");
+            } 
+            else{
+                $showError = "Invalid Credentials";
             }
         }
     }
@@ -185,9 +187,9 @@ if(isset($_POST) & !empty($_POST)){
                         </div>
                         <div style="align-items: left;">
                             <a type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</a>
-                            <input type="submit" style="background-color: #512da8; color: #fff;
+                            <input type="submit" style="background-color: #512da8; color: #fff; height: 40px; text-align: center;
                              padding: 0.4rem 1.75rem; border-radius: 0.5rem; transition: 0.3s;" value="Login"
-                                style="height: 40px; text-align: center" />
+                               />
                         </div>
                     </form>
                 </div>

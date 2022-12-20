@@ -1,3 +1,24 @@
+<?php
+ require_once('database.php');
+ $id = $_GET['id'];
+ $res = $database->read($id);
+ $r = mysqli_fetch_assoc($res);
+ if(isset($_POST) & !empty($_POST)){
+	 $fname = $database->sanitize($_POST['fname']);
+	 $email = $database->sanitize($_POST['email']);
+
+ 
+	$res = $database->updateProfile($fname, $email, $id);
+	if($res){
+	 	echo "Successfully updated data";
+		//header("location:view.php?msg="Successfully submited"");
+	}else{
+	 	echo "failed to update data";
+	}
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -151,40 +172,61 @@
                               <a type="button" href="Admin.php" style="color: black;">
                                 <i class="fa fa-angle-left fa-4x img-fluid" aria-hidden="true"></i>
                               </a>
-                                <div class="profile-pic">
-                                    <label class="-label" for="file">
-                                        <span class="glyphicon glyphicon-camera"></span>
-                                        <span>Change Image</span>
-                                    </label>
-                                    <input id="file" type="file" onchange="loadFile(event)" />
-                                    <img src="https://pic.onlinewebfonts.com/svg/img_569204.png" id="output"
-                                        width="100" />
-                                </div>
-
-                                <!--Form Adding -->
-                                <form method="post" style="text-align: center; ">
+                              
+                                <form method="post" style="text-align: center;">
                                     <div class="form-row my-5">
+
+                                        <!--Profile Image -->
+                                        <!-- <div class="profile-pic"> -->
+                                           
+                                                <!-- <label class="-label" for="profile_picture">
+                                                    <span class="glyphicon glyphicon-camera"></span>
+                                                    <span>Change Image</span>
+                                                </label>
+                                                <input class="form-control" type="file" id="profile_picture" 
+                                                    name="profile_picture"> -->
+                                                <!-- <img src="https://pic.onlinewebfonts.com/svg/img_569204.png"
+                                                    width="100" />  -->
+
+                                            <!-- <input id="file" type="file" 
+                                                onchange="loadFile(event)" name="file" />
+                                            <img src="https://pic.onlinewebfonts.com/svg/img_569204.png"
+                                            id="output" width="100" /> -->
+                                            <!-- -->
+                                        <!-- </div> -->
+
+
+                                        <!--Form Adding -->
+                                    
+                                        <!-- // if($profile_picture == NULL){
+                                        //     echo '<img src="https://pic.onlinewebfonts.com/svg/img_569204.png"
+                                        //     width="10"/>';
+                                        // }
+                                        // else{
+                                        //     echo '<img src="upload/'.$profile_picture.'"/>';
+                                        // } -->
+                                    
+                                        <!-- <div class="form-group col-md-5" style="margin: auto">
+                                            <label for="profile_picture" class="form-label" style="color: black">Choose</label>
+                                            <input  class="form-control" type="file" id="profile_picture" name="profile_picture">
+                                        </div> -->
                                         <div class="form-group col-md-5" style="margin: auto">
-                                            <label for="fName" class="form-label">First Name</label>
-                                            <input type="text" class="form-control" id="fName"
-                                                aria-describedby="emailHelp">
+                                            <label for="fname" class="form-label">First Name</label>
+                                            <input type="text" class="form-control" id="fname" name="fname"
+                                            value="<?php echo $r['fname'] ?>" />
                                         </div>
+                                        
                                         <div class="form-group col-md-5 my-3" style="margin: auto">
-                                            <label for="lName" class="form-label">Last Name</label>
-                                            <input type="text" class="form-control" id="lName"
-                                                aria-describedby="emailHelp">
+                                            <label for="email" class="form-label">Email address</label>
+                                            <input type="email" name="email" class="form-control" id="email"
+                                            value="<?php echo $r['email'] ?>" aria-describedby="emailHelp"/>
                                         </div>
-                                        <div class="form-group col-md-5 my-3" style="margin: auto">
-                                            <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1"
-                                                aria-describedby="emailHelp">
-                                        </div>
-                                        <div class="form-group col-md-5 my-3" style="margin: auto">
-                                            <label for="address" class="form-label">Address</label>
-                                            <input type="email" class="form-control" id="address"
-                                                aria-describedby="emailHelp">
-                                        </div>
-                                        <a type="button" class="button button--flex mx-3 my-3">Update Profile</a>
+                                        
+                                        <input type="submit" class="button button--flex mx-3 my-3" 
+                                            style="background-color: #512da8; color: #fff; height: 40px; text-align: center;
+                                            padding: 0.4rem 1.75rem; border-radius: 0.5rem; transition: 0.3s;"
+                                            value="Update Profile"
+                                        />
                                     </div>
                                 </form>
                             </div>
@@ -237,4 +279,6 @@
 </script>
 <script src="assets/js/scripts.js"></script>
 
+
 </html>
+

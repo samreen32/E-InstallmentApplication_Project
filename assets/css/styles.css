@@ -80,6 +80,16 @@ img{
   width: auto;
   height: auto;
 }
+
+
+/* .product-box{
+  position: relative;
+}
+.product-box:hover{
+  padding: 10px;
+  border: 1px solid var(--first-color);
+  transition: 0.4s;
+} */
 /*=============== REUSABLE CSS CLASSES ===============*/
 
 .grid {

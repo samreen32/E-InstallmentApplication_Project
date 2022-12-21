@@ -6,7 +6,10 @@
         exit;
     }
 ?>
-
+<?php
+    require_once('database.php');
+    $res = $database->read();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -64,7 +67,9 @@
                         <span style="margin-right: 40px">
                             <a style="cursor: pointer;"><i class="fa fa-user fa-2x img-fluid mx-3 button__icon"
                                     aria-hidden="true"></i>
-                                Welcome! <?php echo $_SESSION['fname'] ?></a>
+                                Welcome! <?php 
+                                echo $_SESSION['fname'] 
+                                ?></a>
                         </span>
                     </div>
                 </div>
@@ -73,7 +78,9 @@
     </div>
 
 
-
+    <?php 
+        while($r = mysqli_fetch_assoc($res)){
+    ?>
     <!-- Drawer -->
     <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
         aria-labelledby="offcanvasWithBothOptionsLabel">
@@ -82,17 +89,19 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" style="background-color: white;"
                 aria-label="Close"></button>
         </div>
+       
         <div class="offcanvas-body">
             <div class="col">
                 <div class="card modal-body">
                     <div class="card-body">
-                        <a type="button" class="button button--flex my-3 button__icon" href="profile.php"
-                            style="height: 50px; width:100%;">
+                 
+                        <a type="button" class="button button--flex my-3 button__icon" 
+                            href="profile.php?id=<?php echo $r['id']; ?>" style="height: 50px; width:100%;">
                             <i class="fa fa-user img-fluid mx-2 button__icon" aria-hidden="true"></i>
                             Profile</a>
-                        <a type="button" class="button button--flex my-3" href="viewProducts.php"
-                            style="height: 50px; width:100%;"><i
-                                class="fa fa-plus img-fluid mx-2 button__icon" aria-hidden="true"></i>Add Products for
+                  
+                        <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;" href="viewProducts.php"><i
+                            class="fa fa-plus img-fluid mx-2 button__icon" aria-hidden="true"></i>Add Products for
                             installment</a>
                         <a type="button" class="button button--flex my-3" href="addForm.php"
                             style="height: 50px; width:100%;"><i class="fa fa-plus img-fluid mx-2 button__icon"
@@ -117,8 +126,9 @@
                 </div>
             </div>
         </div>
+      
     </div>
-
+    <?php } ?>
 
 
     <!--Body -->

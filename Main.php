@@ -150,19 +150,19 @@ if(isset($_POST) & !empty($_POST)){
 
                 <?php
                     //Alert for successful login
-                    if($login){
-                        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <strong>Success!</strong> You have been logged in.
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
-                        }
-                    //Alert when passwords do not match as well as any field is empty.
-                    if($showError){
-                        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <strong>Oops!</strong> '.$showError.'
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
-                    }
+                    // if($login){
+                    //     echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                    //             <strong>Success!</strong> You have been logged in.
+                    //             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    //         </div>';
+                    //     }
+                    // //Alert when passwords do not match as well as any field is empty.
+                    // if($showError){
+                    //     echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    //             <strong>Oops!</strong> '.$showError.'
+                    //             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    //         </div>';
+                    // }
                 ?>
 
                 <div class="modal-body">
@@ -170,7 +170,7 @@ if(isset($_POST) & !empty($_POST)){
                         <div class="mb-3">
                             <label for="fname" class="form-label">User Name</label>
                             <input type="text" class="form-control" id="fname" name="fname"
-                                aria-describedby="emailHelp">
+                             aria-describedby="emailHelp">
                         </div>
                         <!-- <div class="mb-3">
                             <label for="email" class="form-label">Email address</label>
@@ -179,7 +179,8 @@ if(isset($_POST) & !empty($_POST)){
                         </div> -->
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
+                            <input type="password" class="form-control" id="password" 
+                             name="password" required>
                         </div>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -246,9 +247,11 @@ if(isset($_POST) & !empty($_POST)){
                             <input type="password" class="form-control" id="cPassword" name="cPassword" required>
                         </div>
                         <div class="">
-                            <input type="submit" style="background-color: #512da8; color: #fff;
-                             padding: 0.4rem 1.75rem; border-radius: 0.5rem; transition: 0.3s;" value="Sign up"
-                                style="height: 40px;" />
+                            <a> 
+                                <input type="submit" style="background-color: #512da8; color: #fff;
+                                    padding: 0.4rem 1.75rem; border-radius: 0.5rem; transition: 0.3s;" value="Sign up"
+                                    style="height: 40px;" />
+                            </a>
                             <a type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</a>
                         </div>
                     </form>

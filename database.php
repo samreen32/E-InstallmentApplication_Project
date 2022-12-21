@@ -28,18 +28,6 @@ class Database{
 			return false;
 		}
 	}
- 
-	public function userProfile($fname, $email, $password, $profile_picture){
-		 $sql = "INSERT INTO signup (fname, email, password, $profile_picture)
-		 VALUES ('$fname', '$email', '$hash', '$profile_picture')";
-		 $res = mysqli_query($this->connection, $sql);
-		 if($res){
-			  return true; 
-		 }else{
-			 die("err".mysqli_error($this->connection));
-			 return false;
-		 }
-	 }
 
 	public function emailValidation($email){
 		//check whethere email already exists or not.
@@ -54,13 +42,18 @@ class Database{
 		$res = mysqli_query($this->connection, $sql);
 		return $res;
 	}
-
-	public function read($id=null){
-		$sql = "SELECT * FROM signup";
-		if($id){ $sql .= " WHERE id=$id";}
- 		$res = mysqli_query($this->connection, $sql);
- 		return $res;
-	}
+	
+	// public function userProfile($fname, $email, $password, $profile_picture){
+	// 	$sql = "INSERT INTO signup (fname, email, password, $profile_picture)
+	// 	VALUES ('$fname', '$email', '$hash', '$profile_picture')";
+	// 	$res = mysqli_query($this->connection, $sql);
+	// 	if($res){
+	// 		 return true; 
+	// 	}else{
+	// 		die("err".mysqli_error($this->connection));
+	// 		return false;
+	// 	}
+	// }
 
 	//update profile
 	public function updateProfile($fname, $email, $id){
@@ -73,22 +66,12 @@ class Database{
 		}
 	}
 
-
-	//function for adding customer details for installments.
-	// public function addCustomer_Details($title, $fname, $lname, $gender, $address, $city, $state, $zip, $plan, $product_detail, ){
-	// 	$sql = "INSERT INTO `task` (title, first_name, last_name, gender, address, address2, city, state, zip, textarea) 
-	// 	VALUES ('$title', '$fname', '$lname', '$gender', '$address', '$address2', '$city', '$state', '$zip', '$textarea')";
-	// 	$res = mysqli_query($this->connection, $sql);
-	// 	if($res){
-	//  		return true;
-	// 	}else{
-	// 		die("err".mysqli_error($this->connection));
-	// 		return false;
-	// 	}
-	// }
-
-
-
+	public function read($id=null){
+		$sql = "SELECT * FROM signup";
+		if($id){ $sql .= " WHERE id=$id";}
+ 		$res = mysqli_query($this->connection, $sql);
+ 		return $res;
+	}
 
 
 	public function sanitize($var){

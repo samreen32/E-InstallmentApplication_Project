@@ -177,7 +177,7 @@
                                     <div class="form-row my-5">
 
                                         <!--Profile Image -->
-                                        <!-- <div class="profile-pic"> -->
+                                        <div class="profile-pic">
                                            
                                                 <!-- <label class="-label" for="profile_picture">
                                                     <span class="glyphicon glyphicon-camera"></span>
@@ -193,7 +193,7 @@
                                             <img src="https://pic.onlinewebfonts.com/svg/img_569204.png"
                                             id="output" width="100" /> -->
                                             <!-- -->
-                                        <!-- </div> -->
+                                        </div>
 
 
                                         <!--Form Adding -->
@@ -206,10 +206,10 @@
                                         //     echo '<img src="upload/'.$profile_picture.'"/>';
                                         // } -->
                                     
-                                        <!-- <div class="form-group col-md-5" style="margin: auto">
+                                        <div class="form-group col-md-5" style="margin: auto">
                                             <label for="profile_picture" class="form-label" style="color: black">Choose</label>
                                             <input  class="form-control" type="file" id="profile_picture" name="profile_picture">
-                                        </div> -->
+                                        </div>
                                         <div class="form-group col-md-5" style="margin: auto">
                                             <label for="fname" class="form-label">First Name</label>
                                             <input type="text" class="form-control" id="fname" name="fname"
@@ -222,11 +222,7 @@
                                             value="<?php echo $r['email'] ?>" aria-describedby="emailHelp"/>
                                         </div>
                                         
-                                        <input type="submit" class="button button--flex mx-3 my-3" 
-                                            style="background-color: #512da8; color: #fff; height: 40px; text-align: center;
-                                            padding: 0.4rem 1.75rem; border-radius: 0.5rem; transition: 0.3s;"
-                                            value="Update Profile"
-                                        />
+                                        <input type="submit" class="button button--flex mx-3 my-3" value="Update Profile"/>
                                     </div>
                                 </form>
                             </div>

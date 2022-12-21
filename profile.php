@@ -1,4 +1,5 @@
 <?php
+
  require_once('database.php');
  $id = $_GET['id'];
  $res = $database->read($id);
@@ -6,18 +7,40 @@
  if(isset($_POST) & !empty($_POST)){
 	 $fname = $database->sanitize($_POST['fname']);
 	 $email = $database->sanitize($_POST['email']);
-
- 
+     
 	$res = $database->updateProfile($fname, $email, $id);
 	if($res){
 	 	echo "Successfully updated data";
-		//header("location:view.php?msg="Successfully submited"");
+		//header("location:profile.php");
 	}else{
-	 	echo "failed to update data";
-	}
+        echo "failed to update data";
+   }
 }
 ?>
 
+<?php
+    session_start();
+?>
+
+<?php
+//     session_start();
+ require_once('database.php');
+ if(isset($_POST) & !empty($_POST)){
+     $profile_picture = $database->sanitize($_FILES['profile_picture']['name']);
+
+ 
+	$res = $database->userProfile($profile_picture);
+	if($res){
+        move_uploaded_file($_FILES["profile_picture"]["temp_name"], "upload/".$_FILES["profile_picture"]["name"]);
+        $_SESSION['status'] = "Image Stored";
+	 	//echo "Successfully updated data";
+		header("location:profile.php");
+	}else{
+        $_SESSION['status'] = "Image Not Stored";
+       header("location:profile.php");
+	}
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -173,11 +196,12 @@
                                 <i class="fa fa-angle-left fa-4x img-fluid" aria-hidden="true"></i>
                               </a>
                               
-                                <form method="post" style="text-align: center;">
+                                <form method="post" style="text-align: center;" 
+                                    enctype="multipart/form-data">
                                     <div class="form-row my-5">
 
                                         <!--Profile Image -->
-                                        <div class="profile-pic">
+                                        <!-- <div class="profile-pic"> -->
                                            
                                                 <!-- <label class="-label" for="profile_picture">
                                                     <span class="glyphicon glyphicon-camera"></span>
@@ -193,7 +217,7 @@
                                             <img src="https://pic.onlinewebfonts.com/svg/img_569204.png"
                                             id="output" width="100" /> -->
                                             <!-- -->
-                                        </div>
+                                        <!-- </div> -->
 
 
                                         <!--Form Adding -->
@@ -208,21 +232,22 @@
                                     
                                         <div class="form-group col-md-5" style="margin: auto">
                                             <label for="profile_picture" class="form-label" style="color: black">Choose</label>
-                                            <input  class="form-control" type="file" id="profile_picture" name="profile_picture">
+                                            <input  class="form-control" type="file" id="profile_picture" 
+                                            name="profile_picture">
                                         </div>
                                         <div class="form-group col-md-5" style="margin: auto">
                                             <label for="fname" class="form-label">First Name</label>
                                             <input type="text" class="form-control" id="fname" name="fname"
-                                            value="<?php echo $r['fname'] ?>" />
+                                            value="<?php echo $_SESSION['user_name'] ?>" />
                                         </div>
                                         
                                         <div class="form-group col-md-5 my-3" style="margin: auto">
                                             <label for="email" class="form-label">Email address</label>
                                             <input type="email" name="email" class="form-control" id="email"
-                                            value="<?php echo $r['email'] ?>" aria-describedby="emailHelp"/>
+                                            value="<?php echo $_SESSION['user_email'] ?>" aria-describedby="emailHelp"/>
                                         </div>
                                         
-                                        <input type="submit" class="button button--flex mx-3 my-3" value="Update Profile"/>
+                                        <input name="submit" type="submit" class="button button--flex mx-3 my-3" value="Update Profile"/>
                                     </div>
                                 </form>
                             </div>

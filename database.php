@@ -43,17 +43,12 @@ class Database{
 		return $res;
 	}
 	
-	// public function userProfile($fname, $email, $password, $profile_picture){
-	// 	$sql = "INSERT INTO signup (fname, email, password, $profile_picture)
-	// 	VALUES ('$fname', '$email', '$hash', '$profile_picture')";
-	// 	$res = mysqli_query($this->connection, $sql);
-	// 	if($res){
-	// 		 return true; 
-	// 	}else{
-	// 		die("err".mysqli_error($this->connection));
-	// 		return false;
-	// 	}
-	// }
+	public function userProfile($profile_picture){
+		$sql = "INSERT INTO signup (profile_picture)
+		VALUES ('$profile_picture')";
+		$res = mysqli_query($this->connection, $sql);
+		return $res;
+	}
 
 	//update profile
 	public function updateProfile($fname, $email, $id){

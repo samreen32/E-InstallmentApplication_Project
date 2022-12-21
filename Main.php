@@ -1,8 +1,9 @@
 <?php
+  //  session_start();
 $showAlert = false;
 $showError = false;
 require_once('database.php');
-if(isset($_POST) & !empty($_POST)){
+if(isset($_REQUEST['btn_signup'])){
     
     $fname = $database->sanitize($_POST['fname']);
     $email = $database->sanitize($_POST['email']);
@@ -31,34 +32,38 @@ if(isset($_POST) & !empty($_POST)){
 
 <!--login-->
 <?php
-$login = false;
-$showError = false;
-require_once('database.php');
-if(isset($_POST) & !empty($_POST)){
-    
-    $fname = $database->sanitize($_POST['fname']);
+    session_start();
+    $login = false;
+    $showError = false;
+    require_once('database.php');
 
-    $res = $database->createLogin($fname);
-    $num = mysqli_num_rows($res);
-    if($num == 1){
-        while($rows = mysqli_fetch_assoc($res)){
-            if(password_verify($password, $rows['password'])){      //verify given hash matches the given password.
-                $login = true;
-                session_start();
-                $_SESSION['loggedin'] = true;
-                // $_SESSION["id"] = $id;
-                $_SESSION['fname'] = $fname;
-                header("location: Admin.php");
-            } 
-            else{
-                $showError = "Invalid Credentials";
+    if(isset($_REQUEST['btn_login'])) {
+
+        $fname = $database->sanitize($_POST['fname']);
+        $res = $database->createLogin($fname);
+        if(mysqli_num_rows($res) > 0) {
+        
+            while($rows = mysqli_fetch_array($res)) {
+                if(password_verify($_REQUEST['password'], $rows['password'])) {
+                    
+                    $login = true;
+                    session_start();
+                    
+                    $_SESSION['user_id'] = $rows['id'];
+                    $_SESSION['user_name'] = $rows['fname'];
+                    $_SESSION['user_email'] = $rows['email'];
+                    header("location: Admin.php");
+                } 
+                else {
+                    
+                    $showError = "Invalid Credentials";
+                }
             }
         }
+        else {
+            $showError = "Invalid Credentials";
+        }
     }
-    else{
-        $showError = "Invalid Credentials";
-    }
-}
 ?>
 
 
@@ -93,7 +98,7 @@ if(isset($_POST) & !empty($_POST)){
     <div class="nav__bar">
         <nav class="navbar navbar-dark navbar-expand-sm fixed-top">
             <div class="container-fluid my-3" style="margin-left: 30px;">
-                <a class="navbar-brand nav__logo" href="#">E-INSTALLMENT</a>
+                <a class="navbar-brand nav__logo" href="#">E-INSTALLMENT </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -150,37 +155,31 @@ if(isset($_POST) & !empty($_POST)){
 
                 <?php
                     //Alert for successful login
-                    // if($login){
-                    //     echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                    //             <strong>Success!</strong> You have been logged in.
-                    //             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    //         </div>';
-                    //     }
-                    // //Alert when passwords do not match as well as any field is empty.
-                    // if($showError){
-                    //     echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    //             <strong>Oops!</strong> '.$showError.'
-                    //             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    //         </div>';
-                    // }
+                    if($login){
+                        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>Success!</strong> You have been logged in.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>';
+                        }
+                    //Alert when passwords do not match as well as any field is empty.
+                    if($showError){
+                        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>Oops!</strong> '.$showError.'
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>';
+                    }
                 ?>
 
                 <div class="modal-body">
-                    <form method="post">
+                    <form method="post" name="form_login">
                         <div class="mb-3">
                             <label for="fname" class="form-label">User Name</label>
                             <input type="text" class="form-control" id="fname" name="fname"
-                             aria-describedby="emailHelp">
+                                aria-describedby="emailHelp">
                         </div>
-                        <!-- <div class="mb-3">
-                            <label for="email" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="email" name="email"
-                             required aria-describedby="emailHelp">
-                        </div> -->
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" 
-                             name="password" required>
+                            <input type="password" class="form-control" id="password" name="password" required>
                         </div>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -190,7 +189,7 @@ if(isset($_POST) & !empty($_POST)){
                             <a type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</a>
                             <input type="submit" style="background-color: #512da8; color: #fff; height: 40px; text-align: center;
                              padding: 0.4rem 1.75rem; border-radius: 0.5rem; transition: 0.3s;" value="Login"
-                               />
+                                name="btn_login" />
                         </div>
                     </form>
                 </div>
@@ -247,11 +246,9 @@ if(isset($_POST) & !empty($_POST)){
                             <input type="password" class="form-control" id="cPassword" name="cPassword" required>
                         </div>
                         <div class="">
-                            <a> 
-                                <input type="submit" style="background-color: #512da8; color: #fff;
-                                    padding: 0.4rem 1.75rem; border-radius: 0.5rem; transition: 0.3s;" value="Sign up"
-                                    style="height: 40px;" />
-                            </a>
+                            <input type="submit" style="background-color: #512da8; color: #fff; 
+                             padding: 0.4rem 1.75rem; border-radius: 0.5rem; transition: 0.3s;" name="btn_signup"
+                                value="Sign up" style="height: 40px;" />
                             <a type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</a>
                         </div>
                     </form>

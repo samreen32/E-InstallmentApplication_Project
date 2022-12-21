@@ -1,10 +1,10 @@
 <?php
     session_start();
 
-    if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true){
-        header("location: Main.php");
-        exit;
-    }
+    // if(!isset($_SESSION['user_id']) || $_SESSION['user_id'] != true){
+    //     header("location: Main.php");
+    //     exit;
+    // }
 ?>
 <?php
     require_once('database.php');
@@ -68,7 +68,7 @@
                             <a style="cursor: pointer;"><i class="fa fa-user fa-2x img-fluid mx-3 button__icon"
                                     aria-hidden="true"></i>
                                 Welcome! <?php 
-                                echo $_SESSION['fname'] 
+                                echo $_SESSION['user_name'] 
                                 ?></a>
                         </span>
                     </div>

@@ -1,10 +1,5 @@
 <?php
     session_start();
-
-    if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true){
-        header("location: Main.php");
-        exit;
-    }
 ?>
 
 
@@ -116,7 +111,7 @@
                             aria-controls="offcanvasWithBothOptions">
                             <i class="fa fa-bars fa-3x" aria-hidden="true"></i></a>
                     </span>
-                    <a class="navbar-brand nav__logo mx-5" href="#">All Products</a>
+                    <a class="navbar-brand nav__logo mx-5" href="#">Furniture Products</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -132,7 +127,7 @@
                         <span style="margin-right: 40px">
                             <a style="cursor: pointer;"><i class="fa fa-user fa-2x img-fluid mx-3 button__icon"
                                     aria-hidden="true"></i>
-                                Welcome! <?php echo $_SESSION['fname'] ?></a>
+                                Welcome! <?php echo $_SESSION['user_name'] ?></a>
                         </span>
                     </div>
                 </div>
@@ -194,7 +189,7 @@
         align-self: center; text-align: center;">
             <div style="margin-top: 100px;">
                 <span style="color: white;">
-                    <h2>Products Available for Installment</h2>
+                    <h2>Furniture Products for Installment</h2>
                 </span>
             </div>
             <div class="row row-cols-1 row-cols-md-2 g-4 my-4">
@@ -202,89 +197,13 @@
                     <div class="card modal-body">
                         <div class="img-container">
                             <div class="image">
-                                <img style="width: 150px; height: 150px; align-self: center;  margin-top: 10px;"
-                                    src="./assets/img/heater.jpg" class="card-img-top" data-index="1" alt="...">
+                                <img src="./assets/img/bed.jpg" style="width: 150px; height: 150px; margin-top: 10px;
+                                align-self: center" class="card-img-top" data-index="4" alt="...">
                             </div>
                         </div>
                         <div class="popup-img">
                             <span>&times;</span>
-                            <img src="./assets/img/heater.jpg" />
-                        </div>
-
-                        <div class="card-body">
-                            <h5 class="card-title">Electric Heater</h5>
-                            <p class="card-text">Electric heater, device for heating rooms. It lets you give:
-                            <ul>
-                                <li><i>High Resistivity.</li>
-                                <li>High Melting Point.</li>
-                                <li>Low/ Positive Temperature Coefficient of Resistance.</li>
-                                <li>High Oxidising Temperature.</li>
-                                </i>
-                            </ul>
-                            </p>
-                            <h6 class="card-title">Category: Electric</h6>
-                            <a type="button" class="button button--flex" style="height: 40px; align-self: center">Add
-                                for Installment</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card modal-body">
-                        <div class="img-container">
-                            <div class="image">
-                                <img src="./assets/img/iron.jpg" style="width: 150px; height: 150px; margin-top: 10px;
-                                align-self: center" class="card-img-top" data-index="2" alt="...">
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Electric Iron</h5>
-                            <p class="card-text">Electric Iron is all we need to start off neat and clean day:
-                            <ul>
-                                <li><i>Temperature control.</li>
-                                <li>High Resistant Thermostat.</li>
-                                <li>Anti-Burn Control.</li>
-                                <li>Water Indicator.</li>
-                                </i>
-                            </ul>
-                            </p>
-                            <h6 class="card-title">Category: Electric</h6>
-                            <a type="button" class="button button--flex" style="height: 40px; align-self: center">Add
-                                for Installment</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card modal-body">
-                        <div class="img-container">
-                            <div class="image">
-                                <img style="width: 150px; height: 150px; align-self: center;  margin-top: 10px;"
-                                    src="./assets/img/fridge.jpg" class="card-img-top" data-index="3" alt="...">
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Fridge</h5>
-                            <p class="card-text">You DC inverter fridge is now in your home:
-                            <ul>
-                                <li><i>DC Inverter Fridge.</li>
-                                <li>Wifi Connectivity.</li>
-                                <li>Energy Efficiency.</li>
-                                <li>Edge-to-Edge Shelves.</li>
-                                </i>
-                            </ul>
-                            </p>
-                            <h6 class="card-title">Category: Electronic</h6>
-                            <a type="button" class="button button--flex" style="height: 40px; align-self: center">Add
-                                for Installment</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card modal-body">
-                        <div class="img-container">
-                            <div class="image">
-                                <img src="./assets/img/bed.jpg" style="width: 150px; height: 150px; margin-top: 10px;
-                                align-self: center" class="card-img-top" data-index="4" alt="...">
-                            </div>
+                            <img src="./assets/img/bed.jpg" />
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">Luxury Bed</h5>
@@ -328,85 +247,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card modal-body">
-                        <div class="img-container">
-                            <div class="image">
-                                <img src="./assets/img/camera.jpg" style="width: 150px; height: 150px;  margin-top: 10px;
-                                align-self: center" class="card-img-top" data-index="6" alt="...">
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">DSLR Camera</h5>
-                            <p class="card-text">If you're a digital photographer now DSLR is easy to buy:
-                            <ul>
-                                <li><i>High Resolution.</li>
-                                <li>High Lens Aperture.</li>
-                                <li>Multiple Focusing Modes.</li>
-                                <li>Custom White Balance.</li>
-                                </i>
-                            </ul>
-                            </p>
-                            <h6 class="card-title">Category: Electronic</h6>
-                            <a type="button" class="button button--flex" style="height: 40px; align-self: center">Add
-                                for Installment</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card modal-body">
-                        <div class="img-container">
-                            <div class="image">
-                                <img src="./assets/img/makeup.jpg" style="width: 150px; height: 150px; margin-top: 10px;
-                                align-self: center" class="card-img-top" data-index="7" alt="...">
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Makeup Kit</h5>
-                            <p class="card-text">Makeup Kit you want now in installments:
-                            <ul>
-                                <li><i>Water Proof.</li>
-                                <li>High Resistant.</li>
-                                <li>Resist Moisture .</li>
-                                <li>Adhesive Film Formers.</li>
-                                </i>
-                            </ul>
-                            </p>
-                            <h6 class="card-title">Category: Cosmetics</h6>
-                            <a type="button" class="button button--flex" style="height: 40px; align-self: center">Add
-                                for Installment</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card modal-body">
-                        <div class="img-container">
-                            <div class="image">
-                                <img src="./assets/img/t-shirt.jpg" style="width: 150px; height: 150px; 
-                                margin-top: 10px; align-self: center" class="card-img-top" data-index="8" alt="...">
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">T-Shirt</h5>
-                            <p class="card-text">Your faviote t-shirt is now on installments:
-                            <ul>
-                                <li><i>High Quality Fabric.</li>
-                                <li>Hand Make.</li>
-                                <li>Easily Washable.</li>
-                                <li>More Than 2 Years Warrenty.</li>
-                                </i>
-                            </ul>
-                            </p>
-                            <h6 class="card-title">Category: Clothing</h6>
-                            <a type="button" class="button button--flex" style="height: 40px; align-self: center">Add
-                                for Installment</a>
-                        </div>
-                    </div>
-                </div>
             </div>
 
         </div>
-        <a type="button" class="button button--flex mx-3 my-3" href="Main.php" style="height: 40px;">Back</a>
+        <a type="button" class="button button--flex mx-3 my-3" href="viewProduct_Category.php" style="height: 40px;">Back</a>
     </div>
 
 

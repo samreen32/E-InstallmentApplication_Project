@@ -1,45 +1,51 @@
 <?php
-
- require_once('database.php');
- $id = $_GET['id'];
- $res = $database->read($id);
- $r = mysqli_fetch_assoc($res);
- if(isset($_POST) & !empty($_POST)){
-	 $fname = $database->sanitize($_POST['fname']);
-	 $email = $database->sanitize($_POST['email']);
-     
-	$res = $database->updateProfile($fname, $email, $id);
-	if($res){
-	 	echo "Successfully updated data";
-		//header("location:profile.php");
-	}else{
-        echo "failed to update data";
-   }
-}
-?>
-
-<?php
     session_start();
 ?>
 
 <?php
-//     session_start();
- require_once('database.php');
- if(isset($_POST) & !empty($_POST)){
-     $profile_picture = $database->sanitize($_FILES['profile_picture']['name']);
+// $sname = "localhost";
+// $uname = "root";
+// $password = "";
+// $db_name = "users_auth";
 
- 
-	$res = $database->userProfile($profile_picture);
-	if($res){
-        move_uploaded_file($_FILES["profile_picture"]["temp_name"], "upload/".$_FILES["profile_picture"]["name"]);
-        $_SESSION['status'] = "Image Stored";
-	 	//echo "Successfully updated data";
-		header("location:profile.php");
-	}else{
-        $_SESSION['status'] = "Image Not Stored";
-       header("location:profile.php");
-	}
-}
+// $connection = mysqli_connect($sname, $uname, $password, $db_name);
+// if($connection){
+//  echo "success";
+// }
+// else{
+//  echo "not success";
+//  exit();
+// }
+require_once('database.php');
+ if(isset($_POST['submit']) && isset($_FILES['profile_picture'])){
+    
+    $profile_picture = $_FILES['profile_picture']['name'];
+    $img_size = $_FILES['profile_picture']['size'];
+    $tmp_name = $_FILES['profile_picture']['tmp_name'];
+    $error = $_FILES['profile_picture']['error'];
+
+    if($error === 0){
+      
+            $img_ex = pathinfo($profile_picture, PATHINFO_EXTENSION);       //img extension
+            $img_ex_to_lc = strtolower($img_ex);
+            $allowed_exs = array('jpg', 'jpeg', 'png');
+            if(in_array($img_ex_to_lc, $allowed_exs)){
+                $new_img_name = "profile".$_SESSION['user_id'].'.'.$img_ex_to_lc;
+                $img_upload_path = 'upload/'.$new_img_name;
+                move_uploaded_file($tmp_name, $img_upload_path);
+
+                $res = $database->userProfile($new_img_name);
+            }
+    }else{
+        $em = "unknow error occur";
+        header("location: Profile.php?error=$em");
+    }
+ }else{
+   // header("location: product.php");
+ }
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -196,6 +202,42 @@
                                 <i class="fa fa-angle-left fa-4x img-fluid" aria-hidden="true"></i>
                               </a>
                               
+                              <?php
+                                //    $sname = "localhost";
+                                //    $uname = "root";
+                                //    $password = "";
+                                //    $db_name = "users_auth";
+
+                                //    $connection = mysqli_connect($sname, $uname, $password, $db_name);
+                                //    if($connection){
+                                //     echo "success";
+                                //    }
+                                //    else{
+                                //     echo "not success";
+                                //     exit();
+                                //    }
+
+                                //      $sql = "SELECT * FROM signup";
+                                //      $res = mysqli_query($connection, $sql);
+                                //      if(mysqli_num_rows($res) > 0){
+                                //         while($rows = mysqli_fetch_assoc($res)){ 
+                                //             $id = $rows['id'];
+                                //             $sqlImg = "SELECT * FROM user_profile_picture WHERE user_id=$id";
+                                //             $resImg = mysqli_query($connection, $sqlImg);
+                                //             while($rowImg = mysqli_fetch_assoc($resImg)){
+                                //                 echo "<div>";
+                                //                     if($rowImg['profile_picture'] == 0){
+                                //                         echo "<img src='upload/profile".$id.".png' width='100'>";
+                                //                     }else{
+                                //                         echo "<img src='https://pic.onlinewebfonts.com/svg/img_569204.png' width='100'>";
+                                //                     }
+                                //                 echo "</div>";
+                                //             }
+                                //         }
+                                //     }else{
+                                //         echo "No usr";
+                                //     }
+                                    ?>
                                 <form method="post" style="text-align: center;" 
                                     enctype="multipart/form-data">
                                     <div class="form-row my-5">
@@ -229,12 +271,42 @@
                                         // else{
                                         //     echo '<img src="upload/'.$profile_picture.'"/>';
                                         // } -->
+
+                                        <?php
+                                            $sname = "localhost";
+                                            $uname = "root";
+                                            $password = "";
+                                            $db_name = "users_auth";
+
+                                            $connection = mysqli_connect($sname, $uname, $password, $db_name);
+                                            if($connection){
+                                                echo "success";
+                                            }
+                                            else{
+                                                echo "not success";
+                                                exit();
+                                            }
+
+                                            $sql = "SELECT * FROM user_profile_picture";
+                                            $res = mysqli_query($connection, $sql);
+                                            if(mysqli_num_rows($res) > 0){
+                                                while($row = mysqli_fetch_assoc($res)){ 
+                                            ?>
+                                            <div class="profile-pic">
+                                                <img src="uploads/<?=$row['profile_picture']?>"
+                                                        width="100" />
+                                            </div>
+                                        
+                                        <?php  }}?>
                                     
-                                        <div class="form-group col-md-5" style="margin: auto">
-                                            <label for="profile_picture" class="form-label" style="color: black">Choose</label>
-                                            <input  class="form-control" type="file" id="profile_picture" 
+                                        <label class="-label" for="profile_picture">
+                                            <span class="glyphicon glyphicon-camera"></span>
+                                            <span>Change Image</span>
+                                        </label>
+                                        <input class="form-control" type="file" id="profile_picture" 
                                             name="profile_picture">
-                                        </div>
+
+                                
                                         <div class="form-group col-md-5" style="margin: auto">
                                             <label for="fname" class="form-label">First Name</label>
                                             <input type="text" class="form-control" id="fname" name="fname"

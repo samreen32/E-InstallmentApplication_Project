@@ -1,0 +1,141 @@
+<?php
+session_start();
+
+ require_once('database.php');
+ if(isset($_REQUEST['add_product']) && isset($_FILES['product_img'])){
+
+	 $product_name = $database->sanitize($_POST['product_name']);
+     $product_descr = $database->sanitize($_POST['product_descr']);
+	 $product_img = $database->sanitize($_FILES['product_img']['name']);
+ 
+	 $res = $database->addProduct($product_name, $product_descr, $product_img);
+	 if($res){
+        move_uploaded_file($_FILES["product_img"]["temp_name"], "upload/".$_FILES["product_img"]["name"]);
+	 	$_SESSION['status'] = "<h6>Form Successfully Submitted</h6>";
+       // echo "<h6>Form Successfully Submitted</h6>";
+	 }else{
+        $_SESSION['status'] = "<h6>Form Not Successfully Submitted</h6>";
+	 	//echo "Failed to Submit";
+	 }
+}
+
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!--=============== REMIX ICONS ===============-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap-social/bootstrap-social.css">
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <title>Customer Installment-Application</title>
+
+
+</head>
+
+
+<body>
+
+
+    <!-- header -->
+    <div class="container my-5">
+        <div class="nav__bar">
+            <nav class="navbar navbar-dark navbar-expand-sm fixed-top">
+                <div class="container-fluid my-3" style="margin-left: 30px;">
+                    <span style="margin-left: 20px">
+                        <a type="button" style="color: white;" href="./viewProduct_Category.php">
+                            <i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i></a>
+                        <a class="navbar-brand nav__logo mx-3 my-1" href="#">Add Products</a>
+                    </span>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                </div>
+            </nav>
+        </div>
+    </div>
+
+
+    <!--Body -->
+    <div class="container" style="background-color: #9575CD;">
+        <div class="container">
+            <div style="margin-top: 100px;">
+                <h1 style="text-align: center;"></h1>
+            </div><br>
+            <div>
+                <form method="post" enctype="multipart/form-data">
+                    <h4 style="color: black; text-align: center">Add Product Details</h4><br />
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="product_name">Product Name</label>
+                            <input type="text" class="form-control" id="product_name" name="product_name"
+                                placeholder="e.g. Heater">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="cur_date_time">Date of adding Product</label>
+                            <input type="text" class="form-control" name="cur_date_time" id="cur_date_time"
+                               value=" <?php date_default_timezone_set('Asia/Karachi'); $date = date('F j, Y, g:i a', time()); echo $date;?>"
+                                readonly="readonly">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product_descr">Product Description</label>
+                        <textarea class="form-control" id="product_descr" rows="3" placeholder="e.g. One Piece"
+                            name="product_descr"></textarea>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <label for="product_img">Product Image</label>
+                        <input type="file" class="form-control" name="product_img" id="product_img">
+                    </div>
+
+                    <input type="submit" class="button button--flex" value="Add Product" name="add_product" />
+                </form>
+            </div><br>
+
+        </div>
+    </div>
+
+
+</body>
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+</script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+</script>
+<script src="assets/js/scripts.js"></script>
+
+
+</html>

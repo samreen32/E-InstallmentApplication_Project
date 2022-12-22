@@ -153,10 +153,10 @@
                             style="height: 50px; width:100%;">
                             <i class="fa fa-user img-fluid mx-2 button__icon" aria-hidden="true"></i>
                             Profile</a>
-                        <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;" href="viewProducts.php"><i
+                        <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;" href="addProducts.php"><i
                                 class="fa fa-plus img-fluid mx-2 button__icon" aria-hidden="true"></i>Add Products for
                             installment</a>
-                        <a type="button" class="button button--flex my-3" href="addForm.php"
+                        <a type="button" class="button button--flex my-3" href="addCustomers.php"
                             style="height: 50px; width:100%;"><i class="fa fa-plus img-fluid mx-2 button__icon"
                                 aria-hidden="true"></i>
                             Add Customers</a>

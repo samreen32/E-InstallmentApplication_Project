@@ -156,7 +156,7 @@
                         <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"><i
                                 class="fa fa-plus img-fluid mx-2 button__icon" aria-hidden="true"></i>Add Products for
                             installment</a>
-                        <a type="button" class="button button--flex my-3" href="addForm.php"
+                        <a type="button" class="button button--flex my-3" href="addCustomers.php"
                             style="height: 50px; width:100%;"><i class="fa fa-plus img-fluid mx-2 button__icon"
                                 aria-hidden="true"></i>
                             Add Customers</a>

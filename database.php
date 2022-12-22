@@ -56,6 +56,31 @@ class Database{
 		return $res;
 	}
 	
+	public function addProduct($product_name, $product_descr, $product_img){
+		
+		 $sql = "INSERT INTO add_products (product_name, product_descr, product_img)
+		 VALUES ('$product_name', '$product_descr', '$product_img')";
+		 $res = mysqli_query($this->connection, $sql);
+		 if($res){
+			  return true; 
+		 }else{
+			 die("err".mysqli_error($this->connection));
+			 return false;
+		 }
+	 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 	public function userProfile($profile_picture){
 		$sql = "INSERT INTO user_profile_picture (profile_picture)
 		VALUES ('$profile_picture')";

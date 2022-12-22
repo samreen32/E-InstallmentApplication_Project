@@ -1,14 +1,5 @@
 <?php
     session_start();
-
-    // if(!isset($_SESSION['user_id']) || $_SESSION['user_id'] != true){
-    //     header("location: Main.php");
-    //     exit;
-    // }
-?>
-<?php
-    // require_once('database.php');
-    // $res = $database->read();
 ?>
 
 <!DOCTYPE html>
@@ -102,8 +93,10 @@
                   
                         <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;" href="viewProduct_Category.php"><i
                         class="fa fa-eye img-fluid mx-2 button__icon" aria-hidden="true"></i>View Product Categories </a>
-                            
-                        <a type="button" class="button button--flex my-3" href="addForm.php"
+                        <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;" href="addProducts.php"><i
+                                class="fa fa-plus img-fluid mx-2 button__icon" aria-hidden="true"></i>Add Products for
+                            installment</a>
+                        <a type="button" class="button button--flex my-3" href="addCustomer.php"
                             style="height: 50px; width:100%;"><i class="fa fa-plus img-fluid mx-2 button__icon"
                                 aria-hidden="true"></i>
                             Add Customers</a>

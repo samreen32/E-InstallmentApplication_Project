@@ -230,8 +230,10 @@
                             </ul>
                             </p>
                             <h6 class="card-title">Category: <?php echo $r['product_category']; ?></h6>
-                            <a type="button" class="button button--flex" style="height: 40px; align-self: center">View
+                            <a type="button" class="button button--flex" style="height: 40px; align-self: center">Edit
                                 Product</a>
+                            <a type="button" class="btn btn-secondary" style="height: 40px; align-self: center">Delete
+                            Product</a>
                         </div>
                     </div>
                 </div>

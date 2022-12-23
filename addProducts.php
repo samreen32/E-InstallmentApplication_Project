@@ -5,8 +5,9 @@ session_start();
  if(isset($_REQUEST['add_product']) && isset($_FILES['product_img'])){
 
 	 $product_name = $database->sanitize($_POST['product_name']);
-     $product_descr = $database->sanitize($_POST['product_descr']);
+     $product_price = $database->sanitize($_POST['product_price']);
      $product_category = $database->sanitize($_POST['product_category']);
+     $product_descr = $database->sanitize($_POST['product_descr']);
 	 $product_img = $database->sanitize($_FILES['product_img']['name']);
      $img_size = $_FILES['product_img']['size'];
      $tmp_name = $_FILES['product_img']['tmp_name'];
@@ -21,10 +22,9 @@ session_start();
             $img_upload_path = 'upload/'.$new_img_name;
             move_uploaded_file($tmp_name, $img_upload_path);
 
-            $res = $database->addProduct($product_name, $product_descr, $new_img_name, $product_category);
+            $res = $database->addProduct($product_name, $product_price, $new_img_name, $product_category, $product_descr);
             if($res){
-            //    move_uploaded_file($_FILES["product_img"]["temp_name"], "upload/".$_FILES["product_img"]["name"]);
-               $_SESSION['status'] = "<h6>Product add succcessfully.</h6>";
+              $_SESSION['status'] = "<h6>Product add succcessfully.</h6>";
                
             }else{
               $_SESSION['status'] = "<h6>Product does not added.</h6>";
@@ -104,10 +104,10 @@ session_start();
                     <?php
                         if(isset($_SESSION['status']) && $_SESSION != ''){ 
                     ?>
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <strong>Success!</strong><?php echo $_SESSION['status']; ?>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Success!</strong><?php echo $_SESSION['status']; ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
 
                     <?php 
                        unset($_SESSION['status']); 
@@ -127,23 +127,18 @@ session_start();
                                                 name="product_name" placeholder="e.g. Heater">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="cur_date_time">Date of adding Product</label>
+                                            <label for="cur_date_time">Date/Time of adding Product</label>
                                             <input type="text" class="form-control" name="cur_date_time"
                                                 id="cur_date_time"
                                                 value=" <?php date_default_timezone_set('Asia/Karachi'); $date = date('F j, Y, g:i a', time()); echo $date;?>"
                                                 readonly="readonly">
                                         </div>
                                     </div>
-
-                                    <div class="form-group">
-                                        <label for="product_descr">Product Description</label>
-                                        <textarea class="form-control" id="product_descr" rows="3"
-                                            placeholder="e.g. One Piece" name="product_descr"></textarea>
-                                    </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="product_img">Product Image</label>
-                                            <input type="file" class="form-control" name="product_img" id="product_img">
+                                            <label for="product_price">Product Price</label>
+                                            <input class="form-control" id="product_price" rows="3"
+                                                placeholder="e.g. 1500/" name="product_price" />
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label class="my-1 mr-2" for="product_category">Product Category</label>
@@ -155,6 +150,15 @@ session_start();
                                                 <option value="Clothing">Clothing</option>
                                             </select>
                                         </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="product_img">Product Image</label>
+                                        <input type="file" class="form-control" name="product_img" id="product_img">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="product_descr">Product Description</label>
+                                        <textarea class="form-control" id="product_descr" rows="3"
+                                            placeholder="e.g. One Piece" name="product_descr"></textarea>
                                     </div>
                                     <button type="submit" style="display: flex; margin: auto;"
                                         class="button button--flex my-4" name="add_product">Add

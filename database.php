@@ -69,7 +69,12 @@ class Database{
 		 }
 	 }
 
-
+	 public function viewProducts($id=null){
+		$sql = "SELECT * FROM add_products";
+		if($id){ $sql .= " WHERE id=$id";}
+ 		$res = mysqli_query($this->connection, $sql);
+ 		return $res;
+	}
 
 
 
@@ -97,13 +102,6 @@ class Database{
 		}else{
 			return false;
 		}
-	}
-
-	public function read($id=null){
-		$sql = "SELECT * FROM signup";
-		if($id){ $sql .= " WHERE id=$id";}
- 		$res = mysqli_query($this->connection, $sql);
- 		return $res;
 	}
 
 

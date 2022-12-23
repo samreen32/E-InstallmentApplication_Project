@@ -8,16 +8,33 @@ session_start();
      $product_descr = $database->sanitize($_POST['product_descr']);
      $product_category = $database->sanitize($_POST['product_category']);
 	 $product_img = $database->sanitize($_FILES['product_img']['name']);
+     $img_size = $_FILES['product_img']['size'];
+     $tmp_name = $_FILES['product_img']['tmp_name'];
+     $error = $_FILES['product_img']['error'];
+
+     if($error === 0){
+        $img_ex = pathinfo($product_img, PATHINFO_EXTENSION);       //img extension
+        $img_ex_to_lc = strtolower($img_ex);
+        $allowed_exs = array('jpg', 'jpeg', 'png');
+        if(in_array($img_ex_to_lc, $allowed_exs)){
+            $new_img_name = uniqid("IMG-", true).'.'.$img_ex_to_lc;
+            $img_upload_path = 'upload/'.$new_img_name;
+            move_uploaded_file($tmp_name, $img_upload_path);
+
+            $res = $database->addProduct($product_name, $product_descr, $new_img_name, $product_category);
+            if($res){
+            //    move_uploaded_file($_FILES["product_img"]["temp_name"], "upload/".$_FILES["product_img"]["name"]);
+               $_SESSION['status'] = "<h6>Product add succcessfully.</h6>";
+               
+            }else{
+              $_SESSION['status'] = "<h6>Product does not added.</h6>";
+                
+            }
+
+        }
+     }
+
  
-	 $res = $database->addProduct($product_name, $product_descr, $product_img, $product_category);
-	 if($res){
-        move_uploaded_file($_FILES["product_img"]["temp_name"], "upload/".$_FILES["product_img"]["name"]);
-	 	$_SESSION['status'] = "<h6>Product add succcessfully.</h6>";
-        
-	 }else{
-       $_SESSION['status'] = "<h6>Product does not added.</h6>";
-	 	
-	 }
 }
 
 ?>
@@ -62,7 +79,7 @@ session_start();
             <nav class="navbar navbar-dark navbar-expand-sm fixed-top">
                 <div class="container-fluid my-3" style="margin-left: 30px;">
                     <span style="margin-left: 20px">
-                        <a type="button" style="color: white;" href="./viewProduct_Category.php">
+                        <a type="button" style="color: white;" href="./viewProduct.php">
                             <i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i></a>
                         <a class="navbar-brand nav__logo mx-3 my-1" href="#">Add Products</a>
                     </span>
@@ -82,11 +99,24 @@ session_start();
     <!--Body -->
     <div class="main" style="background-color: #9575CD;">
         <div class="row my-5">
-            <div class="col my-5">
+            <div class="col my-3">
                 <div class="col">
+                    <?php
+                        if(isset($_SESSION['status']) && $_SESSION != ''){ 
+                    ?>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Success!</strong><?php echo $_SESSION['status']; ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+
+                    <?php 
+                       unset($_SESSION['status']); 
+                        } 
+                    ?>
+
                     <div class="row row-header my-3">
-                        <div class="card modal-body" style="width: 100rem;">
-                            <div class="my-4 mx-3">
+                        <div class="card modal-body" style="width: 90rem;">
+                            <div class="my-5 mx-3">
 
                                 <form method="post" enctype="multipart/form-data">
                                     <h4 style="color: black; text-align: center">Add Product Details</h4><br />
@@ -126,7 +156,8 @@ session_start();
                                             </select>
                                         </div>
                                     </div>
-                                    <button type="submit" style="display: flex; margin: auto;" class="button button--flex my-4" name="add_product">Add
+                                    <button type="submit" style="display: flex; margin: auto;"
+                                        class="button button--flex my-4" name="add_product">Add
                                         Product</button>
                                 </form>
                                 <br>

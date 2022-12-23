@@ -56,10 +56,10 @@ class Database{
 		return $res;
 	}
 	
-	public function addProduct($product_name, $product_descr, $product_img){
+	public function addProduct($product_name, $product_descr, $product_img, $product_category){
 		
-		 $sql = "INSERT INTO add_products (product_name, product_descr, product_img)
-		 VALUES ('$product_name', '$product_descr', '$product_img')";
+		 $sql = "INSERT INTO add_products (product_name, product_descr, product_img, product_category)
+		 VALUES ('$product_name', '$product_descr', '$product_img', '$product_category')";
 		 $res = mysqli_query($this->connection, $sql);
 		 if($res){
 			  return true; 

@@ -187,9 +187,9 @@ if(isset($_REQUEST['btn_signup'])){
                         </div>
                         <div style="align-items: left;">
                             <a type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</a>
-                            <input type="submit" style="background-color: #512da8; color: #fff; height: 40px; text-align: center;
-                             padding: 0.4rem 1.75rem; border-radius: 0.5rem; transition: 0.3s;" value="Login"
-                                name="btn_login" />
+                            <button type="submit" style="background-color: #512da8; color: #fff; height: 40px; text-align: center;
+                             padding: 0.4rem 1.75rem; border-radius: 0.5rem; transition: 0.3s;"
+                                name="btn_login" >Login</button>
                         </div>
                     </form>
                 </div>
@@ -245,12 +245,10 @@ if(isset($_REQUEST['btn_signup'])){
                             <label for="cPassword" class="form-label">Confirm Password</label>
                             <input type="password" class="form-control" id="cPassword" name="cPassword" required>
                         </div>
-                        <div class="">
-                            <input type="submit" style="background-color: #512da8; color: #fff; 
+                            <button type="submit" style="background-color: #512da8; color: #fff; 
                              padding: 0.4rem 1.75rem; border-radius: 0.5rem; transition: 0.3s;" name="btn_signup"
-                                value="Sign up" style="height: 40px;" />
+                                style="height: 40px;">Sign up</button>
                             <a type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</a>
-                        </div>
                     </form>
                 </div>
             </div>

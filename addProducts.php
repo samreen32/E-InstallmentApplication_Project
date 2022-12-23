@@ -6,16 +6,17 @@ session_start();
 
 	 $product_name = $database->sanitize($_POST['product_name']);
      $product_descr = $database->sanitize($_POST['product_descr']);
+     $product_category = $database->sanitize($_POST['product_category']);
 	 $product_img = $database->sanitize($_FILES['product_img']['name']);
  
-	 $res = $database->addProduct($product_name, $product_descr, $product_img);
+	 $res = $database->addProduct($product_name, $product_descr, $product_img, $product_category);
 	 if($res){
         move_uploaded_file($_FILES["product_img"]["temp_name"], "upload/".$_FILES["product_img"]["name"]);
-	 	$_SESSION['status'] = "<h6>Form Successfully Submitted</h6>";
-       // echo "<h6>Form Successfully Submitted</h6>";
+	 	$_SESSION['status'] = "<h6>Product add succcessfully.</h6>";
+        
 	 }else{
-        $_SESSION['status'] = "<h6>Form Not Successfully Submitted</h6>";
-	 	//echo "Failed to Submit";
+       $_SESSION['status'] = "<h6>Product does not added.</h6>";
+	 	
 	 }
 }
 
@@ -79,43 +80,61 @@ session_start();
 
 
     <!--Body -->
-    <div class="container" style="background-color: #9575CD;">
-        <div class="container">
-            <div style="margin-top: 100px;">
-                <h1 style="text-align: center;"></h1>
-            </div><br>
-            <div>
-                <form method="post" enctype="multipart/form-data">
-                    <h4 style="color: black; text-align: center">Add Product Details</h4><br />
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="product_name">Product Name</label>
-                            <input type="text" class="form-control" id="product_name" name="product_name"
-                                placeholder="e.g. Heater">
+    <div class="main" style="background-color: #9575CD;">
+        <div class="row my-5">
+            <div class="col my-5">
+                <div class="col">
+                    <div class="row row-header my-3">
+                        <div class="card modal-body" style="width: 100rem;">
+                            <div class="my-4 mx-3">
+
+                                <form method="post" enctype="multipart/form-data">
+                                    <h4 style="color: black; text-align: center">Add Product Details</h4><br />
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="product_name">Product Name</label>
+                                            <input type="text" class="form-control" id="product_name"
+                                                name="product_name" placeholder="e.g. Heater">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="cur_date_time">Date of adding Product</label>
+                                            <input type="text" class="form-control" name="cur_date_time"
+                                                id="cur_date_time"
+                                                value=" <?php date_default_timezone_set('Asia/Karachi'); $date = date('F j, Y, g:i a', time()); echo $date;?>"
+                                                readonly="readonly">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="product_descr">Product Description</label>
+                                        <textarea class="form-control" id="product_descr" rows="3"
+                                            placeholder="e.g. One Piece" name="product_descr"></textarea>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="product_img">Product Image</label>
+                                            <input type="file" class="form-control" name="product_img" id="product_img">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="my-1 mr-2" for="product_category">Product Category</label>
+                                            <select class="form-control" id="product_category" name="product_category">
+                                                <option selected>Choose...</option>
+                                                <option value="Electric">Electric</option>
+                                                <option value="Furniture">Furniture</option>
+                                                <option value="Cosmatic">Cosmatic</option>
+                                                <option value="Clothing">Clothing</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <button type="submit" style="display: flex; margin: auto;" class="button button--flex my-4" name="add_product">Add
+                                        Product</button>
+                                </form>
+                                <br>
+                            </div>
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="cur_date_time">Date of adding Product</label>
-                            <input type="text" class="form-control" name="cur_date_time" id="cur_date_time"
-                               value=" <?php date_default_timezone_set('Asia/Karachi'); $date = date('F j, Y, g:i a', time()); echo $date;?>"
-                                readonly="readonly">
-                        </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="product_descr">Product Description</label>
-                        <textarea class="form-control" id="product_descr" rows="3" placeholder="e.g. One Piece"
-                            name="product_descr"></textarea>
-                    </div>
-
-                    <div class="form-group col-md-12">
-                        <label for="product_img">Product Image</label>
-                        <input type="file" class="form-control" name="product_img" id="product_img">
-                    </div>
-
-                    <input type="submit" class="button button--flex" value="Add Product" name="add_product" />
-                </form>
-            </div><br>
-
+                </div>
+            </div>
         </div>
     </div>
 

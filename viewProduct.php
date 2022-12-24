@@ -148,7 +148,7 @@
     <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
         aria-labelledby="offcanvasWithBothOptionsLabel">
         <div class="offcanvas-header" style="background-color: #512da8; color: white;">
-            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Highlights</h5>
+            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Menu</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" style="background-color: white;"
                 aria-label="Close"></button>
         </div>
@@ -167,7 +167,7 @@
                             href="addProducts.php"><i class="fa fa-plus img-fluid mx-2 button__icon"
                                 aria-hidden="true"></i>Add Products for
                             installment</a>
-                        <a type="button" class="button button--flex my-3" href="addCustomers.php"
+                        <a type="button" class="button button--flex my-3" href="addCustomer.php"
                             style="height: 50px; width:100%;"><i class="fa fa-plus img-fluid mx-2 button__icon"
                                 aria-hidden="true"></i>
                             Add Customers</a>

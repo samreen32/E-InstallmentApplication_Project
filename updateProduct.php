@@ -35,7 +35,6 @@ session_start();
         $_SESSION['status'] = "<h6>Product not updated.</h6>";
         
     }
-    
 }
 ?>
 

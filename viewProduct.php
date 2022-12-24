@@ -199,6 +199,19 @@
                 </span>
             </div>
          
+                <?php
+                    if(isset($_SESSION['status']) && $_SESSION != ''){ 
+                ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Success!</strong><?php echo $_SESSION['status']; ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                <?php 
+                    unset($_SESSION['status']); 
+                    } 
+                ?>
+
             <div class="row row-cols-1 row-cols-md-2 g-4 my-4">
                 <?php 
                         while($r = mysqli_fetch_assoc($res)){ ?>
@@ -230,7 +243,7 @@
                             <h6 class="card-title">Category: <?php echo $r['product_category']; ?></h6>
                             <a type="button" href="updateProduct.php?id=<?php echo $r['id']; ?>" class="button button--flex" style="height: 40px; align-self: center">Edit
                                 Product</a>
-                            <a type="button" class="btn btn-secondary" style="height: 40px; align-self: center">Delete
+                            <a type="button" href="deleteProduct.php?id=<?php echo $r['id']; ?>" class="btn btn-secondary" style="height: 40px; align-self: center">Delete
                             Product</a>
                         </div>
                     </div>

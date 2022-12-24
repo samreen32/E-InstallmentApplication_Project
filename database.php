@@ -87,7 +87,15 @@ class Database{
 		}
 	}
 
-
+	public function deleteProduct($id){
+		$sql = "DELETE FROM add_products WHERE id=$id";
+ 		$res = mysqli_query($this->connection, $sql);
+ 		if($res){
+ 			return true;
+ 		}else{
+ 			return false;
+ 		}
+	}
 
 
 

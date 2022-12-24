@@ -1,5 +1,10 @@
 <?php
     session_start();
+    if(empty($_SESSION['userLoggedin']) || $_SESSION['userLoggedin'] == ''){
+        header("Location: Main.php");
+        die();
+    }
+    
     require_once('database.php');
     $res = $database->viewProducts();
 ?>
@@ -191,18 +196,14 @@
 
     <!--Body -->
     <div class="main" style="background-color: #9575CD;">
+    
         <div class="container my-5" style="background-color: #9575CD; 
             align-self: center; text-align: center;">
             <div style="margin-top: 100px;">
-                <span style="color: white;">
-                    <h2>Products Available for Installment</h2>
-                </span>
-            </div>
-         
                 <?php
                     if(isset($_SESSION['status']) && $_SESSION != ''){ 
                 ?>
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <div class="alert alert-dark alert-dismissible fade show" role="alert">
                     <strong>Success!</strong><?php echo $_SESSION['status']; ?>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
@@ -211,6 +212,10 @@
                     unset($_SESSION['status']); 
                     } 
                 ?>
+                <span style="color: white;">
+                    <h2>Products Available for Installment</h2>
+                </span>
+            </div>
 
             <div class="row row-cols-1 row-cols-md-2 g-4 my-4">
                 <?php 
@@ -231,7 +236,8 @@
 
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $r['product_name']; ?></h5>
-                            <p class="card-text">Your favorite <?php echo $r['product_name']; ?> is now on installment:
+                            <p class="card-text">Your favorite <?php echo $r['product_name']; ?> is now on
+                                installment:
                             <ul>
                                 <li>
                                     <h6>Description</h6>
@@ -241,15 +247,18 @@
                             </ul>
                             </p>
                             <h6 class="card-title">Category: <?php echo $r['product_category']; ?></h6>
-                            <a type="button" href="updateProduct.php?id=<?php echo $r['id']; ?>" class="button button--flex" style="height: 40px; align-self: center">Edit
+                            <a type="button" href="updateProduct.php?id=<?php echo $r['id']; ?>"
+                                class="button button--flex" style="height: 40px; align-self: center">Edit
                                 Product</a>
-                            <a type="button" href="deleteProduct.php?id=<?php echo $r['id']; ?>" class="btn btn-secondary" style="height: 40px; align-self: center">Delete
-                            Product</a>
+                            <a type="button" href="deleteProduct.php?id=<?php echo $r['id']; ?>"
+                                class="btn btn-secondary" style="height: 40px; align-self: center">Delete
+                                Product</a>
                         </div>
                     </div>
                 </div>
                 <?php } ?>
             </div>
+
         </div>
 
 

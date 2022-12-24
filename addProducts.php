@@ -1,5 +1,9 @@
 <?php
 session_start();
+if(empty($_SESSION['userLoggedin']) || $_SESSION['userLoggedin'] == ''){
+    header("Location: Main.php");
+    die();
+}
 
  require_once('database.php');
  if(isset($_REQUEST['add_product']) && isset($_FILES['product_img'])){

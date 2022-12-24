@@ -52,6 +52,7 @@ if(isset($_REQUEST['btn_signup'])){
                     $_SESSION['user_id'] = $rows['id'];
                     $_SESSION['user_name'] = $rows['fname'];
                     $_SESSION['user_email'] = $rows['email'];
+                    $_SESSION['userLoggedin'] = "Loggedin";
                     header("location: Admin.php");
                 } 
                 else {

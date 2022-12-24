@@ -77,7 +77,15 @@ class Database{
 	}
 
 
-
+	public function updateProduct($product_name, $product_price, $product_img, $product_category, $product_descr, $id){
+		$sql = "UPDATE add_products SET product_name='$product_name', product_price='$product_price', product_img='$product_img', product_category='$product_category', product_descr='$product_descr' WHERE id=$id";
+		$res = mysqli_query($this->connection, $sql);
+		if($res){
+			return true;
+		}else{
+			return false;
+		}
+	}
 
 
 

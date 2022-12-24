@@ -9,33 +9,23 @@ session_start();
      $product_category = $database->sanitize($_POST['product_category']);
      $product_descr = $database->sanitize($_POST['product_descr']);
 	 $product_img = $database->sanitize($_FILES['product_img']['name']);
-     $img_size = $_FILES['product_img']['size'];
      $tmp_name = $_FILES['product_img']['tmp_name'];
-     $error = $_FILES['product_img']['error'];
 
-     if($error === 0){
-        $img_ex = pathinfo($product_img, PATHINFO_EXTENSION);       //img extension
-        $img_ex_to_lc = strtolower($img_ex);
-        $allowed_exs = array('jpg', 'jpeg', 'png');
-        if(in_array($img_ex_to_lc, $allowed_exs)){
-            $new_img_name = uniqid("IMG-", true).'.'.$img_ex_to_lc;
-            $img_upload_path = 'upload/'.$new_img_name;
-            move_uploaded_file($tmp_name, $img_upload_path);
+    $res = $database->addProduct($product_name, $product_price, $product_img, $product_category, $product_descr);
+    if($res){
+        move_uploaded_file($tmp_name, "upload/".$product_img);
+        $_SESSION['status'] = "<h6>Product add succcessfully.</h6>";
+        
+    }else{
+        $_SESSION['status'] = "<h6>Product does not added.</h6>";
+        
+    }
 
-            $res = $database->addProduct($product_name, $product_price, $new_img_name, $product_category, $product_descr);
-            if($res){
-              $_SESSION['status'] = "<h6>Product add succcessfully.</h6>";
-               
-            }else{
-              $_SESSION['status'] = "<h6>Product does not added.</h6>";
-                
-            }
-
-        }
-     }
+}
+     
 
  
-}
+
 
 ?>
 

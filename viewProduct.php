@@ -198,9 +198,7 @@
                     <h2>Products Available for Installment</h2>
                 </span>
             </div>
-            <!-- <table class="table"> -->
-
-            <!-- <tr> -->
+         
             <div class="row row-cols-1 row-cols-md-2 g-4 my-4">
                 <?php 
                         while($r = mysqli_fetch_assoc($res)){ ?>
@@ -230,7 +228,7 @@
                             </ul>
                             </p>
                             <h6 class="card-title">Category: <?php echo $r['product_category']; ?></h6>
-                            <a type="button" class="button button--flex" style="height: 40px; align-self: center">Edit
+                            <a type="button" href="updateProduct.php?id=<?php echo $r['id']; ?>" class="button button--flex" style="height: 40px; align-self: center">Edit
                                 Product</a>
                             <a type="button" class="btn btn-secondary" style="height: 40px; align-self: center">Delete
                             Product</a>
@@ -239,10 +237,6 @@
                 </div>
                 <?php } ?>
             </div>
-            <!-- </tr> -->
-
-            <!-- </table> -->
-
         </div>
 
 

@@ -1,5 +1,4 @@
 <?php
-  //  session_start();
 $showAlert = false;
 $showError = false;
 require_once('database.php');
@@ -96,7 +95,15 @@ if(isset($_REQUEST['btn_signup'])){
 
 
 <body>
-    <div class="nav__bar">
+    <?php 
+    //session_start();
+    if(isset($_SESSION['userLoggedin']) && $_SESSION['userLoggedin'] == true){
+        $loggedin = true;
+    }
+    else{
+        $loggedin = false;
+    }
+        echo '<div class="nav__bar">
         <nav class="navbar navbar-dark navbar-expand-sm fixed-top">
             <div class="container-fluid my-3" style="margin-left: 30px;">
                 <a class="navbar-brand nav__logo" href="#">E-INSTALLMENT </a>
@@ -124,25 +131,54 @@ if(isset($_REQUEST['btn_signup'])){
                                 </li>
                                 <li><a class="dropdown-item" href="#">Help</a></li>
                             </ul>
-                        </li>
-                        <form class="d-flex" role="search" style="margin-left: 100px; width: 500px">
-                            <input class="form-control me-5" type="search" placeholder="Search" aria-label="Search">
-                            <i class="ri-search-line ri-xl my-3" style="margin-left: -45px"></i>
-                        </form>
-                    </ul>
+                        </li>';
 
-                    <span style="margin-right: 40px" data-toggle="modal" data-target="#exampleModalCenter">
-                        <a style="cursor: pointer;"> <span
-                                class="fa fa-sign-in fa-lg mx-2 button__icon"></span>Login</a>
-                    </span>
-                    <span style="margin-right: 40px" data-toggle="modal" data-target="#exampleModalCenter1">
-                        <a style="cursor: pointer;"> <span class="fa fa-sign-in fa-lg mx-2 button__icon"></span>Sign
-                            Up</a>
-                    </span>
-                </div>
+                        if(!$loggedin){
+                            echo '<form class="d-flex" role="search" style="margin-left: 100px; width: 500px">
+                                <input class="form-control me-5" type="search" placeholder="Search" aria-label="Search">
+                                <i class="ri-search-line ri-xl my-3" style="margin-left: -45px"></i>
+                            </form>';
+                        }
+                            if($loggedin){
+                                echo '<div style="margin: auto; align-items: center; text-align:center">
+                                        <span class="d-flex" style="margin-left: 250px;"><h4> Welcome '
+                                        .$_SESSION['user_name']. 
+                                        '</h4></span>
+                                     </div>';
+                            }
+
+                  echo '</ul>';
+
+                    if(!$loggedin){
+                        echo '<span style="margin-right: 40px" data-toggle="modal" data-target="#exampleModalCenter">
+                            <a style="cursor: pointer;"> <span
+                                    class="fa fa-sign-in fa-lg mx-2 button__icon"></span>Login</a>
+                        </span>
+                        <span style="margin-right: 40px" data-toggle="modal" data-target="#exampleModalCenter1">
+                            <a style="cursor: pointer;"> <span class="fa fa-sign-in fa-lg mx-2 button__icon"></span>Sign
+                                Up</a>
+                        </span>';
+                    }
+
+                    if($loggedin){
+                        echo'<span style="margin-right: 40px">
+                            <a style="cursor: pointer; color: white" href="Admin.php">
+                                <i class="fa fa-user fa-lg img-fluid mx-3 button__icon"></i>Dashboard
+                                </a>
+                            </span>
+                            <span style="margin-right: 40px">
+                                <a style="cursor: pointer; color: white" href="logout.php">
+                                     <span class="fa fa-sign-in fa-lg mx-2 img-fluid button__icon"></span>
+                                    Log Out
+                                </a>
+                            </span>';
+                    }
+                 
+               echo' </div>
             </div>
         </nav>
-    </div>
+    </div>';
+    ?>
 
     <!-- Modal Login-->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
@@ -345,11 +381,11 @@ if(isset($_REQUEST['btn_signup'])){
             <div class="row">
                 <div class="col-4 offset-1 col-sm-2">
                     <h4>Links</h4>
-                    <ul class="list-unstyled" style="color: white;">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Plans</a></li>
-                        <li><a href="#">Contact</a></li>
+                    <ul class="list-unstyled">
+                        <li><a style="color: black;" href="#">Home</a></li>
+                        <li><a style="color: black;" href="#">About</a></li>
+                        <li><a style="color: black;" href="#">Plans</a></li>
+                        <li><a style="color: black;" href="#">Contact</a></li>
                     </ul>
                 </div>
                 <div class="col-7 col-sm-5">
@@ -361,7 +397,7 @@ if(isset($_REQUEST['btn_signup'])){
                         <i class="fa fa-phone fa-lg"></i>: +852 1234 5678<br>
                         <i class="fa fa-fax fa-lg"></i>: +852 8765 4321<br>
                         <i class="fa fa-envelope fa-lg"></i>:
-                        <a href="mailto:e-installment@gmail.com">e-installment@gmail.com</a>
+                        <a style="color: black;" href="mailto:e-installment@gmail.com">e-installment@gmail.com</a>
                     </address>
                 </div>
                 <div class="col-12 col-sm-4 align-self-center">

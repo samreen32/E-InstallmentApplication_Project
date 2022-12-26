@@ -1,9 +1,5 @@
 <?php
-session_start();
-if(empty($_SESSION['userLoggedin']) || $_SESSION['userLoggedin'] == ''){
-    header("Location: Main.php");
-    die();
-}
+require("user_timestamp.php");
 
  require_once('database.php');
  $id = $_GET['id'];
@@ -50,7 +46,7 @@ if(empty($_SESSION['userLoggedin']) || $_SESSION['userLoggedin'] == ''){
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <meta http-equiv="refresh" content="900;url=logout.php" />
 
     <!--=============== REMIX ICONS ===============-->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">

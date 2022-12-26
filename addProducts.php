@@ -1,4 +1,9 @@
 <?php
+// session_start();
+// if(empty($_SESSION['userLoggedin']) || $_SESSION['userLoggedin'] == ''){
+//     header("Location: logout.php");
+//     die();
+// }
 require("user_timestamp.php");
 
  require_once('database.php');
@@ -37,7 +42,7 @@ require("user_timestamp.php");
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <meta http-equiv="refresh" content="900;url=logout.php" />
 
     <!--=============== REMIX ICONS ===============-->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
@@ -180,24 +185,6 @@ require("user_timestamp.php");
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
 </script>
 <script src="assets/js/scripts.js"></script>
-<!-- <script src="cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js"></script>
-
-<script>
-    setInterval(function() {
-        check_user();
-    }, 2000);
-function check_user(){
-    jQuery.ajax({
-        url: 'user_timestamp.php',
-        type: 'post',
-        data: 'type=ajax',
-        success: function(result){
-           if(result == 'logout'){
-            window.location.href='logout.php';
-           }
-        }
-    })
-} -->
 
 
 </html>

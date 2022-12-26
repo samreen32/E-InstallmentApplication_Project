@@ -54,114 +54,128 @@
 
 
     <!--Body -->
-    <div class="container"  style="background-color: #9575CD;" >
-    <div class="container">
-        <div style="margin-top: 100px;">
-            <h1 style="text-align: center;"></h1>
-        </div><br>
-        <div>
-            <form method="post">
-                <h4 style="color: black; text-align: center">Customer Details</h4><br />
-                <div class="form-row">
-                    <div class="form-group col-md-2">
-                        <label class="my-1 mr-2" for="title">Title</label>
-                        <select class="form-control" id="title" name="title">
-                            <option selected>Choose...</option>
-                            <option value="Mr.">Mr.</option>
-                            <option value="Miss">Miss</option>
-                            <option value="Mrs">Mrs</option>
-                        </select>
-                    </div>
+    <div class="main" style="background-color: #9575CD;">
+        <div class="row my-5">
+            <div class="col my-3">
+                <div class="col">
+                    <div class="row row-header my-3">
+                        <div class="card modal-body" style="width: 90rem;">
+                            <div class="my-5 mx-3">
+                            <h3 style="color: black; text-align: center">Customer Details</h3><br /><br />
+                                <form method="post">
+                                    <h4 style="color: black;">Personal Info</h4><br />
+                                    <div class="form-row">
+                                        <div class="form-group col-md-2">
+                                            <label class="my-1 mr-2" for="title">Title</label>
+                                            <select class="form-control" id="title" name="title">
+                                                <option selected>Choose...</option>
+                                                <option value="Mr.">Mr.</option>
+                                                <option value="Miss">Miss</option>
+                                                <option value="Mrs">Mrs</option>
+                                            </select>
+                                        </div>
 
-                    <div class="form-group col-md-5">
-                        <label for="fname">First Name</label>
-                        <input type="text" class="form-control" id="fname" name="fname" placeholder="e.g. Samreen">
-                    </div>
-                    <div class="form-group col-md-5">
-                        <label for="lname">Last Name</label>
-                        <input type="text" class="form-control" id="lname" name="lname" placeholder="e.g. Karim">
-                    </div>
-                </div>
-                <div class="form-group mx-2">
-                    <fieldset class="form-group">
-                        <div class="row">
-                            <legend class="col-form-label col-sm-2 pt-0">Select Gender</legend>
-                            <div class="col-sm-10">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gender" id="male" value="Male"
-                                        checked>
-                                    <label class="form-check-label" for="male">
-                                        Male
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gender" id="female"
-                                        value="Female">
-                                    <label class="form-check-label" for="female">
-                                        Female
-                                    </label>
-                                </div>
-                            </div>
+                                        <div class="form-group col-md-5">
+                                            <label for="fname">First Name</label>
+                                            <input type="text" class="form-control" id="fname" name="fname"
+                                                placeholder="e.g. Samreen">
+                                        </div>
+                                        <div class="form-group col-md-5">
+                                            <label for="lname">Last Name</label>
+                                            <input type="text" class="form-control" id="lname" name="lname"
+                                                placeholder="e.g. Karim">
+                                        </div>
+                                    </div>
+                                    <div class="form-group mx-2">
+                                        <fieldset class="form-group">
+                                            <div class="row">
+                                                <legend class="col-form-label col-sm-2 pt-0">Select Gender</legend>
+                                                <div class="col-sm-10">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="gender"
+                                                            id="male" value="Male" checked>
+                                                        <label class="form-check-label" for="male">
+                                                            Male
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="gender"
+                                                            id="female" value="Female">
+                                                        <label class="form-check-label" for="female">
+                                                            Female
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address">Address</label>
+                                        <input type="text" class="form-control" name="address" id="address"
+                                            placeholder="e.g. 1234 Main St">
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="city">City</label>
+                                            <input type="text" class="form-control" id="city" name="city"
+                                                placeholder="e.g. Islamabad">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="state">State</label>
+                                            <select id="state" class="form-control" name="state">
+                                                <option selected>Choose...</option>
+                                                <option>Pakistan</option>
+                                                <option>Turkey</option>
+                                                <option>Korea</option>
+                                                <option>Nepal</option>
+                                                <option>USA</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="zip">Zip</label>
+                                            <input type="text" class="form-control" id="zip" name="zip"
+                                                placeholder="e.g. 8000">
+                                        </div>
+                                    </div><br /><br />
+                                    <h4 style="color: black;">Product Details</h4><br />
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label class="my-1 mr-2" for="plan">Installment Plan</label>
+                                            <select class="form-control" id="plan" name="plan">
+                                                <option selected>Choose plan...</option>
+                                                <option value="1st">1st Installment</option>
+                                                <option value="2nd">2nd Installment</option>
+                                                <option value="3rd">3rd Installment</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="my-1 mr-2" for="plan">Product Detail</label>
+                                            <select class="form-control" id="plan" name="plan">
+                                                <option selected>Choose product...</option>
+                                                <option value="Electric">Electric Product</option>
+                                                <option value="Cosmatic">Cosmatic Product</option>
+                                                <option value="Clothing">Clothing Products</option>
+                                                <option value="Furniture">Furniture Products</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="textarea">Installment Details</label>
+                                        <textarea class="form-control" id="textarea" rows="3"
+                                            placeholder="e.g. 1st Installment" name="textarea"></textarea>
+                                    </div>
+                                    <button type="submit" style="display: flex; margin: auto;"
+                                        class="button button--flex my-4" name="add_customer">Add
+                                        Customer</button>
+                                </form>
+                            </div><br>
                         </div>
-                    </fieldset>
-                </div>
-                <div class="form-group">
-                    <label for="address">Address</label>
-                    <input type="text" class="form-control" name="address" id="address" placeholder="e.g. 1234 Main St">
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="city">City</label>
-                        <input type="text" class="form-control" id="city" name="city" placeholder="e.g. Islamabad">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="state">State</label>
-                        <select id="state" class="form-control" name="state">
-                            <option selected>Choose...</option>
-                            <option>Pakistan</option>
-                            <option>Turkey</option>
-                            <option>Korea</option>
-                            <option>Nepal</option>
-                            <option>USA</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label for="zip">Zip</label>
-                        <input type="text" class="form-control" id="zip" name="zip" placeholder="e.g. 8000">
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label class="my-1 mr-2" for="plan">Installment Plan</label>
-                        <select class="form-control" id="plan" name="plan">
-                            <option selected>Choose plan...</option>
-                            <option value="1st">1st Installment</option>
-                            <option value="2nd">2nd Installment</option>
-                            <option value="3rd">3rd Installment</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label class="my-1 mr-2" for="plan">Product Detail</label>
-                        <select class="form-control" id="plan" name="plan">
-                            <option selected>Choose product...</option>
-                            <option value="electric">Electric Product</option>
-                            <option value="kitchen">Kitchen Product</option>
-                            <option value="pet">Pet Products</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="textarea">Installment Details</label>
-                    <textarea class="form-control" id="textarea" rows="3" placeholder="e.g. 1st Installment"
-                        name="textarea"></textarea>
-                </div>
-                <input type="submit" class="button button--flex" value="Add Customer" />
-            </form>
-        </div><br>
-
+            </div>
+        </div>
     </div>
-</div>
 
 
 </body>

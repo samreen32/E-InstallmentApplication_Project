@@ -1,9 +1,5 @@
 <?php
-session_start();
-if(empty($_SESSION['userLoggedin']) || $_SESSION['userLoggedin'] == ''){
-    header("Location: Main.php");
-    die();
-}
+require("user_timestamp.php");
 
  require_once('database.php');
  if(isset($_REQUEST['add_product']) && isset($_FILES['product_img'])){
@@ -184,6 +180,24 @@ if(empty($_SESSION['userLoggedin']) || $_SESSION['userLoggedin'] == ''){
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
 </script>
 <script src="assets/js/scripts.js"></script>
+<!-- <script src="cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js"></script>
+
+<script>
+    setInterval(function() {
+        check_user();
+    }, 2000);
+function check_user(){
+    jQuery.ajax({
+        url: 'user_timestamp.php',
+        type: 'post',
+        data: 'type=ajax',
+        success: function(result){
+           if(result == 'logout'){
+            window.location.href='logout.php';
+           }
+        }
+    })
+} -->
 
 
 </html>

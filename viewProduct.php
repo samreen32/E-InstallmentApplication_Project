@@ -1,10 +1,6 @@
 <?php
-    session_start();
-    if(empty($_SESSION['userLoggedin']) || $_SESSION['userLoggedin'] == ''){
-        header("Location: Main.php");
-        die();
-    }
-    
+    require("user_timestamp.php");
+
     require_once('database.php');
     $res = $database->viewProducts();
 ?>
@@ -165,8 +161,8 @@
                                 aria-hidden="true"></i>View Products</a>
                         <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"
                             href="addProducts.php"><i class="fa fa-plus img-fluid mx-2 button__icon"
-                                aria-hidden="true"></i>Add Products for
-                            installment</a>
+                                aria-hidden="true"></i>Add Products
+                            </a>
                         <a type="button" class="button button--flex my-3" href="addCustomer.php"
                             style="height: 50px; width:100%;"><i class="fa fa-plus img-fluid mx-2 button__icon"
                                 aria-hidden="true"></i>
@@ -300,5 +296,23 @@ document.querySelector('.popup-img span').onclick = () => {
 <script src="assets/js/scripts.js"></script>
 <script src="lightbox2/dist/js/lightbox-plus-jquery.min.js">
 </script>
+<!-- <script src="cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js"></script>
+
+<script>
+    setInterval(function() {
+        check_user();
+    }, 2000);
+function check_user(){
+    jQuery.ajax({
+        url: 'user_timestamp.php',
+        type: 'post',
+        data: 'type=ajax',
+        success: function(result){
+           if(result == 'logout'){
+            window.location.href='logout.php';
+           }
+        }
+    })
+} -->
 
 </html>

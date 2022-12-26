@@ -1,10 +1,7 @@
 <?php
-    session_start();
-    if(empty($_SESSION['userLoggedin']) || $_SESSION['userLoggedin'] == ''){
-        header("Location: Main.php");
-        die();
-    }
+    require("user_timestamp.php");
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -73,9 +70,6 @@
     </div>
 
 
-    <?php 
-       // while($r = mysqli_fetch_assoc($res)){
-    ?>
     <!-- Drawer -->
     <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
         aria-labelledby="offcanvasWithBothOptionsLabel">
@@ -98,8 +92,8 @@
                         <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;" href="viewProduct.php"><i
                         class="fa fa-eye img-fluid mx-2 button__icon" aria-hidden="true"></i>View Products</a>
                         <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;" href="addProducts.php"><i
-                                class="fa fa-plus img-fluid mx-2 button__icon" aria-hidden="true"></i>Add Products for
-                            installment</a>
+                                class="fa fa-plus img-fluid mx-2 button__icon" aria-hidden="true"></i>Add Products
+                            </a>
                         <a type="button" class="button button--flex my-3" href="addCustomer.php"
                             style="height: 50px; width:100%;"><i class="fa fa-plus img-fluid mx-2 button__icon"
                                 aria-hidden="true"></i>
@@ -208,5 +202,25 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
 </script>
 <script src="assets/js/scripts.js"></script>
+<!-- <script src="cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js"></script>
+
+<script>
+    setInterval(function() {
+        check_user();
+    }, 2000);
+function check_user(){
+    jQuery.ajax({
+        url: 'user_timestamp.php',
+        type: 'post',
+        data: 'type=ajax',
+        success: function(result){
+           if(result == 'logout'){
+            window.location.href='logout.php';
+           }
+        }
+    })
+} -->
+
+</script>
 
 </html>

@@ -1,3 +1,29 @@
+<?php
+
+require("user_timestamp.php");
+ require_once('database.php');
+ if(isset($_REQUEST['add_customer'])){
+	 $title = $database->sanitize($_POST['title']);
+     $fname = $database->sanitize($_POST['fname']);
+	 $lname = $database->sanitize($_POST['lname']);
+	 $gender = $_POST['gender'];
+	 $address =  $database->sanitize($_POST['address']);
+     $city = $_POST['city'];
+     $state = $_POST['state'];
+     $zip = $_POST['zip'];
+     $other_details = $_POST['other_details'];
+ 
+	 $res = $database->add_customer($title, $fname, $lname, $gender, $address, $city, $state, $zip, $other_details);
+	 if($res){
+        $_SESSION['status'] = "Customer added Successfully.";
+	 }else{
+        $_SESSION['status'] = "Failed to add";
+	 }
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +31,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <meta http-equiv="refresh" content="900;url=logout.php" />
 
     <!--=============== REMIX ICONS ===============-->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
@@ -23,12 +49,10 @@
     <link rel="stylesheet" href="assets/css/styles.css">
     <title>Customer Installment-Application</title>
 
-
 </head>
 
 
 <body>
-
 
     <!-- header -->
     <div class="container my-5">
@@ -58,12 +82,24 @@
         <div class="row my-5">
             <div class="col my-3">
                 <div class="col">
+                <?php
+                        if(isset($_SESSION['status']) && $_SESSION != ''){ 
+                    ?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Success!</strong><?php echo " ".$_SESSION['status']; ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
+                    <?php 
+                       unset($_SESSION['status']); 
+                        } 
+                    ?>
+
                     <div class="row row-header my-3">
                         <div class="card modal-body" style="width: 90rem;">
                             <div class="my-5 mx-3">
                             <h3 style="color: black; text-align: center">Customer Details</h3><br /><br />
                                 <form method="post">
-                                    <h4 style="color: black;">Personal Info</h4><br />
                                     <div class="form-row">
                                         <div class="form-group col-md-2">
                                             <label class="my-1 mr-2" for="title">Title</label>
@@ -137,36 +173,15 @@
                                             <input type="text" class="form-control" id="zip" name="zip"
                                                 placeholder="e.g. 8000">
                                         </div>
-                                    </div><br /><br />
-                                    <h4 style="color: black;">Product Details</h4><br />
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label class="my-1 mr-2" for="plan">Installment Plan</label>
-                                            <select class="form-control" id="plan" name="plan">
-                                                <option selected>Choose plan...</option>
-                                                <option value="1st">1st Installment</option>
-                                                <option value="2nd">2nd Installment</option>
-                                                <option value="3rd">3rd Installment</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label class="my-1 mr-2" for="plan">Product Detail</label>
-                                            <select class="form-control" id="plan" name="plan">
-                                                <option selected>Choose product...</option>
-                                                <option value="Electric">Electric Product</option>
-                                                <option value="Cosmatic">Cosmatic Product</option>
-                                                <option value="Clothing">Clothing Products</option>
-                                                <option value="Furniture">Furniture Products</option>
-                                            </select>
-                                        </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="textarea">Installment Details</label>
-                                        <textarea class="form-control" id="textarea" rows="3"
-                                            placeholder="e.g. 1st Installment" name="textarea"></textarea>
-                                    </div>
+                                        <label for="other_details">Any Other Detail</label>
+                                        <textarea class="form-control" id="other_details" rows="3"
+                                            placeholder="e.g. any other information" name="other_details"></textarea>
+                                    </div><br />
+                                    
                                     <button type="submit" style="display: flex; margin: auto;"
-                                        class="button button--flex my-4" name="add_customer">Add
+                                        class="button button--flex" name="add_customer">Add
                                         Customer</button>
                                 </form>
                             </div><br>
@@ -195,4 +210,24 @@
 </script>
 <script src="assets/js/scripts.js"></script>
 
+<script src="cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+    setInterval(function() {
+        check_user();
+    }, 2000);
+function check_user(){
+    jQuery.ajax({
+        url: 'user_timestamp.php',
+        type: 'post',
+        data: 'type=ajax',
+        success: function(result){
+           if(result == 'logout'){
+            window.location.href='logout.php';
+           }
+        }
+    })
+}
+
+</script>
 </html>

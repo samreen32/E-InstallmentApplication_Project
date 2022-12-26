@@ -19,19 +19,13 @@ require("user_timestamp.php");
     $res = $database->addProduct($product_name, $product_price, $product_img, $product_category, $product_descr);
     if($res){
         move_uploaded_file($tmp_name, "upload/".$product_img);
-        $_SESSION['status'] = "<h6>Product add succcessfully.</h6>";
+        $_SESSION['status'] = "Product add succcessfully.";
         
     }else{
-        $_SESSION['status'] = "<h6>Product does not added.</h6>";
+        $_SESSION['status'] = "Product does not added.";
         
     }
-
 }
-     
-
- 
-
-
 ?>
 
 
@@ -100,7 +94,7 @@ require("user_timestamp.php");
                         if(isset($_SESSION['status']) && $_SESSION != ''){ 
                     ?>
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>Success!</strong><?php echo $_SESSION['status']; ?>
+                        <strong>Success!</strong><?php echo " ".$_SESSION['status']; ?>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
 
@@ -186,5 +180,25 @@ require("user_timestamp.php");
 </script>
 <script src="assets/js/scripts.js"></script>
 
+<script src="cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+    setInterval(function() {
+        check_user();
+    }, 2000);
+function check_user(){
+    jQuery.ajax({
+        url: 'user_timestamp.php',
+        type: 'post',
+        data: 'type=ajax',
+        success: function(result){
+           if(result == 'logout'){
+            window.location.href='logout.php';
+           }
+        }
+    })
+}
+
+</script>
 
 </html>

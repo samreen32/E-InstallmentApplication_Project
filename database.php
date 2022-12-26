@@ -16,7 +16,6 @@ class Database{
 	}
  
 	public function createSignup($fname, $email, $password){
-	   //insert login credentials in db.
 	   	$hash = password_hash($password, PASSWORD_DEFAULT);
 		$sql = "INSERT INTO signup (fname, email, password)
 		VALUES ('$fname', '$email', '$hash')";
@@ -98,7 +97,17 @@ class Database{
 	}
 
 
-
+	public function add_customer($title, $fname, $lname, $gender, $address, $city, $state, $zip, $other_details){
+		$sql = "INSERT INTO add_customer (title, fname, lname, gender, address, city, state, zip, other_details) 
+		VALUES ('$title', '$fname', '$lname', '$gender', '$address', '$city', '$state', '$zip', '$other_details')";
+		$res = mysqli_query($this->connection, $sql);
+		if($res){
+	 		return true;
+		}else{
+			die("err".mysqli_error($this->connection));
+			return false;
+		}
+	}
 
 
 

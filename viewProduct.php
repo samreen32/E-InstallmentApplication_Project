@@ -200,7 +200,7 @@
                     if(isset($_SESSION['status']) && $_SESSION != ''){ 
                 ?>
                 <div class="alert alert-dark alert-dismissible fade show" role="alert">
-                    <strong>Success!</strong><?php echo $_SESSION['status']; ?>
+                    <strong>Success!</strong><?php echo " ".$_SESSION['status']; ?>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
 
@@ -296,7 +296,8 @@ document.querySelector('.popup-img span').onclick = () => {
 <script src="assets/js/scripts.js"></script>
 <script src="lightbox2/dist/js/lightbox-plus-jquery.min.js">
 </script>
-<!-- <script src="cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js"></script>
+
+<script src="cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script>
     setInterval(function() {
@@ -313,6 +314,8 @@ function check_user(){
            }
         }
     })
-} -->
+}
+
+</script>
 
 </html>

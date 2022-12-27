@@ -109,7 +109,32 @@ class Database{
 		}
 	}
 
+	public function viewCustomers($id=null){
+		$sql = "SELECT * FROM add_customer";
+		if($id){ $sql .= " WHERE id=$id";}
+ 		$res = mysqli_query($this->connection, $sql);
+ 		return $res;
+	}
 
+	public function updateCustomer($title, $fname, $lname, $gender, $address, $city, $state, $zip, $other_details, $id){
+		$sql = "UPDATE add_customer SET title='$title', fname='$fname', lname='$lname', gender='$gender', address='$address', city='$city', state='$state', zip='$zip', other_details='$other_details' WHERE id=$id";
+		$res = mysqli_query($this->connection, $sql);
+		if($res){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function deleteCustomer($id){
+		$sql = "DELETE FROM add_customer WHERE id=$id";
+ 		$res = mysqli_query($this->connection, $sql);
+ 		if($res){
+ 			return true;
+ 		}else{
+ 			return false;
+ 		}
+	}
 
 	public function userProfile($profile_picture){
 		$sql = "INSERT INTO user_profile_picture (profile_picture)

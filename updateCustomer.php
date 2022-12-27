@@ -2,7 +2,11 @@
 
 require("user_timestamp.php");
  require_once('database.php');
- if(isset($_REQUEST['add_customer'])){
+ $id = $_GET['id'];
+ $res = $database->viewCustomers($id);
+ $r = mysqli_fetch_assoc($res);
+
+ if(isset($_REQUEST['update_customer'])){
 	 $title = $database->sanitize($_POST['title']);
      $fname = $database->sanitize($_POST['fname']);
 	 $lname = $database->sanitize($_POST['lname']);
@@ -13,11 +17,11 @@ require("user_timestamp.php");
      $zip = $_POST['zip'];
      $other_details = $_POST['other_details'];
  
-	 $res = $database->add_customer($title, $fname, $lname, $gender, $address, $city, $state, $zip, $other_details);
+	 $res = $database->updateCustomer($title, $fname, $lname, $gender, $address, $city, $state, $zip, $other_details, $id);
 	 if($res){
-        $_SESSION['status'] = "Customer added Successfully.";
+        $_SESSION['status'] = "Customer Updated Successfully.";
 	 }else{
-        $_SESSION['status'] = "Failed to add";
+        $_SESSION['status'] = "Failed to update.";
 	 }
 }
 ?>
@@ -62,7 +66,7 @@ require("user_timestamp.php");
                     <span style="margin-left: 20px">
                         <a type="button" style="color: white;" href="viewCustomer.php">
                             <i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i></a>
-                        <a class="navbar-brand nav__logo mx-3 my-1" href="#">Add Customer Details</a>
+                        <a class="navbar-brand nav__logo mx-3 my-1" href="#">Edit Customer Details</a>
                     </span>
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -98,28 +102,28 @@ require("user_timestamp.php");
                     <div class="row row-header my-3">
                         <div class="card modal-body" style="width: 90rem;">
                             <div class="my-5 mx-3">
-                                <h3 style="color: black; text-align: center">Customer Details</h3><br /><br />
+                                <h3 style="color: black; text-align: center">Edit Customer Details</h3><br /><br />
                                 <form method="post">
                                     <div class="form-row">
                                         <div class="form-group col-md-2">
                                             <label class="my-1 mr-2" for="title">Title</label>
                                             <select class="form-control" id="title" name="title">
                                                 <option selected>Choose...</option>
-                                                <option value="Mr.">Mr.</option>
-                                                <option value="Miss">Miss</option>
-                                                <option value="Mrs">Mrs</option>
+                                                <option value="Mr." <?php if($r['title'] == 'Mr.'){ echo "selected";} ?>>Mr.</option>
+                                                <option value="Miss" <?php if($r['title'] == 'Miss'){ echo "selected";} ?>>Miss</option>
+                                                <option value="Mrs" <?php if($r['title'] == 'Mrs'){ echo "selected";} ?>>Mrs</option>
                                             </select>
                                         </div>
 
                                         <div class="form-group col-md-5">
                                             <label for="fname">First Name</label>
                                             <input type="text" class="form-control" id="fname" name="fname"
-                                                placeholder="e.g. Samreen">
+                                                placeholder="e.g. Samreen" value="<?php echo $r['fname'] ?>">
                                         </div>
                                         <div class="form-group col-md-5">
                                             <label for="lname">Last Name</label>
                                             <input type="text" class="form-control" id="lname" name="lname"
-                                                placeholder="e.g. Karim">
+                                                placeholder="e.g. Karim" value="<?php echo $r['lname'] ?>">
                                         </div>
                                     </div>
                                     <div class="form-group mx-2">
@@ -129,14 +133,14 @@ require("user_timestamp.php");
                                                 <div class="col-sm-10">
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="radio" name="gender"
-                                                            id="male" value="Male" checked>
+                                                            id="male" value="Male" <?php if($r['gender'] == 'Male'){ echo "checked";} ?>>
                                                         <label class="form-check-label" for="male">
                                                             Male
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="radio" name="gender"
-                                                            id="female" value="Female">
+                                                            id="female" value="Female" <?php if($r['gender'] == 'Female'){ echo "checked";} ?>>
                                                         <label class="form-check-label" for="female">
                                                             Female
                                                         </label>
@@ -148,40 +152,40 @@ require("user_timestamp.php");
                                     <div class="form-group">
                                         <label for="address">Address</label>
                                         <input type="text" class="form-control" name="address" id="address"
-                                            placeholder="e.g. 1234 Main St">
+                                            placeholder="e.g. 1234 Main St" value="<?php echo $r['address'] ?>">
                                     </div>
 
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="city">City</label>
                                             <input type="text" class="form-control" id="city" name="city"
-                                                placeholder="e.g. Islamabad">
+                                                placeholder="e.g. Islamabad" value="<?php echo $r['city'] ?>">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="state">State</label>
                                             <select id="state" class="form-control" name="state">
                                                 <option selected>Choose...</option>
-                                                <option>Pakistan</option>
-                                                <option>Turkey</option>
-                                                <option>Korea</option>
-                                                <option>Nepal</option>
-                                                <option>USA</option>
+                                                <option <?php if($r['state'] == 'Pakistan'){ echo "selected";} ?>>Pakistan</option>
+                                                <option <?php if($r['state'] == 'Turkey'){ echo "selected";} ?>>Turkey</option>
+                                                <option <?php if($r['state'] == 'Korea'){ echo "selected";} ?>>Korea</option>
+                                                <option <?php if($r['state'] == 'Nepal'){ echo "selected";} ?>>Nepal</option>
+                                                <option <?php if($r['state'] == 'USA'){ echo "selected";} ?>>USA</option>
                                             </select>
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label for="zip">Zip</label>
                                             <input type="text" class="form-control" id="zip" name="zip"
-                                                placeholder="e.g. 8000">
+                                                placeholder="e.g. 8000" value="<?php echo $r['zip'] ?>">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="other_details">Any Other Detail</label>
                                         <textarea class="form-control" id="other_details" rows="3"
-                                            placeholder="e.g. any other information" name="other_details"></textarea>
+                                            placeholder="e.g. any other information" name="other_details"><?php echo $r['other_details'] ?></textarea>
                                     </div><br />
                                     
                                     <button type="submit" style="display: flex; margin: auto;"
-                                        class="button button--flex" name="add_customer">Add
+                                        class="button button--flex" name="update_customer">Update
                                         Customer</button>
                                 </form>
                             </div><br>

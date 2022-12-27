@@ -2,7 +2,7 @@
     require("user_timestamp.php");
 
     require_once('database.php');
-    $res = $database->viewProducts();
+    $res = $database->viewCustomers();
 ?>
 
 
@@ -29,75 +29,6 @@
     <link rel="stylesheet" href="assets/css/styles.css">
     <title>Customer Installment-Application</title>
 
-    <style>
-    .img-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 15px;
-        justify-content: center;
-        padding: 10px;
-    }
-
-    .image {
-        height: 170px;
-        width: 170px;
-        border: 1px solid #fff;
-        box-shadow: 0 5px 15px rgb(0, 0, 0, .1);
-        overflow: hidden;
-        cursor: pointer;
-    }
-
-    img {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-        transition: .2s linear;
-    }
-
-    .image:hover img {
-        filter: drop-shadow(4px 4px 6px gray);
-        transform: scale(1.1);
-    }
-
-    .popup-img {
-        position: fixed;
-        top: 14.5%;
-        left: 0;
-        background: rgb(0, 0, 0, .9);
-        height: 86%;
-        width: 100%;
-        z-index: 100;
-        display: none;
-    }
-
-    .popup-img span {
-        position: absolute;
-        top: 0;
-        right: 10px;
-        font-size: 60px;
-        font-weight: bolder;
-        color: white;
-        cursor: pointer;
-        z-index: 100;
-    }
-
-    .popup-img img {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        border: 5px solid #fff;
-        border-radius: 5px;
-        width: 750px;
-        object-fit: cover;
-    }
-
-    @media(max-width: 768px) {
-        .popup-img img {
-            width: 95%;
-        }
-    }
-    </style>
 </head>
 
 
@@ -114,7 +45,7 @@
                             aria-controls="offcanvasWithBothOptions">
                             <i class="fa fa-bars fa-3x" aria-hidden="true"></i></a>
                     </span>
-                    <a class="navbar-brand nav__logo mx-5" href="#">All Products</a>
+                    <a class="navbar-brand nav__logo mx-5" href="#">Customer Details</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -162,7 +93,7 @@
                         <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"
                             href="addProducts.php"><i class="fa fa-plus img-fluid mx-2 button__icon"
                                 aria-hidden="true"></i>Add Products
-                            </a>
+                        </a>
                         <a type="button" class="button button--flex my-3" href="addCustomer.php"
                             style="height: 50px; width:100%;"><i class="fa fa-plus img-fluid mx-2 button__icon"
                                 aria-hidden="true"></i>
@@ -192,7 +123,6 @@
 
     <!--Body -->
     <div class="main" style="background-color: #9575CD;">
-    
         <div class="container my-5" style="background-color: #9575CD; 
             align-self: center; text-align: center;">
             <div style="margin-top: 100px;">
@@ -209,52 +139,60 @@
                     } 
                 ?>
                 <span style="color: white;">
-                    <h2>Products Available for Installment</h2>
+                    <h2>Customer Details</h2>
                 </span>
             </div>
 
-            <div class="row row-cols-1 row-cols-md-2 g-4 my-4">
-                <?php 
-                        while($r = mysqli_fetch_assoc($res)){ ?>
-                <div class="row">
-                    <div class="card modal-body mx-2 my-2" style="height: 30rem;">
-                        <div class="img-container">
-                            <div class="image my-3">
-                                <img style="width: 150px; height: 150px; align-self: center;  margin-top: 10px;"
-                                    src="<?php echo "upload/". $r['product_img']; ?>" class="card-img-top"
-                                    data-index="1" alt="...">
-                            </div>
-                        </div>
-                        <div class="popup-img">
-                            <span>&times;</span>
-                            <img src="<?php echo "upload/". $r['product_img']; ?>" />
-                        </div>
+            <div class="row row-header my-3">
+                <div class="card modal-body" style="width: 90rem;">
+                    <div class="my-5 mx-3">
+                        <div class="row">
+                            <table class="table">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Title</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Gender</th>
+                                    <th>Address</th>
+                                    <th>City</th>
+                                    <th>State</th>
+                                    <th>Zip</th>
+                                    <th>Other Detais</th>
 
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $r['product_name']; ?></h5>
-                            <p class="card-text">Your favorite <?php echo $r['product_name']; ?> is now on
-                                installment:
-                            <ul>
-                                <li>
-                                    <h6>Description</h6>
-                                </li>
-                                <li><i><?php echo $r['product_descr']; ?></li>
-                                </i>
-                            </ul>
-                            </p>
-                            <h6 class="card-title">Category: <?php echo $r['product_category']; ?></h6>
-                            <a type="button" href="updateProduct.php?id=<?php echo $r['id']; ?>"
-                                class="button button--flex" style="height: 40px; align-self: center">Edit
-                                Product</a>
-                            <a type="button" href="deleteProduct.php?id=<?php echo $r['id']; ?>"
-                                class="btn btn-secondary" style="height: 40px; align-self: center">Delete
-                                Product</a>
+                                </tr>
+                                <?php 
+                                    while($r = mysqli_fetch_assoc($res)){
+                                ?>
+                                <tr>
+                                    <td><?php echo $r['id']; ?></td>
+                                    <td><?php echo $r['title']; ?></td>
+                                    <td><?php echo $r['fname']; ?></td>
+                                    <td><?php echo $r['lname']; ?></td>
+                                    <td><?php echo $r['gender']; ?></td>
+                                    <td><?php echo $r['address']; ?></td>
+                                    <td><?php echo $r['city']; ?></td>
+                                    <td><?php echo $r['state']; ?></td>
+                                    <td><?php echo $r['zip']; ?></td>
+                                    <td><?php echo $r['other_details']; ?></td>
+                                    <td>
+                                        <a type="button" class="button button--flex col-md-12"
+                                            style="height: 40px; text-align: center;"
+                                            href="updateCustomer.php?id=<?php echo $r['id']; ?>">
+                                            <i class="fa fa-pencil-square img-fluid mx-2 button__icon"
+                                                aria-hidden="true"></i></a><br />
+                                        <a class="btn btn-danger col-md-12"
+                                            href="deleteCustomer.php?id=<?php echo $r['id']; ?>"><i
+                                                class="fa fa-trash img-fluid mx-2 button__icon"
+                                                aria-hidden="true"></i></a>
+                                    </td>
+                                </tr>
+                                <?php } ?>
+                            </table>
                         </div>
                     </div>
                 </div>
-                <?php } ?>
             </div>
-
         </div>
 
 
@@ -300,22 +238,22 @@ document.querySelector('.popup-img span').onclick = () => {
 <script src="cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script>
-    setInterval(function() {
-        check_user();
-    }, 2000);
-function check_user(){
+setInterval(function() {
+    check_user();
+}, 2000);
+
+function check_user() {
     jQuery.ajax({
         url: 'user_timestamp.php',
         type: 'post',
         data: 'type=ajax',
-        success: function(result){
-           if(result == 'logout'){
-            window.location.href='logout.php';
-           }
+        success: function(result) {
+            if (result == 'logout') {
+                window.location.href = 'logout.php';
+            }
         }
     })
 }
-
 </script>
 
 </html>

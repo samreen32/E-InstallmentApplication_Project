@@ -98,7 +98,7 @@
                             style="height: 50px; width:100%;"><i class="fa fa-plus img-fluid mx-2 button__icon"
                                 aria-hidden="true"></i>
                             Add Customers</a>
-                        <a type="button" class="button button--flex my-3" style="height: 50px; 
+                        <a type="button" class="button button--flex my-3" href="viewCustomer.php" style="height: 50px; 
                                 width:100%;"><i class="fa fa-eye img-fluid mx-2 button__icon"
                                 aria-hidden="true"></i>View
                             Customer Details</a>

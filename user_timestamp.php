@@ -2,7 +2,7 @@
    session_start();
 
 
-if(isset($_POST['type']) && $_POST['type'] == 'ajax'){
+if(isset($_REQUEST['id'])){
     if((time() - $_SESSION['login_timestamp']) > 900){      
        echo "logout";
     }

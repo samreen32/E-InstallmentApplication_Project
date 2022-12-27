@@ -1,9 +1,4 @@
 <?php
-// session_start();
-// if(empty($_SESSION['userLoggedin']) || $_SESSION['userLoggedin'] == ''){
-//     header("Location: Main.php");
-//     die();
-// }
     require("user_timestamp.php");
 
     require_once('database.php');

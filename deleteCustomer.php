@@ -6,7 +6,7 @@
     
     $res = $database->deleteCustomer($id);
     if($res){
-        $_SESSION['status'] = "Customer Deleted succcessfully.";
+        $_SESSION['status'] = "Customer has been Deleted.";
         header('location: viewCustomer.php');
     }else{
         $_SESSION['status'] = "Customer not deleted.";

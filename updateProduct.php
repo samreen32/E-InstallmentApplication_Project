@@ -46,7 +46,7 @@ require("user_timestamp.php");
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="refresh" content="900;url=logout.php" />
+    <!-- <meta http-equiv="refresh" content="900;url=logout.php" /> -->
 
     <!--=============== REMIX ICONS ===============-->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
@@ -203,23 +203,27 @@ require("user_timestamp.php");
 </script>
 <script src="assets/js/scripts.js"></script>
 
-<script src="cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="jquery-3.6.3.js"></script>
 
 <script>
+    $(document).ready(function() {
     setInterval(function() {
-        check_user();
-    }, 2000);
-function check_user(){
-    jQuery.ajax({
-        url: 'user_timestamp.php',
+        check_user(1);
+    }, 500);
+});
+function check_user(id){
+    console.log(id);
+    $.ajax({
         type: 'post',
-        data: 'type=ajax',
-        success: function(result){
-           if(result == 'logout'){
+        url: 'user_timestamp.php',
+        dataType: 'html',
+        data:{ id:id },
+        success: function(response){
+           if(response == 'logout'){
             window.location.href='logout.php';
            }
         }
-    })
+    });
 }
 
 </script>

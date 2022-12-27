@@ -13,7 +13,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="refresh" content="900;url=logout.php" />
+    <!-- <meta http-equiv="refresh" content="900;url=logout.php" /> -->
 
     <!--=============== REMIX ICONS ===============-->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
@@ -235,25 +235,29 @@ document.querySelector('.popup-img span').onclick = () => {
 <script src="lightbox2/dist/js/lightbox-plus-jquery.min.js">
 </script>
 
-<script src="cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="jquery-3.6.3.js"></script>
 
 <script>
-setInterval(function() {
-    check_user();
-}, 2000);
-
-function check_user() {
-    jQuery.ajax({
-        url: 'user_timestamp.php',
+    $(document).ready(function() {
+    setInterval(function() {
+        check_user(1);
+    }, 500);
+});
+function check_user(id){
+    console.log(id);
+    $.ajax({
         type: 'post',
-        data: 'type=ajax',
-        success: function(result) {
-            if (result == 'logout') {
-                window.location.href = 'logout.php';
-            }
+        url: 'user_timestamp.php',
+        dataType: 'html',
+        data:{ id:id },
+        success: function(response){
+           if(response == 'logout'){
+            window.location.href='logout.php';
+           }
         }
-    })
+    });
 }
+
 </script>
 
 </html>

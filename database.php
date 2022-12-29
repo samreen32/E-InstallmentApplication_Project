@@ -28,6 +28,25 @@ class Database{
 		}
 	}
 
+	//update profile
+	public function updateProfile($profile_picture, $id){
+		$sql = "UPDATE signup SET profile_picture='$profile_picture' WHERE id=$id";
+		$res = mysqli_query($this->connection, $sql);
+		if($res){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function viewProfile($id=null){
+		$sql = "SELECT * FROM signup";
+		if($id){ $sql .= " WHERE id=$id";}
+ 		$res = mysqli_query($this->connection, $sql);
+ 		return $res;
+	}
+
+
 	public function emailValidation($email){
 		//check whethere email already exists or not.
 		$exist_email = "SELECT * FROM signup WHERE email = '$email'";
@@ -39,19 +58,6 @@ class Database{
 	public function createLogin($fname){
 		$sql = "SELECT * FROM signup WHERE fname = '$fname'";
 		$res = mysqli_query($this->connection, $sql);
-
-		// if (mysqli_num_rows($res) > 0){
-		// 	while($row = mysqli_fetch_assoc($res)){
-		// 		$user_id = $row['id'];
-		// 		$sqlImg = "INSERT INTO user_profile_picture (profile_picture, user_id)
-		// 		VALUES (1, '$user_id')";
-		// 		mysqli_query($this->connection, $sqlImg);
-		
-				
-		// 	}
-		// }else{
-		// 	echo "error";
-		// }
 		return $res;
 	}
 	
@@ -134,24 +140,6 @@ class Database{
  		}else{
  			return false;
  		}
-	}
-
-	public function userProfile($profile_picture){
-		$sql = "INSERT INTO user_profile_picture (profile_picture)
-		VALUES ('$profile_picture')";
-		$res = mysqli_query($this->connection, $sql);
-		return $res;
-	}
-
-	//update profile
-	public function updateProfile($profile_picture, $user_id){
-		$sql = "UPDATE user_profile_picture SET profile_picture=0 WHERE user_id=$user_id";
-		$res = mysqli_query($this->connection, $sql);
-		if($res){
-			return true;
-		}else{
-			return false;
-		}
 	}
 
 

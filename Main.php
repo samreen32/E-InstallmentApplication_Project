@@ -248,7 +248,7 @@ if(isset($_REQUEST['btn_signup'])){
                     //Alert for successful signup
                     if($showAlert){
                         echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <strong>Success!</strong> Your account has been created.
+                                <strong>Success!</strong> Your account has been created. Please Login.
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>';
                         }

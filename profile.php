@@ -1,55 +1,27 @@
 <?php
     session_start();
-    if(empty($_SESSION['userLoggedin']) || $_SESSION['userLoggedin'] == ''){
-        header("Location: Main.php");
-        die();
-    }
 ?>
 
 <?php
-// $sname = "localhost";
-// $uname = "root";
-// $password = "";
-// $db_name = "users_auth";
 
-// $connection = mysqli_connect($sname, $uname, $password, $db_name);
-// if($connection){
-//  echo "success";
-// }
-// else{
-//  echo "not success";
-//  exit();
-// }
 require_once('database.php');
+$id = $_SESSION['user_id'];
+
  if(isset($_POST['submit']) && isset($_FILES['profile_picture'])){
-    
-    $profile_picture = $_FILES['profile_picture']['name'];
-    $img_size = $_FILES['profile_picture']['size'];
+
+    $profile_picture = $database->sanitize($_FILES['profile_picture']['name']);
     $tmp_name = $_FILES['profile_picture']['tmp_name'];
-    $error = $_FILES['profile_picture']['error'];
+   
 
-    if($error === 0){
-      
-            $img_ex = pathinfo($profile_picture, PATHINFO_EXTENSION);       //img extension
-            $img_ex_to_lc = strtolower($img_ex);
-            $allowed_exs = array('jpg', 'jpeg', 'png');
-            if(in_array($img_ex_to_lc, $allowed_exs)){
-                $new_img_name = "profile".$_SESSION['user_id'].'.'.$img_ex_to_lc;
-                $img_upload_path = 'upload/'.$new_img_name;
-                move_uploaded_file($tmp_name, $img_upload_path);
-
-                $res = $database->userProfile($new_img_name);
-            }
+    $result = $database->updateProfile($profile_picture, $id);
+    if($result){
+        move_uploaded_file($tmp_name, "upload/".$profile_picture);
+        $_SESSION['status'] = "Profile added succcessfully.";
     }else{
-        $em = "unknow error occur";
-        header("location: Profile.php?error=$em");
+        $_SESSION['status'] = "Not Added.";
     }
- }else{
-   // header("location: product.php");
+    
  }
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -149,7 +121,8 @@ require_once('database.php');
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                         <span style="margin-left: 950px">
-                            <a style="color: white;" href="logout.php"> <span class="fa fa-sign-in fa-lg img-fluid mx-2 button__icon"></span>Logout</a>
+                            <a style="color: white;" href="logout.php"> <span
+                                    class="fa fa-sign-in fa-lg img-fluid mx-2 button__icon"></span>Logout</a>
 
                         </span>
                     </div>
@@ -170,12 +143,13 @@ require_once('database.php');
             <div class="col">
                 <div class="card modal-body">
                     <div class="card-body">
-                        <a type="button" class="button button--flex my-3" href="changePassword.php" 
-                        style="height: 50px; width:100%;"><i
-                                class="fa fa-key img-fluid mx-2 button__icon" aria-hidden="true"></i>Change Password</a>
+                        <a type="button" class="button button--flex my-3" href="changePassword.php"
+                            style="height: 50px; width:100%;"><i class="fa fa-key img-fluid mx-2 button__icon"
+                                aria-hidden="true"></i>Change Password</a>
 
                         <a type="button" class="button button--flex my-3" style="height: 50px; 
-                                width:100%;"><i class="fa fa-eye img-fluid mx-2 button__icon" aria-hidden="true"></i>Add
+                                width:100%;"><i class="fa fa-eye img-fluid mx-2 button__icon"
+                                aria-hidden="true"></i>Add
                             Customer Details</a>
                         <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"><i
                                 class="fa fa-pencil-square img-fluid mx-2 button__icon" aria-hidden="true"></i>Update
@@ -183,9 +157,9 @@ require_once('database.php');
 
                         <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"><i
                                 class="fa fa-cogs img-fluid mx-2 button__icon" aria-hidden="true"></i>Settings</a>
-                        <a type="button" class="button button--flex my-3" href="logout.php" 
-                            style="height: 50px; width:100%;"><i
-                                class="fa fa-sign-out img-fluid mx-2 button__icon" aria-hidden="true"></i>Logout</a>
+                        <a type="button" class="button button--flex my-3" href="logout.php"
+                            style="height: 50px; width:100%;"><i class="fa fa-sign-out img-fluid mx-2 button__icon"
+                                aria-hidden="true"></i>Logout</a>
                     </div>
                 </div>
             </div>
@@ -202,128 +176,87 @@ require_once('database.php');
                     <div class="row row-header my-3">
                         <div class="card modal-body" style="width: 55rem;">
                             <div class="my-4 mx-3">
-                              <a type="button" href="Admin.php" style="color: black;">
-                                <i class="fa fa-angle-left fa-4x img-fluid" aria-hidden="true"></i>
-                              </a>
-                              
-                              <?php
-                                //    $sname = "localhost";
-                                //    $uname = "root";
-                                //    $password = "";
-                                //    $db_name = "users_auth";
+                                <a type="button" href="Admin.php" style="color: black;">
+                                    <i class="fa fa-angle-left fa-4x img-fluid" aria-hidden="true"></i>
+                                </a>
 
-                                //    $connection = mysqli_connect($sname, $uname, $password, $db_name);
-                                //    if($connection){
-                                //     echo "success";
-                                //    }
-                                //    else{
-                                //     echo "not success";
-                                //     exit();
-                                //    }
-
-                                //      $sql = "SELECT * FROM signup";
-                                //      $res = mysqli_query($connection, $sql);
-                                //      if(mysqli_num_rows($res) > 0){
-                                //         while($rows = mysqli_fetch_assoc($res)){ 
-                                //             $id = $rows['id'];
-                                //             $sqlImg = "SELECT * FROM user_profile_picture WHERE user_id=$id";
-                                //             $resImg = mysqli_query($connection, $sqlImg);
-                                //             while($rowImg = mysqli_fetch_assoc($resImg)){
-                                //                 echo "<div>";
-                                //                     if($rowImg['profile_picture'] == 0){
-                                //                         echo "<img src='upload/profile".$id.".png' width='100'>";
-                                //                     }else{
-                                //                         echo "<img src='https://pic.onlinewebfonts.com/svg/img_569204.png' width='100'>";
-                                //                     }
-                                //                 echo "</div>";
-                                //             }
-                                //         }
-                                //     }else{
-                                //         echo "No usr";
-                                //     }
-                                    ?>
-                                <form method="post" style="text-align: center;" 
+                                <!-- <form method="post" style="text-align: center;" 
                                     enctype="multipart/form-data">
-                                    <div class="form-row my-5">
+                                    <div class="form-row my-5"> -->
 
-                                        <!--Profile Image -->
-                                        <!-- <div class="profile-pic"> -->
-                                           
-                                                <!-- <label class="-label" for="profile_picture">
+                                <!--Profile Image -->
+                                <!-- <div class="profile-pic"> -->
+
+                                <!-- <label class="-label" for="profile_picture">
                                                     <span class="glyphicon glyphicon-camera"></span>
                                                     <span>Change Image</span>
                                                 </label>
                                                 <input class="form-control" type="file" id="profile_picture" 
                                                     name="profile_picture"> -->
-                                                <!-- <img src="https://pic.onlinewebfonts.com/svg/img_569204.png"
+                                <!-- <img src="https://pic.onlinewebfonts.com/svg/img_569204.png"
                                                     width="100" />  -->
 
-                                            <!-- <input id="file" type="file" 
+                                <!-- <input id="file" type="file" 
                                                 onchange="loadFile(event)" name="file" />
                                             <img src="https://pic.onlinewebfonts.com/svg/img_569204.png"
                                             id="output" width="100" /> -->
-                                            <!-- -->
-                                        <!-- </div> -->
+                                <!-- -->
+                                <!-- </div> -->
 
 
-                                        <!--Form Adding -->
-                                    
-                                        <!-- // if($profile_picture == NULL){
-                                        //     echo '<img src="https://pic.onlinewebfonts.com/svg/img_569204.png"
-                                        //     width="10"/>';
-                                        // }
-                                        // else{
-                                        //     echo '<img src="upload/'.$profile_picture.'"/>';
-                                        // } -->
+                                <?php
+                                    if(isset($_SESSION['status']) && $_SESSION != ''){ 
+                                ?>
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <strong>Success!</strong><?php echo " ".$_SESSION['status']; ?>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                <?php 
+                                unset($_SESSION['status']); 
+                                    } 
+                                ?>
+                                <form method="post" style="text-align: center;" enctype="multipart/form-data">
+                                    <div class="form-row my-5">
 
                                         <?php
-                                            $sname = "localhost";
-                                            $uname = "root";
-                                            $password = "";
-                                            $db_name = "users_auth";
-
-                                            $connection = mysqli_connect($sname, $uname, $password, $db_name);
-                                            if($connection){
-                                                echo "success";
-                                            }
-                                            else{
-                                                echo "not success";
-                                                exit();
-                                            }
-
-                                            $sql = "SELECT * FROM user_profile_picture";
-                                            $res = mysqli_query($connection, $sql);
-                                            if(mysqli_num_rows($res) > 0){
-                                                while($row = mysqli_fetch_assoc($res)){ 
-                                            ?>
+                                          $id = $_SESSION['user_id'];
+                                          $res = $database->viewProfile($id);
+                                            while($row = mysqli_fetch_assoc($res)){ 
+                                        ?>
                                             <div class="profile-pic">
-                                                <img src="uploads/<?=$row['profile_picture']?>"
-                                                        width="100" />
-                                            </div>
+                                              
+                                                <img src="upload/<?=$row['profile_picture']?>" 
+                                                id="output" width="100" />
                                         
-                                        <?php  }}?>
-                                    
-                                        <label class="-label" for="profile_picture">
-                                            <span class="glyphicon glyphicon-camera"></span>
-                                            <span>Change Image</span>
-                                        </label>
-                                        <input class="form-control" type="file" id="profile_picture" 
-                                            name="profile_picture">
+                                            </div>
+                                        <?php  }?>
 
-                                
+                                        <div class="profile-pic" style="margin-top: -7%">
+                                            <label class="-label" for="profile_picture">
+                                                <span class="glyphicon glyphicon-camera"></span>
+                                                <span>Change Image</span>
+                                                
+                                            </label>
+                                            <input class="form-control" type="file" id="profile_picture"
+                                                name="profile_picture">
+                                        </div>
+
                                         <div class="form-group col-md-5" style="margin: auto">
                                             <label for="fname" class="form-label">First Name</label>
-                                            <input type="text" class="form-control" id="fname" name="fname"
-                                            value="<?php echo $_SESSION['user_name'] ?>" />
+                                            <input type="text" class="form-control" id="fname" name="fname" readonly
+                                                value="<?php echo $_SESSION['user_name'] ?>" />
                                         </div>
-                                        
+
                                         <div class="form-group col-md-5 my-3" style="margin: auto">
                                             <label for="email" class="form-label">Email address</label>
-                                            <input type="email" name="email" class="form-control" id="email"
-                                            value="<?php echo $_SESSION['user_email'] ?>" aria-describedby="emailHelp"/>
+                                            <input type="email" name="email" class="form-control" id="email" readonly
+                                                value="<?php echo $_SESSION['user_email'] ?>"
+                                                aria-describedby="emailHelp" />
                                         </div>
-                                        
-                                        <input name="submit" type="submit" class="button button--flex mx-3 my-3" value="Update Profile"/>
+
+                                        <input name="submit" type="submit" class="button button--flex mx-3 my-3"
+                                            value="Update Profile" />
                                     </div>
                                 </form>
                             </div>
@@ -332,7 +265,8 @@ require_once('database.php');
                         <div class="card mx-3 modal-body" style="width: 15rem;">
                             <div class="card-body my-3">
                                 <h5 class="card-title">Your About
-                                    <i class="fa fa-quote-left fa-3x fa-pull-left fa-border button__icon" aria-hidden="true"></i>
+                                    <i class="fa fa-quote-left fa-3x fa-pull-left fa-border button__icon"
+                                        aria-hidden="true"></i>
                                 </h5>
                                 <p class="card-text"><i id='changeText'>Just there to make people life easier
                                         by providing them installment.</i>
@@ -345,8 +279,7 @@ require_once('database.php');
                                     </label>
                                     <input type="text" id="changeAbout" class="form-control"
                                         aria-describedby="emailHelp">
-                                    <a type="button" class="button button--flex mx-3 my-3" 
-                                    id='btn'>Update About</a>
+                                    <a type="button" class="button button--flex mx-3 my-3" id='btn'>Update About</a>
                                 </div>
                             </div>
                         </div>
@@ -378,4 +311,3 @@ require_once('database.php');
 
 
 </html>
-

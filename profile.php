@@ -161,6 +161,10 @@ $id = $_SESSION['user_id'];
             <div class="col">
                 <div class="card modal-body">
                     <div class="card-body">
+                    <a type="button" class="button button--flex my-3" href="editProfile.php"
+                            style="height: 50px; width:100%;"><i class="fa fa-user-circle-o img-fluid mx-2 button__icon"
+                                aria-hidden="true"></i>Edit Profile</a>
+
                         <a type="button" class="button button--flex my-3" href="changePassword.php"
                             style="height: 50px; width:100%;"><i class="fa fa-key img-fluid mx-2 button__icon"
                                 aria-hidden="true"></i>Change Password</a>
@@ -214,13 +218,13 @@ $id = $_SESSION['user_id'];
 
                                         <?php
                                           $id = $_SESSION['user_id'];
-                                          $res = $database->viewProfile($id);
+                                          $res = $database->view($id);
                                             while($row = mysqli_fetch_assoc($res)){ 
                                         ?>
                                         <div class="profile-pic">
                                             <img src="upload/<?=$row['profile_picture']?>" id="output" width="100" />
                                         </div>
-                                        <?php  }?>
+                                    
 
                                         <div class="profile-pic" style="margin-top: -8%">
                                             <label class="-label" for="profile_picture">
@@ -232,32 +236,34 @@ $id = $_SESSION['user_id'];
                                                 name="profile_picture">
                                         </div>
 
-                                        <div class="form-group col-md-5 my-5" style="margin: auto">
+                                        
+                                        <div class="form-group col-md-5 my-3" style="margin: auto">
                                             <label for="fname" class="form-label">First Name</label>
                                             <input type="text" class="form-control" id="fname" name="fname" readonly
-                                                value="<?php echo $_SESSION['user_name'] ?>" />
+                                                value="<?php echo $row['fname'] ?>" />
                                         </div>
 
                                         <div class="form-group col-md-5 my-2" style="margin: auto">
                                             <label for="email" class="form-label">Email address</label>
                                             <input type="email" name="email" class="form-control" id="email" readonly
-                                                value="<?php echo $_SESSION['user_email'] ?>"
+                                                value="<?php echo $row['email'] ?>"
                                                 aria-describedby="emailHelp" />
                                         </div>
 
                                         <input name="submit" type="submit" class="button button--flex mx-3 my-4"
-                                            value="Edit Profile" />
+                                            value="Update Profile" />
                                     </div>
+                                    <?php  }?>
                                 </form>
                             </div>
                         </div>
 
-                        <div class="card mx-1 modal-body" style="width: 15rem;">
+                        <div class="card mx-1 modal-body mx-3" style="width: 15rem;">
                             <form method="post">
                                 <div class="card-body my-5">
                                     <?php
                                         $id = $_SESSION['user_id'];
-                                        $res = $database->viewAbout($id);
+                                        $res = $database->view($id);
                                         while($row = mysqli_fetch_assoc($res)){ 
                                     ?>
 

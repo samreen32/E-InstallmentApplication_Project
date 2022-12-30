@@ -53,7 +53,17 @@ class Database{
 		}
 	}
 
-	public function viewProfile($id=null){
+	public function editProfileInfo($fname, $email, $address, $phone, $id){
+		$sql = "UPDATE signup SET fname='$fname', email='$email', address='$address', phone='$phone' WHERE id=$id";
+		$res = mysqli_query($this->connection, $sql);
+		if($res){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function view($id=null){
 		$sql = "SELECT * FROM signup";
 		if($id){ $sql .= " WHERE id=$id";}
  		$res = mysqli_query($this->connection, $sql);
@@ -71,12 +81,6 @@ class Database{
 		}
 	}
 
-	public function viewAbout($id=null){
-		$sql = "SELECT * FROM signup";
-		if($id){ $sql .= " WHERE id=$id";}
- 		$res = mysqli_query($this->connection, $sql);
- 		return $res;
-	}
 
 
 	public function addProduct($product_name, $product_price, $product_img, $product_category, $product_descr){

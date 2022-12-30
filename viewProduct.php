@@ -217,7 +217,9 @@
                 <?php 
                         while($r = mysqli_fetch_assoc($res)){ ?>
                 <div class="row">
-                    <div class="card modal-body mx-2 my-2" style="height: 30rem;">
+                    <div class="card modal-body mx-2 my-2" >
+                    <button class="btn btn-danger my-3" style="height: 40px; align-self: center; 
+                        margin-right: 70%">Rs. <?php echo $r['product_price']; ?></button>
                         <div class="img-container">
                             <div class="image my-3">
                                 <img style="width: 150px; height: 150px; align-self: center;  margin-top: 10px;"

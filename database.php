@@ -28,6 +28,20 @@ class Database{
 		}
 	}
 
+	public function emailValidation($email){
+		//check whethere email already exists or not.
+		$exist_email = "SELECT * FROM signup WHERE email = '$email'";
+		$result = mysqli_query($this->connection, $exist_email);
+		return $result;
+	}
+
+
+	public function createLogin($fname){
+		$sql = "SELECT * FROM signup WHERE fname = '$fname'";
+		$res = mysqli_query($this->connection, $sql);
+		return $res;
+	}
+	
 	//update profile
 	public function updateProfile($profile_picture, $id){
 		$sql = "UPDATE signup SET profile_picture='$profile_picture' WHERE id=$id";
@@ -46,21 +60,25 @@ class Database{
  		return $res;
 	}
 
-
-	public function emailValidation($email){
-		//check whethere email already exists or not.
-		$exist_email = "SELECT * FROM signup WHERE email = '$email'";
-		$result = mysqli_query($this->connection, $exist_email);
-		return $result;
-	}
-
-
-	public function createLogin($fname){
-		$sql = "SELECT * FROM signup WHERE fname = '$fname'";
+	//update user about
+	public function updateAbout($about, $id){
+		$sql = "UPDATE signup SET about='$about' WHERE id=$id";
 		$res = mysqli_query($this->connection, $sql);
-		return $res;
+		if($res){
+			return true;
+		}else{
+			return false;
+		}
 	}
-	
+
+	public function viewAbout($id=null){
+		$sql = "SELECT * FROM signup";
+		if($id){ $sql .= " WHERE id=$id";}
+ 		$res = mysqli_query($this->connection, $sql);
+ 		return $res;
+	}
+
+
 	public function addProduct($product_name, $product_price, $product_img, $product_category, $product_descr){
 		
 		 $sql = "INSERT INTO add_products (product_name, product_price, product_img, product_category, product_descr)

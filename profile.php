@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    require("user_timestamp.php");
 ?>
 
 <?php
@@ -16,13 +16,31 @@ $id = $_SESSION['user_id'];
     $result = $database->updateProfile($profile_picture, $id);
     if($result){
         move_uploaded_file($tmp_name, "upload/".$profile_picture);
-        $_SESSION['status'] = "Profile added succcessfully.";
+        $_SESSION['status'] = "Profile has been updated.";
     }else{
-        $_SESSION['status'] = "Not Added.";
+        $_SESSION['status'] = "Not updated.";
     }
-    
  }
 ?>
+
+<?php
+require_once('database.php');
+$id = $_SESSION['user_id'];
+
+ if(isset($_REQUEST['updateAbout'])){
+
+    $about = $database->sanitize($_POST['about']);
+
+    $result = $database->updateAbout($about, $id);
+    if($result){
+        $_SESSION['status'] = "About has been updated.";
+    }else{
+        $_SESSION['status'] = "Not updated.";
+    }
+ }
+?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -174,48 +192,23 @@ $id = $_SESSION['user_id'];
             <div class="col" style="margin-top: 40px;">
                 <div class="col mx-5">
                     <div class="row row-header my-3">
+                        <?php
+                            if(isset($_SESSION['status']) && $_SESSION != ''){ 
+                        ?>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Success!</strong><?php echo " ".$_SESSION['status']; ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        <?php 
+                            unset($_SESSION['status']); 
+                                } 
+                        ?>
+
                         <div class="card modal-body" style="width: 55rem;">
                             <div class="my-4 mx-3">
                                 <a type="button" href="Admin.php" style="color: black;">
                                     <i class="fa fa-angle-left fa-4x img-fluid" aria-hidden="true"></i>
                                 </a>
-
-                                <!-- <form method="post" style="text-align: center;" 
-                                    enctype="multipart/form-data">
-                                    <div class="form-row my-5"> -->
-
-                                <!--Profile Image -->
-                                <!-- <div class="profile-pic"> -->
-
-                                <!-- <label class="-label" for="profile_picture">
-                                                    <span class="glyphicon glyphicon-camera"></span>
-                                                    <span>Change Image</span>
-                                                </label>
-                                                <input class="form-control" type="file" id="profile_picture" 
-                                                    name="profile_picture"> -->
-                                <!-- <img src="https://pic.onlinewebfonts.com/svg/img_569204.png"
-                                                    width="100" />  -->
-
-                                <!-- <input id="file" type="file" 
-                                                onchange="loadFile(event)" name="file" />
-                                            <img src="https://pic.onlinewebfonts.com/svg/img_569204.png"
-                                            id="output" width="100" /> -->
-                                <!-- -->
-                                <!-- </div> -->
-
-
-                                <?php
-                                    if(isset($_SESSION['status']) && $_SESSION != ''){ 
-                                ?>
-                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        <strong>Success!</strong><?php echo " ".$_SESSION['status']; ?>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                            aria-label="Close"></button>
-                                    </div>
-                                <?php 
-                                unset($_SESSION['status']); 
-                                    } 
-                                ?>
                                 <form method="post" style="text-align: center;" enctype="multipart/form-data">
                                     <div class="form-row my-5">
 
@@ -224,64 +217,71 @@ $id = $_SESSION['user_id'];
                                           $res = $database->viewProfile($id);
                                             while($row = mysqli_fetch_assoc($res)){ 
                                         ?>
-                                            <div class="profile-pic">
-                                              
-                                                <img src="upload/<?=$row['profile_picture']?>" 
-                                                id="output" width="100" />
-                                        
-                                            </div>
+                                        <div class="profile-pic">
+                                            <img src="upload/<?=$row['profile_picture']?>" id="output" width="100" />
+                                        </div>
                                         <?php  }?>
 
-                                        <div class="profile-pic" style="margin-top: -7%">
+                                        <div class="profile-pic" style="margin-top: -8%">
                                             <label class="-label" for="profile_picture">
                                                 <span class="glyphicon glyphicon-camera"></span>
                                                 <span>Change Image</span>
-                                                
+
                                             </label>
                                             <input class="form-control" type="file" id="profile_picture"
                                                 name="profile_picture">
                                         </div>
 
-                                        <div class="form-group col-md-5" style="margin: auto">
+                                        <div class="form-group col-md-5 my-5" style="margin: auto">
                                             <label for="fname" class="form-label">First Name</label>
                                             <input type="text" class="form-control" id="fname" name="fname" readonly
                                                 value="<?php echo $_SESSION['user_name'] ?>" />
                                         </div>
 
-                                        <div class="form-group col-md-5 my-3" style="margin: auto">
+                                        <div class="form-group col-md-5 my-2" style="margin: auto">
                                             <label for="email" class="form-label">Email address</label>
                                             <input type="email" name="email" class="form-control" id="email" readonly
                                                 value="<?php echo $_SESSION['user_email'] ?>"
                                                 aria-describedby="emailHelp" />
                                         </div>
 
-                                        <input name="submit" type="submit" class="button button--flex mx-3 my-3"
-                                            value="Update Profile" />
+                                        <input name="submit" type="submit" class="button button--flex mx-3 my-4"
+                                            value="Edit Profile" />
                                     </div>
                                 </form>
                             </div>
                         </div>
 
-                        <div class="card mx-3 modal-body" style="width: 15rem;">
-                            <div class="card-body my-3">
-                                <h5 class="card-title">Your About
-                                    <i class="fa fa-quote-left fa-3x fa-pull-left fa-border button__icon"
-                                        aria-hidden="true"></i>
-                                </h5>
-                                <p class="card-text"><i id='changeText'>Just there to make people life easier
-                                        by providing them installment.</i>
-                                </p>
-                            </div>
-                            <div class="card-body" style="text-align: center; margin-top: -250px;">
-                                <div class="card-text">
-                                    <label for="changeAbout" class="form-label">
-                                        <h5>Change my about</h5>
-                                    </label>
-                                    <input type="text" id="changeAbout" class="form-control"
-                                        aria-describedby="emailHelp">
-                                    <a type="button" class="button button--flex mx-3 my-3" id='btn'>Update About</a>
+                        <div class="card mx-1 modal-body" style="width: 15rem;">
+                            <form method="post">
+                                <div class="card-body my-5">
+                                    <?php
+                                        $id = $_SESSION['user_id'];
+                                        $res = $database->viewAbout($id);
+                                        while($row = mysqli_fetch_assoc($res)){ 
+                                    ?>
+
+                                    <h5 class="card-title">Your About
+                                        <i class="fa fa-quote-left fa-3x fa-pull-left fa-border button__icon"
+                                            aria-hidden="true"></i>
+                                    </h5>
+                                    <p class="card-text"><i><?php echo $row['about'] ?></i>
+                                    </p>
                                 </div>
-                            </div>
+
+
+                                <div class="card-body my-5" style="text-align: center;">
+                                    <div class="card-text my-5">
+                                        <label for="changeAbout" class="form-label">
+                                            <h5>Change my about</h5>
+                                        </label>
+                                        <input type="text" class="form-control" name="about">
+                                        <input name="updateAbout" type="submit" class="button button--flex mx-3 my-4"
+                                            value="Update About" />
+                                    </div>
+                                </div>
+                                <?php  }?>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -308,6 +308,33 @@ $id = $_SESSION['user_id'];
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
 </script>
 <script src="assets/js/scripts.js"></script>
+
+<script src="jquery-3.6.3.js"></script>
+
+<script>
+$(document).ready(function() {
+    setInterval(function() {
+        check_user(1);
+    }, 500);
+});
+
+function check_user(id) {
+    console.log(id);
+    $.ajax({
+        type: 'post',
+        url: 'user_timestamp.php',
+        dataType: 'html',
+        data: {
+            id: id
+        },
+        success: function(response) {
+            if (response == 'logout') {
+                window.location.href = 'logout.php';
+            }
+        }
+    });
+}
+</script>
 
 
 </html>

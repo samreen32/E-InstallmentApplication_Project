@@ -82,9 +82,7 @@ class Database{
 	}
 
 
-
 	public function addProduct($product_name, $product_price, $product_img, $product_category, $product_descr){
-		
 		 $sql = "INSERT INTO add_products (product_name, product_price, product_img, product_category, product_descr)
 		 VALUES ('$product_name', '$product_price', '$product_img', '$product_category', '$product_descr')";
 		 $res = mysqli_query($this->connection, $sql);

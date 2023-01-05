@@ -159,6 +159,7 @@
                                     <th>State</th>
                                     <th>Zip</th>
                                     <th>Other Detais</th>
+                                    <th>Add Quotation</th>
 
                                 </tr>
                                 <?php 
@@ -175,6 +176,10 @@
                                     <td><?php echo $r['state']; ?></td>
                                     <td><?php echo $r['zip']; ?></td>
                                     <td><?php echo $r['other_details']; ?></td>
+                                    <td><a class="btn btn-success col-md-12"
+                                            href="installment_Quote.php?id=<?php echo $r['id']; ?>"><i
+                                                class="fa fa-leanpub img-fluid mx-2 button__icon"
+                                                aria-hidden="true"></i></a></td>
                                     <td>
                                         <a type="button" class="button button--flex col-md-12"
                                             style="height: 40px; text-align: center;"
@@ -185,6 +190,7 @@
                                             href="deleteCustomer.php?id=<?php echo $r['id']; ?>"><i
                                                 class="fa fa-trash img-fluid mx-2 button__icon"
                                                 aria-hidden="true"></i></a>
+                                        
                                     </td>
                                 </tr>
                                 <?php } ?>

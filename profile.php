@@ -173,6 +173,10 @@ $id = $_SESSION['user_id'];
                                 width:100%;"><i class="fa fa-eye img-fluid mx-2 button__icon"
                                 aria-hidden="true"></i>Add
                             Customer Details</a>
+                        <a type="button" class="button button--flex my-3 button__icon" 
+                            href="installment_Quote.php" style="height: 50px; width:100%;">
+                            <i class="fa fa-user img-fluid mx-2 button__icon" aria-hidden="true"></i>
+                            Add Quotation</a>
                         <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"><i
                                 class="fa fa-pencil-square img-fluid mx-2 button__icon" aria-hidden="true"></i>Update
                             Installments</a>

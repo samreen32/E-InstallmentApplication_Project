@@ -104,11 +104,11 @@ $id = $_SESSION['user_id'];
             <nav class="navbar navbar-dark navbar-expand-sm fixed-top">
                 <div class="container-fluid my-3" style="margin-left: 30px;">
                     <span style="margin-left: 20px">
-                        <a type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
-                            aria-controls="offcanvasWithBothOptions">
-                            <i class="fa fa-bars fa-3x" aria-hidden="true"></i></a>
+                        <a type="button" style="color: white;" href="Profile.php">
+                            <i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i></a>
+                        <a class="navbar-brand nav__logo mx-3 my-1" href="#">Edit Profile</a>
                     </span>
-                    <a class="navbar-brand nav__logo mx-5" href="#">Edit Profile</a>
+
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -116,54 +116,15 @@ $id = $_SESSION['user_id'];
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                        <span style="margin-left: 900px">
-                            <a style="color: white;" href="logout.php"> 
-                                <span class="fa fa-sign-in fa-lg img-fluid mx-2 button__icon"></span>Logout</a>
-
-                        </span>
+                    <span style="margin-left: 980px">
+                        <a style="color: white;" href="logout.php"> 
+                            <span class="fa fa-sign-in fa-lg img-fluid mx-2 button__icon"></span>Logout</a>
+                    </span>
                     </div>
                 </div>
             </nav>
         </div>
     </div>
-
-    <!-- Drawer -->
-    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
-        aria-labelledby="offcanvasWithBothOptionsLabel">
-        <div class="offcanvas-header" style="background-color: #512da8; color: white;">
-            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Edit Profile Menu</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" style="background-color: white;"
-                aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <div class="col">
-                <div class="card modal-body">
-                    <div class="card-body">
-                        <a type="button" class="button button--flex my-3 button__icon" href="profile.php"
-                            style="height: 50px; width:100%;">
-                            <i class="fa fa-user img-fluid mx-2 button__icon" aria-hidden="true"></i>
-                            Profile</a>
-                        <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"><i
-                                class="fa fa-key img-fluid mx-2" aria-hidden="true"></i>Change Password</a>
-
-                        <a type="button" class="button button--flex my-3" style="height: 50px; 
-                                width:100%;"><i class="fa fa-eye img-fluid mx-2" aria-hidden="true"></i>Add
-                            Customer Details</a>
-                        <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"><i
-                                class="fa fa-pencil-square img-fluid mx-2" aria-hidden="true"></i>Update
-                            Installments</a>
-
-                        <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"><i
-                                class="fa fa-cogs img-fluid mx-2" aria-hidden="true"></i>Settings</a>
-                        <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"><i
-                                class="fa fa-sign-out img-fluid mx-2" aria-hidden="true"></i>Logout</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
 
     <!--Body -->
     <div class="main" style="background-color: #9575CD;">
@@ -233,9 +194,6 @@ $id = $_SESSION['user_id'];
                 </div>
             </div>
         </div>
-    </div>
-    </div>
-
     </div>
 
 </body>

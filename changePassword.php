@@ -1,3 +1,28 @@
+<?php
+
+// require("user_timestamp.php");
+// require_once('database.php');
+// $id = $_SESSION['user_id'];
+
+//  if(isset($_REQUEST['submit'])){
+
+//     $password = $database->sanitize($_POST['password']);
+//     $cpassword = $_POST['cpassword'];    
+
+//     if(($password == $cpassword)){
+//         $res = $database->changePassword($password, $id);
+//         if($res){
+//             $_SESSION['status'] = "Your Password has been Changed.";
+//         }
+//     }
+//     else{
+//         $_SESSION['status'] = "Not Changed.";
+//     }
+//  }
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -86,7 +111,7 @@
                             aria-controls="offcanvasWithBothOptions">
                             <i class="fa fa-bars fa-3x" aria-hidden="true"></i></a>
                     </span>
-                    <a class="navbar-brand nav__logo mx-5" href="#">Profile</a>
+                    <a class="navbar-brand nav__logo mx-5" href="#">Change Password</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -94,8 +119,9 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                        <span style="margin-left: 950px">
-                            <a> <span class="fa fa-sign-in fa-lg img-fluid mx-2 button__icon"></span>Logout</a>
+                        <span style="margin-left: 850px">
+                            <a style="color: white;" href="logout.php"> 
+                            <span class="fa fa-sign-in fa-lg img-fluid mx-2 button__icon"></span>Logout</a>
 
                         </span>
                     </div>
@@ -144,6 +170,7 @@
             <div class="col" style="margin-top: 40px;">
                 <div class="col mx-5">
                     <div class="row row-header my-3">
+
                         <div class="card modal-body" style="width: 55rem;">
                             <div class="my-4 mx-3">
                                 <a type="button" href="profile.php" style="color: black;">
@@ -154,24 +181,27 @@
                                 <form method="post" style="text-align: center; ">
                                 <h3 style="color: black; text-align: center">Change Password</h3><br />
                                     <div class="form-row my-5">
+                                       
                                         <div class="form-group col-md-5" style="margin: auto">
                                             <label for="oldPass" class="form-label">Old Password</label>
                                             <input type="password" class="form-control" id="oldPass"
                                                 aria-describedby="password">
                                         </div>
                                         <div class="form-group col-md-5 my-3" style="margin: auto">
-                                            <label for="newPass" class="form-label">New Password</label>
-                                            <input type="password" class="form-control" id="newPass"
+                                            <label for="password" class="form-label">New Password</label>
+                                            <input type="password" class="form-control" name="password" id="password"
                                                 aria-describedby="password">
                                         </div>
                                         <div class="form-group col-md-5 my-3" style="margin: auto">
-                                            <label for="rePass" class="form-label">Re-Type Password</label>
-                                            <input type="password" class="form-control" id="rePass"
+                                            <label for="cpassword" class="form-label">Re-Type Password</label>
+                                            <input type="password" class="form-control" id="cpassword" name="cpassword"
                                                 aria-describedby="password">
                                         </div>
                                         
-                                        <a type="button" class="button button--flex mx-3 my-4">Update Password</a>
+                                        <input name="submit" type="submit" class="button button--flex mx-3 my-4"
+                                        value="Update Password"/>
                                     </div>
+                                 
                                 </form>
                             </div>
                         </div>
@@ -202,5 +232,31 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
 </script>
 <script src="assets/js/scripts.js"></script>
+<script src="jquery-3.6.3.js"></script>
+
+<script>
+// $(document).ready(function() {
+//     setInterval(function() {
+//         check_user(1);
+//     }, 500);
+// });
+
+// function check_user(id) {
+//     console.log(id);
+//     $.ajax({
+//         type: 'post',
+//         url: 'user_timestamp.php',
+//         dataType: 'html',
+//         data: {
+//             id: id
+//         },
+//         success: function(response) {
+//             if (response == 'logout') {
+//                 window.location.href = 'logout.php';
+//             }
+//         }
+//     });
+// }
+</script>
 
 </html>

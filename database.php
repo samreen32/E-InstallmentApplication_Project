@@ -162,6 +162,12 @@ class Database{
  		}
 	}
 
+	//customer table must have product id
+	public function viewPayment($id=null){
+		$sql = "SELECT t1.*,t2.fname,t3.product_name, t3.product_img FROM payment t1 INNER JOIN add_customer t2 ON t2.id = t1.cust_id INNER JOIN add_products t3 ON t3.id = t1.product_id";
+ 		$res = mysqli_query($this->connection, $sql);
+ 		return $res;
+	}
 
 	public function sanitize($var){
 		$return = mysqli_real_escape_string($this->connection, $var);

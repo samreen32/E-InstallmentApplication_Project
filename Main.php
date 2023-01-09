@@ -134,9 +134,10 @@ if(isset($_REQUEST['btn_signup'])){
 
                         if(!$loggedin){
                             echo '<form class="d-flex" role="search" style="margin-left: 100px; width: 500px">
-                                <input class="form-control me-5" type="search" placeholder="Search" aria-label="Search">
-                                <i class="ri-search-line ri-xl my-3" style="margin-left: -45px"></i>
-                            </form>';
+                            <input class="form-control me-5 mx-5" style="text-align: center;" type="search" 
+                            placeholder="Search" aria-label="Search">
+                            <i class="ri-search-line ri-xl my-3" style="margin-left: -45px"></i>
+                        </form>';
                         }
                             if($loggedin){
                                 echo '<div style="margin: auto; align-items: center; text-align:center">

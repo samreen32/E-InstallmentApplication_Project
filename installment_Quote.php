@@ -188,12 +188,16 @@ function Calculate() {
     const months = document.querySelector("#months").value;
 
 
-
-    const rate = parseFloat(interest) / 12 / 100;
-
-    const EMI = (amount * rate * Math.pow((1 + rate), months)) / (Math.pow((1 + rate), months) - 1);
-    const totalInterest = (EMI * months) - amount;
+    // const rate = parseFloat(interest) / 12 / 100;
+    // const EMI = (amount * rate * Math.pow((1 + rate), months)) / (Math.pow((1 + rate), months) - 1);
+    // const totalInterest = (EMI * months) - amount;
+    // const year = months / 12;
+    // const totalInterest = (amount * (interest * 0.01)) / months;
+    
+    const totalInterest = (amount * interest) / 100;
+    const EMI = ((amount / months) + totalInterest).toFixed(2);
     const totalPayment = totalInterest + parseFloat(amount);
+
 
     document.querySelector("#total")
         .innerHTML = "Monthly Installment : " + Math.round(EMI) + "($)";
@@ -203,13 +207,6 @@ function Calculate() {
         .innerHTML = "Total Payment : " + Math.round(totalPayment) + "($)";
 }
 
-
-// Calculating interest per month
-//   const total_interest = (amount * (interest * 0.01)) / months;
-//   const total = ((amount / months) + total_interest).toFixed(2);
-
-// document.querySelector("#total")
-//     .innerHTML = "Monthly Installment : ($)" + total;
 </script>
 
 

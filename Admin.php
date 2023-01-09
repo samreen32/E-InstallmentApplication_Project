@@ -52,7 +52,8 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <form class="d-flex" role="search" style="margin-left: 100px; width: 500px">
-                                <input class="form-control me-5" type="search" placeholder="Search" aria-label="Search">
+                                <input class="form-control me-5 mx-5" style="text-align: center;" type="search" 
+                                placeholder="Search" aria-label="Search">
                                 <i class="ri-search-line ri-xl my-3" style="margin-left: -45px"></i>
                             </form>
                         </ul>
@@ -78,22 +79,24 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" style="background-color: white;"
                 aria-label="Close"></button>
         </div>
-       
+
         <div class="offcanvas-body">
             <div class="col">
                 <div class="card modal-body">
                     <div class="card-body">
-                 
-                        <a type="button" class="button button--flex my-3 button__icon" 
-                            href="profile.php" style="height: 50px; width:100%;">
+
+                        <a type="button" class="button button--flex my-3 button__icon" href="profile.php"
+                            style="height: 50px; width:100%;">
                             <i class="fa fa-user img-fluid mx-2 button__icon" aria-hidden="true"></i>
                             Profile</a>
-                  
-                        <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;" href="viewProduct.php"><i
-                        class="fa fa-eye img-fluid mx-2 button__icon" aria-hidden="true"></i>View Products</a>
-                        <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;" href="addProducts.php"><i
-                                class="fa fa-plus img-fluid mx-2 button__icon" aria-hidden="true"></i>Add Products
-                            </a>
+
+                        <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"
+                            href="addProducts.php"><i class="fa fa-plus img-fluid mx-2 button__icon"
+                                aria-hidden="true"></i>Add Products
+                        </a>
+                        <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"
+                            href="viewProduct.php"><i class="fa fa-eye img-fluid mx-2 button__icon"
+                                aria-hidden="true"></i>View Products</a>
                         <a type="button" class="button button--flex my-3" href="addCustomer.php"
                             style="height: 50px; width:100%;"><i class="fa fa-plus img-fluid mx-2 button__icon"
                                 aria-hidden="true"></i>
@@ -102,10 +105,13 @@
                                 width:100%;"><i class="fa fa-eye img-fluid mx-2 button__icon"
                                 aria-hidden="true"></i>View
                             Customer Details</a>
-                        <a type="button" class="button button--flex my-3 button__icon" 
-                            href="installment_Quote.php" style="height: 50px; width:100%;">
+                        <a type="button" class="button button--flex my-3 button__icon" href="installment_Quote.php"
+                            style="height: 50px; width:100%;">
                             <i class="fa fa-leanpub img-fluid mx-2 button__icon" aria-hidden="true"></i>
                             Add Quotation</a>
+                        <a type="button" class="button button--flex my-3" href="viewPayment.php" style="height: 50px; 
+                                width:100%;"><i class="fa fa-credit-card-alt img-fluid mx-2 button__icon"
+                                aria-hidden="true"></i>Payment Details</a>
                         <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"><i
                                 class="fa fa-pencil-square img-fluid mx-2 button__icon" aria-hidden="true"></i>Update
                             Installments</a>
@@ -121,9 +127,8 @@
                 </div>
             </div>
         </div>
-      
+
     </div>
-    <?php //} ?>
 
 
     <!--Body -->
@@ -210,26 +215,28 @@
 <script src="jquery-3.6.3.js"></script>
 
 <script>
-    $(document).ready(function() {
+$(document).ready(function() {
     setInterval(function() {
         check_user(1);
     }, 500);
 });
-function check_user(id){
+
+function check_user(id) {
     console.log(id);
     $.ajax({
         type: 'post',
         url: 'user_timestamp.php',
         dataType: 'html',
-        data:{ id:id },
-        success: function(response){
-           if(response == 'logout'){
-            window.location.href='logout.php';
-           }
+        data: {
+            id: id
+        },
+        success: function(response) {
+            if (response == 'logout') {
+                window.location.href = 'logout.php';
+            }
         }
     });
 }
-
 </script>
 
 </html>

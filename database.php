@@ -134,12 +134,12 @@ class Database{
 			return false;
 		}
 	}
-
+	
 	public function viewCustomers($id=null){
 		$sql = "SELECT * FROM add_customer";
 		if($id){ $sql .= " WHERE id=$id";}
- 		$res = mysqli_query($this->connection, $sql);
- 		return $res;
+			$res = mysqli_query($this->connection, $sql);
+			return $res;
 	}
 
 	public function updateCustomer($title, $fname, $lname, $gender, $address, $city, $state, $zip, $other_details, $id){

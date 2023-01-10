@@ -51,7 +51,7 @@ button {
   border: none;
   outline: none;
 }
-a{
+a {
   cursor: pointer;
 }
 h1,
@@ -76,7 +76,7 @@ span:hover {
   color: black;
 }
 
-img{
+img {
   width: auto;
   height: auto;
 }
@@ -173,20 +173,21 @@ img{
 .jumbotron {
   margin-top: 7%;
   padding: 70px 30px;
-  background: #9575CD;
-  color: floralwhite; 
+  background: #9575cd;
+  color: floralwhite;
 }
 
 .row-header {
   margin: 0px auto;
-  padding: 0px 0px; }
+  padding: 0px 0px;
+}
 
 .row-content {
   margin: 0px auto;
   padding: 50px 0px;
   border-bottom: 1px ridge;
-  min-height: 400px; }
-
+  min-height: 400px;
+}
 
 /* Active link */
 .active-link {
@@ -255,10 +256,10 @@ img{
 }
 
 .footer {
-  background-color: #9575CD;
+  background-color: #9575cd;
   margin: 0px auto;
-  padding: 20px 0px; }
-
+  padding: 20px 0px;
+}
 
 .footer__subscribe {
   background-color: var(--first-color-lighten);

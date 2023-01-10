@@ -1,5 +1,9 @@
 <?php
     require("user_timestamp.php");
+    require_once('database.php');
+    $count_cust = $database->viewCustomers();
+    $count_product = $database->viewProducts();
+    $count_insta = $database->viewPayment();
 ?>
 
 
@@ -10,7 +14,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- <meta http-equiv="refresh" content="10;url=logout.php" /> -->
+
 
     <!--=============== REMIX ICONS ===============-->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
@@ -26,6 +30,53 @@
     <link rel="stylesheet" href="assets/css/styles.css">
     <title>Customer Installment-Application</title>
 
+    <style>
+    /* dashboard divs */
+    .questions__header {
+        display: flex;
+        align-items: center;
+        column-gap: .5rem;
+        padding: 1.75rem 1.5rem;
+        cursor: pointer;
+    }
+
+    .questions__icon {
+        font-size: 1.5rem;
+    }
+
+    .questions__content {
+        overflow: hidden;
+        height: 0;
+    }
+
+    .questions__description {
+        font-size: 1.15rem;
+        padding: 0 1.25rem 1.25rem 2.5rem;
+    }
+
+    .questions__header,
+    .questions__icon,
+    .questions__description,
+    .questions__content {
+        transition: .3s;
+
+    }
+
+    .accordion-open .questions__header,
+    .accordion-open .questions__content {
+        background-color: #d1c4e9;
+        color: black;
+    }
+
+    .accordion-open .questions__description,
+    .accordion-open .questions__icon {
+        color: black;
+    }
+
+    .accordion-open .questions__icon {
+        transform: rotate(45deg);
+    }
+    </style>
 
 </head>
 
@@ -52,8 +103,8 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <form class="d-flex" role="search" style="margin-left: 100px; width: 500px">
-                                <input class="form-control me-5 mx-5" style="text-align: center;" type="search" 
-                                placeholder="Search" aria-label="Search">
+                                <input class="form-control me-5 mx-5" style="text-align: center;" type="search"
+                                    placeholder="Search" aria-label="Search">
                                 <i class="ri-search-line ri-xl my-3" style="margin-left: -45px"></i>
                             </form>
                         </ul>
@@ -135,57 +186,95 @@
     <div class="main" style="background-color: #9575CD;">
         <div class="row my-5">
             <div class="col" style="margin-top: 80px;">
-                <div class="col mx-5">
-                    <div class="row row-header my-3">
-                        <div class="col-12 col-sm-6">
-                            <div class="card modal-body">
-                                <a class="card-body">
+                <div class="col mx-5 ">
+                    <div class="row row-header my-3 questions__group">
+                        <div class="col-12 col-sm-6 questions__item">
+                            <div class="card" style="background-color: #512da8; color: white;">
+                                <a class="card-body questions__header">
+                                    <i class="ri-add-line questions__icon"></i>
                                     <h5 class="card-title">Customers</h5>
-                                    <p class="card-text">54</p>
                                 </a>
+                                <div class="questions__content">
+                                    <p class="questions__description">
+                                        <?php $r = mysqli_num_rows($count_cust) ?>
+                                        <?php echo $r; ?></p>
+
+                                </div>
                             </div>
                         </div>
 
-                        <div class="col-12 col-sm-6">
-                            <div class="card modal-body">
-                                <a class="card-body">
+                        <div class="col-12 col-sm-6 questions__item">
+                            <div class="card" style="background-color: #512da8; color: white;">
+                                <a class="card-body questions__header">
+                                    <i class="ri-add-line questions__icon"></i>
                                     <h5 class="card-title">Installments</h5>
-                                    <p class="card-text">50</p>
                                 </a>
+                                <div class="questions__content">
+                                    <p class="questions__description">
+                                        <?php $r = mysqli_num_rows($count_insta) ?>
+                                        <?php echo $r; ?></p>
+
+                                </div>
                             </div>
                         </div>
-                        <div class="col-12 col-sm-6 my-3">
-                            <div class="card modal-body">
-                                <a class="card-body">
+                        <div class="col-12 col-sm-6 my-3 questions__item">
+                            <div class="card" style="background-color: #512da8; color: white;">
+                                <a class="card-body questions__header">
+                                    <i class="ri-add-line questions__icon"></i>
                                     <h5 class="card-title">Products available for installment</h5>
-                                    <p class="card-text">65</p>
                                 </a>
+                                <div class="questions__content">
+                                    <p class="questions__description">
+                                        <?php $r = mysqli_num_rows($count_product) ?>
+                                        <?php echo $r; ?></p>
+
+                                </div>
                             </div>
                         </div>
-                        <div class="col-12 col-sm-6 my-3">
-                            <div class="card modal-body">
-                                <a class="card-body">
+
+                        <div class="col-12 col-sm-6 my-3 questions__item">
+                            <div class="card" style="background-color: #512da8; color: white;">
+                                <a class="card-body questions__header">
+                                    <i class="ri-add-line questions__icon"></i>
                                     <h5 class="card-title">Add new installment</h5>
-                                    <p class="card-text">new</p>
+
                                 </a>
+                                <div class="questions__content">
+                                    <p class="questions__description">
+                                        new</p>
+
+                                </div>
                             </div>
                         </div>
-                        <div class="col-12 col-sm-6">
-                            <div class="card modal-body">
-                                <a class="card-body">
+                        <div class="col-12 col-sm-6 questions__item">
+                            <div class="card" style="background-color: #512da8; color: white;">
+                                <a class="card-body questions__header">
+                                    <i class="ri-add-line questions__icon"></i>
                                     <h5 class="card-title">Statistics</h5>
-                                    <p class="card-text">new</p>
+
                                 </a>
+                                <div class="questions__content">
+                                    <p class="questions__description">
+                                        new</p>
+
+                                </div>
                             </div>
                         </div>
-                        <div class="col-12 col-sm-6">
-                            <div class="card modal-body">
-                                <a class="card-body">
+                        <div class="col-12 col-sm-6 questions__item">
+                            <div class="card" style="background-color: #512da8; color: white;">
+                                <a class="card-body questions__header">
+                                    <i class="ri-add-line questions__icon"></i>
                                     <h5 class="card-title">logout</h5>
-                                    <p class="card-text">new</p>
+
                                 </a>
+                                <div class="questions__content">
+                                    <p class="questions__description">
+                                        new</p>
+
+                                </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -237,6 +326,47 @@ function check_user(id) {
         }
     });
 }
+</script>
+
+<script>
+/*=============== Dashboard ===============*/
+const accordionItems = document.querySelectorAll('.questions__item')
+
+accordionItems.forEach((item) => {
+    const accordionHeader = item.querySelector('.questions__header')
+
+    accordionHeader.addEventListener('click', () => {
+        const openItem = document.querySelector('.accordion-open')
+        toggleItem(item)
+        if (openItem && openItem !== item) {
+            toggleItem(openItem)
+        }
+    })
+})
+const toggleItem = (item) => {
+    const accordionContent = item.querySelector('.questions__content')
+
+    if (item.classList.contains('accordion-open')) {
+        accordionContent.removeAttribute('style')
+        item.classList.remove('accordion-open')
+    } else {
+        accordionContent.style.height = accordionContent.scrollHeight + 'px'
+        item.classList.add('accordion-open')
+    }
+
+}
+
+const sr = ScrollReveal({
+    origin: 'top',
+    distance: '60px',
+    duration: 2500,
+    delay: 400,
+})
+
+sr.reveal(`.questions__group `, {
+    interval: 100
+})
+
 </script>
 
 </html>

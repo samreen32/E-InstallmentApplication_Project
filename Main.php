@@ -420,7 +420,7 @@ if(isset($_REQUEST['btn_signup'])){
 
             <div class="row justify-content-center">
                 <div class="col-auto">
-                    <p>© Copyright 2021 E-Installment</p>
+                    <p>© Copyright 2023 E-Installment</p>
                 </div>
             </div>
         </div>

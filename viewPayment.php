@@ -178,12 +178,11 @@
                                     <td><?php echo $r['installment_plan']; ?></td>
                                     <td><?php echo $r['payment_status']; ?></td>
                                     <td>&nbsp;
-                                        <a type="button" class="button button--flex col-md-12"
-                                            style="height: 40px;">
+                                        <a type="button" class="button button--flex col-md-12" style="height: 40px;">
                                             <i class="fa fa-pencil-square img-fluid button__icon"
-                                            style="margin: auto; align-items: center;" 
-                                            aria-hidden="true"></i></a><br>&nbsp;
-                                       
+                                                style="margin: auto; align-items: center;"
+                                                aria-hidden="true"></i></a><br>&nbsp;
+
                                         <a class="btn btn-danger col-md-12"><i
                                                 class="fa fa-trash img-fluid mx-2 button__icon"
                                                 aria-hidden="true"></i></a>

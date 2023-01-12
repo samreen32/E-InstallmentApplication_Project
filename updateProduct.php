@@ -80,7 +80,7 @@ require("user_timestamp.php");
                     <span style="margin-left: 20px">
                         <a type="button" style="color: white;" href="./viewProduct.php">
                             <i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i></a>
-                        <a class="navbar-brand nav__logo mx-3 my-1" href="#">Add Products</a>
+                        <a class="navbar-brand nav__logo mx-3 my-1" href="#">Edit Product Details</a>
                     </span>
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"

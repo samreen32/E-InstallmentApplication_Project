@@ -72,7 +72,7 @@
                         <div class="card modal-body" style="width: 90rem;">
                             <div class="my-5 mx-5">
                                 <h3 style="color: black; text-align: center">Installment Quotation</h3><br /><br />
-                                <form method="post" style="">
+                                <form method="post" action="pdf.php">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="fname">Customer Name</label>
@@ -104,9 +104,9 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <button type="submit" name="print"
-                                            class="button button--flex" style="margin-left: 85%;">Print</button>&nbsp;
-                                        <button type="submit" name="clear" class="btn btn-secondary">Clear</button>
+                                        <input type="submit" name="submit"
+                                            class="button button--flex" style="margin-left: 80%;" value="Generate PDF"/>&nbsp;
+                                        <button type="button" name="clear" class="btn btn-secondary">Clear</button>
                                     </div>
                                     <br />
                                 </form>

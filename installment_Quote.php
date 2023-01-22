@@ -64,7 +64,7 @@
 
     <!--Body -->
     <div class="main" style="background-color: #9575CD;">
-        <div class="row my-5">
+        <div class="row my-2">
             <div class="col my-3">
                 <div class="col">
 
@@ -72,29 +72,41 @@
                         <div class="card modal-body" style="width: 90rem;">
                             <div class="my-5 mx-5">
                                 <h3 style="color: black; text-align: center">Installment Quotation</h3><br /><br />
-                                <form method="post" style="text-align: center; margin-left: 28%">
-                              
-                                    <div class="form-group col-6 mx-5">
-                                        <label for="fname">Customer Name</label>
-                                        <input type="text" class="form-control" name="fname" id="fname"
-                                        value= "<?php echo $r['fname'] ?>">
+                                <form method="post" style="">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="fname">Customer Name</label>
+                                            <input type="text" class="form-control" name="fname" id="fname"
+                                                value="<?php echo $r['fname'] ?>">
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label for="product_name">Product Name</label>
+                                            <input type="text" class="form-control" id="product_name"
+                                                name="product_name" placeholder="e.g. Heater">
+                                        </div>
                                     </div>
-                                
-                                    <div class="form-group col-6 mx-5">
-                                        <label for="amount">Amount</label>
-                                        <input type="number" class="form-control" name="amount" id="amount"
-                                            placeholder="e.g. 15000/" onchange="Calculate()">
-                                    </div>
-                                    <div class="form-group col-6 mx-5">
-                                        <label for="interest">Interest Rate</label>
-                                        <input type="number" class="form-control" name="interest" id="interest"
-                                            onchange="Calculate()" placeholder="e.g. 6.5">
-                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-6">
+                                            <label for="amount">Amount</label>
+                                            <input type="number" class="form-control" name="amount" id="amount"
+                                                placeholder="e.g. 15000/" onchange="Calculate()">
+                                        </div>
+                                        <div class="form-group col-6 ">
+                                            <label for="interest">Interest Rate</label>
+                                            <input type="number" class="form-control" name="interest" id="interest"
+                                                onchange="Calculate()" placeholder="e.g. 6.5">
+                                        </div>
 
-                                    <div class="form-group col-6 mx-5">
-                                        <label for="months">Installment Plan (month)</label>
-                                        <input type="number" class="form-control" id="months" name="months"
-                                            onchange="Calculate()" placeholder="e.g. 12">
+                                        <div class="form-group col-6 ">
+                                            <label for="months">Installment Plan (month)</label>
+                                            <input type="number" class="form-control" id="months" name="months"
+                                                onchange="Calculate()" placeholder="e.g. 12">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <button type="submit" name="print"
+                                            class="button button--flex" style="margin-left: 85%;">Print</button>&nbsp;
+                                        <button type="submit" name="clear" class="btn btn-secondary">Clear</button>
                                     </div>
                                     <br />
                                 </form>
@@ -193,7 +205,7 @@ function Calculate() {
     // const totalInterest = (EMI * months) - amount;
     // const year = months / 12;
     // const totalInterest = (amount * (interest * 0.01)) / months;
-    
+
     const totalInterest = (amount * interest) / 100;
     const EMI = ((amount / months) + totalInterest).toFixed(2);
     const totalPayment = totalInterest + parseFloat(amount);
@@ -206,7 +218,6 @@ function Calculate() {
     document.querySelector("#totalPayment")
         .innerHTML = "Total Payment : " + Math.round(totalPayment) + "($)";
 }
-
 </script>
 
 

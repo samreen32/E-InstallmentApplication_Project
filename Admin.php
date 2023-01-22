@@ -38,6 +38,7 @@
         column-gap: .5rem;
         padding: 1.75rem 1.5rem;
         cursor: pointer;
+        height : 5.6rem;
     }
 
     .questions__icon {
@@ -121,66 +122,7 @@
         </div>
     </div>
 
-
-    <!-- Drawer -->
-    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
-        aria-labelledby="offcanvasWithBothOptionsLabel">
-        <div class="offcanvas-header" style="background-color: #512da8; color: white;">
-            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Menu</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" style="background-color: white;"
-                aria-label="Close"></button>
-        </div>
-
-        <div class="offcanvas-body">
-            <div class="col">
-                <div class="card modal-body">
-                    <div class="card-body">
-
-                        <a type="button" class="button button--flex my-3 button__icon" href="profile.php"
-                            style="height: 50px; width:100%;">
-                            <i class="fa fa-user img-fluid mx-2 button__icon" aria-hidden="true"></i>
-                            Profile</a>
-
-                        <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"
-                            href="addProducts.php"><i class="fa fa-plus img-fluid mx-2 button__icon"
-                                aria-hidden="true"></i>Add Products
-                        </a>
-                        <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"
-                            href="viewProduct.php"><i class="fa fa-eye img-fluid mx-2 button__icon"
-                                aria-hidden="true"></i>View Products</a>
-                        <a type="button" class="button button--flex my-3" href="addCustomer.php"
-                            style="height: 50px; width:100%;"><i class="fa fa-plus img-fluid mx-2 button__icon"
-                                aria-hidden="true"></i>
-                            Add Customers</a>
-                        <a type="button" class="button button--flex my-3" href="viewCustomer.php" style="height: 50px; 
-                                width:100%;"><i class="fa fa-eye img-fluid mx-2 button__icon"
-                                aria-hidden="true"></i>View
-                            Customer Details</a>
-                        <a type="button" class="button button--flex my-3 button__icon" href="installment_Quote.php"
-                            style="height: 50px; width:100%;">
-                            <i class="fa fa-leanpub img-fluid mx-2 button__icon" aria-hidden="true"></i>
-                            Add Quotation</a>
-                        <a type="button" class="button button--flex my-3" href="viewPayment.php" style="height: 50px; 
-                                width:100%;"><i class="fa fa-credit-card-alt img-fluid mx-2 button__icon"
-                                aria-hidden="true"></i>Payment Details</a>
-                        <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"><i
-                                class="fa fa-pencil-square img-fluid mx-2 button__icon" aria-hidden="true"></i>Update
-                            Installments</a>
-                        <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"><i
-                                class="fa fa-trash img-fluid mx-2 button__icon" aria-hidden="true"></i>Remove
-                            Installments</a>
-                        <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"><i
-                                class="fa fa-cogs img-fluid mx-2 button__icon" aria-hidden="true"></i>Settings</a>
-                        <a type="button" class="button button--flex my-3"
-                            style="height: 50px; cursor: pointer; width:100%;" href="logout.php"><i
-                                class="fa fa-sign-out img-fluid mx-2 button__icon" aria-hidden="true"></i>Logout</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
+    <?php include("Drawer.php") ?>
 
     <!--Body -->
     <div class="main" style="background-color: #9575CD;">
@@ -366,7 +308,6 @@ const sr = ScrollReveal({
 sr.reveal(`.questions__group `, {
     interval: 100
 })
-
 </script>
 
 </html>

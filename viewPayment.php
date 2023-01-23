@@ -132,12 +132,14 @@
                                     </td>
                                     <td>
                                         <a type="button" class="btn btn-primary col-md-12"
+                                            href="updatePayment.php?id=<?php echo $r['id']; ?>"
                                             style="height: 40px; text-align: center; background-color: #512da8">
                                             <i class="fa fa-pencil-square img-fluid mx-2 button__icon"
                                                 aria-hidden="true"></i></a>
                                     </td>
                                     <td>
-                                        <a class="btn btn-danger col-md-12"><i
+                                        <a class="btn btn-danger col-md-12"
+                                            href="deletePayment.php?id=<?php echo $r['id']; ?>"><i
                                                 class="fa fa-trash img-fluid mx-2 button__icon"
                                                 aria-hidden="true"></i></a>
                                     </td>

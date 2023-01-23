@@ -62,9 +62,13 @@
                             style="height: 50px; width:100%;">
                             <i class="fa fa-leanpub img-fluid mx-2 button__icon" aria-hidden="true"></i>
                             Add Quotation</a>
+                        <a type="button" class="button button--flex my-3" href="addPayment.php"
+                            style="height: 50px; width:100%;"><i class="fa fa-credit-card-alt mx-2 button__icon"
+                                aria-hidden="true"></i>
+                            Add Payment</a>
                         <a type="button" class="button button--flex my-3" href="viewPayment.php" style="height: 50px; 
-                                width:100%;"><i class="fa fa-credit-card-alt img-fluid mx-2 button__icon"
-                                aria-hidden="true"></i>Payment Details</a>
+                                width:100%;"><i class="fa fa-eye img-fluid mx-2 button__icon"
+                                aria-hidden="true"></i>View Payment Details</a>
                         <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"><i
                                 class="fa fa-pencil-square img-fluid mx-2 button__icon" aria-hidden="true"></i>Update
                             Installments</a>

@@ -8,6 +8,10 @@ if(isset($_POST['submit'])){
     $amount = $_POST['amount'];
     $interest = $_POST['interest'];
     $months = $_POST['months'];
+    $totalMonth = $_POST['totalMonth'];
+    $yourInterest = $_POST['yourInterest'];
+    $yourPayment = $_POST['yourPayment'];
+
 
     $pdf = new FPDF();  
     $pdf->AddPage();
@@ -25,6 +29,14 @@ if(isset($_POST['submit'])){
     $pdf->Cell(140,10,$interest,1,1);
     $pdf->Cell(50,10,"Installment Plan",1,0);
     $pdf->Cell(140,10,$months,1,1);
+
+    $pdf->Cell(190,10,"Plan For Above Information", 1,1, 'C');
+    $pdf->Cell(50,10,"Monthly Installment",1,0);
+    $pdf->Cell(140,10,$totalMonth,1,1);
+    $pdf->Cell(50,10,"Total Interest",1,0);
+    $pdf->Cell(140,10,$yourInterest,1,1);
+    $pdf->Cell(50,10,"Total Payment",1,0);
+    $pdf->Cell(140,10,$yourPayment,1,1);
 
 
 

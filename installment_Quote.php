@@ -2,7 +2,7 @@
     require("user_timestamp.php");
     require_once('database.php');
     $id = $_GET['id'];
-    $res = $database->viewCustomers($id);
+    $res = $database->viewPayment($id);
     $r = mysqli_fetch_assoc($res);
 
 ?>
@@ -45,7 +45,7 @@
             <nav class="navbar navbar-dark navbar-expand-sm fixed-top">
                 <div class="container-fluid my-3" style="margin-left: 30px;">
                     <span style="margin-left: 20px">
-                        <a type="button" style="color: white;" href="viewCustomer.php">
+                        <a type="button" style="color: white;" href="viewPayment.php">
                             <i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i></a>
                         <a class="navbar-brand nav__logo mx-3 my-1" href="#">Installment Quotation</a>
                     </span>
@@ -64,7 +64,7 @@
 
     <!--Body -->
     <div class="main" style="background-color: #9575CD;">
-        <div class="row my-2">
+        <div class="row my-5">
             <div class="col my-3">
                 <div class="col">
 
@@ -82,63 +82,73 @@
                                         <div class="form-group col-6">
                                             <label for="product_name">Product Name</label>
                                             <input type="text" class="form-control" id="product_name"
-                                                name="product_name" placeholder="e.g. Heater">
+                                                value="<?php echo $r['product_name'] ?>" name="product_name"
+                                                placeholder="e.g. Heater">
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-6">
+                                        <div class="form-group col-4">
                                             <label for="amount">Amount</label>
                                             <input type="number" class="form-control" name="amount" id="amount"
                                                 placeholder="e.g. 15000/" onchange="Calculate()">
                                         </div>
-                                        <div class="form-group col-6 ">
+                                        <div class="form-group col-4 ">
                                             <label for="interest">Interest Rate</label>
                                             <input type="number" class="form-control" name="interest" id="interest"
                                                 onchange="Calculate()" placeholder="e.g. 6.5">
                                         </div>
 
-                                        <div class="form-group col-6 ">
+                                        <div class="form-group col-4 ">
                                             <label for="months">Installment Plan (month)</label>
                                             <input type="number" class="form-control" id="months" name="months"
                                                 onchange="Calculate()" placeholder="e.g. 12">
                                         </div>
                                     </div>
-                                    <div class="form-row">
-                                        <input type="submit" name="submit"
-                                            class="button button--flex" style="margin-left: 80%;" value="Generate PDF"/>&nbsp;
-                                        <button type="button" name="clear" class="btn btn-secondary">Clear</button>
-                                    </div>
-                                    <br />
-                                </form>
-                                <div class="row my-5">
-                                    <div class="col">
-                                        <div class="col mx-3">
-                                            <div class="row row-header my-3">
-                                                <div class="col-12 col-sm-4">
-                                                    <div class="card modal-body">
-                                                        <a class="card-body">
-                                                            <h5 class="card-title" id="total"></h5>
-                                                        </a>
+
+
+
+                                    <div class="row my-5">
+                                        <div class="col">
+                                            <div class="col mx-3">
+                                                <div class="row row-header my-3">
+                                                    <div class="col-12 col-sm-4">
+                                                        <div class="card modal-body">
+                                                            <a class="card-body">
+                                                                <h5 class="card-title" id="total"></h5>
+                                                                <input type="text" id="totalMonth" name="totalMonth"
+                                                                    hidden="">
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-12 col-sm-4">
-                                                    <div class="card modal-body">
-                                                        <a class="card-body">
-                                                            <h5 class="card-title" id="totalInterest"></h5>
-                                                        </a>
+                                                    <div class="col-12 col-sm-4">
+                                                        <div class="card modal-body">
+                                                            <a class="card-body">
+                                                                <h5 class="card-title" id="totalInterest"></h5>
+                                                                <input type="text" id="yourInterest" name="yourInterest"
+                                                                    hidden="">
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-12 col-sm-4">
-                                                    <div class="card modal-body">
-                                                        <a class="card-body">
-                                                            <h5 class="card-title" id="totalPayment"></h5>
-                                                        </a>
+                                                    <div class="col-12 col-sm-4">
+                                                        <div class="card modal-body">
+                                                            <a class="card-body">
+                                                                <h5 class="card-title" id="totalPayment"></h5>
+                                                                <input type="text" id="yourPayment" name="yourPayment"
+                                                                    hidden="">
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="form-row">
+                                        <input type="submit" name="submit" class="button button--flex"
+                                            style="margin: auto" value="Generate PDF" />&nbsp;
+
+
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

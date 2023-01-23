@@ -162,15 +162,49 @@ class Database{
  		}
 	}
 
+	public function addPayment($fname, $product_name, $product_img, $installment_plan, $payment_status){
+		$sql = "INSERT INTO payment (fname, product_name, product_img, installment_plan, payment_status ) 
+		VALUES ('$fname', '$product_name', '$product_img', '$installment_plan', '$payment_status')";
+		$res = mysqli_query($this->connection, $sql);
+		if($res){
+	 		return true;
+		}else{
+			die("err".mysqli_error($this->connection));
+			return false;
+		}
+	}
+
 	public function viewPayment($id=null){
-		$sql = "SELECT t1.*,t2.fname,t3.product_name, t3.product_img FROM payment t1 
-		INNER JOIN add_customer t2 
-		ON t2.id = t1.cust_id 
-		INNER JOIN add_products t3 
-		ON t3.id = t1.product_id
-		ORDER BY t2.fname ASC";
+		$sql = "SELECT * FROM payment";
+		if($id){ $sql .= " WHERE id=$id";}
+		// $sql = "SELECT t1.*,t2.fname,t3.product_name, t3.product_img FROM payment t1 
+		// INNER JOIN add_customer t2 
+		// ON t2.id = t1.cust_id 
+		// INNER JOIN add_products t3 
+		// ON t3.id = t1.product_id
+		// ORDER BY t2.fname ASC";
  		$res = mysqli_query($this->connection, $sql);
  		return $res;
+	}
+
+	public function updatePayment($fname, $product_name, $product_img, $installment_plan, $payment_status, $id){
+		$sql = "UPDATE payment SET fname='$fname', product_name='$product_name', product_img='$product_img', installment_plan='$installment_plan', payment_status='$payment_status' WHERE id=$id";
+		$res = mysqli_query($this->connection, $sql);
+		if($res){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function deletePayment($id){
+		$sql = "DELETE FROM payment WHERE id=$id";
+ 		$res = mysqli_query($this->connection, $sql);
+ 		if($res){
+ 			return true;
+ 		}else{
+ 			return false;
+ 		}
 	}
 
 	public function sanitize($var){

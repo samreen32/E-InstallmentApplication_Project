@@ -57,7 +57,7 @@
                         <a type="button" class="button button--flex my-3" href="viewCustomer.php" style="height: 50px; 
                                 width:100%;"><i class="fa fa-eye img-fluid mx-2 button__icon"
                                 aria-hidden="true"></i>View
-                            Customer Details</a>
+                            Customers</a>
                         <a type="button" class="button button--flex my-3 button__icon" href="installment_Quote.php"
                             style="height: 50px; width:100%;">
                             <i class="fa fa-leanpub img-fluid mx-2 button__icon" aria-hidden="true"></i>
@@ -65,16 +65,12 @@
                         <a type="button" class="button button--flex my-3" href="addPayment.php"
                             style="height: 50px; width:100%;"><i class="fa fa-credit-card-alt mx-2 button__icon"
                                 aria-hidden="true"></i>
-                            Add Payment</a>
+                            Payment</a>
                         <a type="button" class="button button--flex my-3" href="viewPayment.php" style="height: 50px; 
                                 width:100%;"><i class="fa fa-eye img-fluid mx-2 button__icon"
-                                aria-hidden="true"></i>View Payment Details</a>
-                        <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"><i
-                                class="fa fa-pencil-square img-fluid mx-2 button__icon" aria-hidden="true"></i>Update
-                            Installments</a>
-                        <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"><i
-                                class="fa fa-trash img-fluid mx-2 button__icon" aria-hidden="true"></i>Remove
-                            Installments</a>
+                                aria-hidden="true"></i>View Payments</a>
+                      
+                      
                         <a type="button" class="button button--flex my-3" style="height: 50px; width:100%;"><i
                                 class="fa fa-cogs img-fluid mx-2 button__icon" aria-hidden="true"></i>Settings</a>
                         <a type="button" class="button button--flex my-3"

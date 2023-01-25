@@ -114,7 +114,8 @@
                                                     <div class="col-12 col-sm-4">
                                                         <div class="card modal-body">
                                                             <a class="card-body">
-                                                                <h5 class="card-title" id="total"></h5>
+                                                                <h5 class="card-title">Total Months:</h5>
+                                                                <h5 class="card-title" id="total" name="total"></h5>
                                                                 <input type="text" id="totalMonth" name="totalMonth"
                                                                     hidden="">
                                                             </a>
@@ -123,18 +124,21 @@
                                                     <div class="col-12 col-sm-4">
                                                         <div class="card modal-body">
                                                             <a class="card-body">
-                                                                <h5 class="card-title" id="totalInterest"></h5>
-                                                                <input type="text" id="yourInterest" name="yourInterest"
-                                                                    hidden="">
+                                                            <h5 class="card-title">Total Interest:</h5>
+                                                                <h5 class="card-title" id="totalInterest"
+                                                                    name="totalInterest"></h5>
+                                                                <input type="text" id="yourInterest"
+                                                                    name="yourInterest" hidden="">
                                                             </a>
                                                         </div>
                                                     </div>
                                                     <div class="col-12 col-sm-4">
                                                         <div class="card modal-body">
                                                             <a class="card-body">
+                                                            <h5 class="card-title">Total Payment:</h5>
                                                                 <h5 class="card-title" id="totalPayment"></h5>
                                                                 <input type="text" id="yourPayment" name="yourPayment"
-                                                                    hidden="">
+                                                                  hidden="">
                                                             </a>
                                                         </div>
                                                     </div>
@@ -145,9 +149,8 @@
                                     <div class="form-row">
                                         <input type="submit" name="submit" class="button button--flex"
                                             style="margin: auto" value="Generate PDF" />&nbsp;
-
-
                                     </div>
+
                                 </form>
                             </div>
                         </div>
@@ -209,7 +212,6 @@ function Calculate() {
     const interest = document.querySelector("#interest").value;
     const months = document.querySelector("#months").value;
 
-
     // const rate = parseFloat(interest) / 12 / 100;
     // const EMI = (amount * rate * Math.pow((1 + rate), months)) / (Math.pow((1 + rate), months) - 1);
     // const totalInterest = (EMI * months) - amount;
@@ -221,14 +223,28 @@ function Calculate() {
     const totalPayment = totalInterest + parseFloat(amount);
 
 
-    document.querySelector("#total")
-        .innerHTML = "Monthly Installment : " + Math.round(EMI) + "($)";
-    document.querySelector("#totalInterest")
-        .innerHTML = "Total Interest : " + Math.round(totalInterest) + "(%)";
-    document.querySelector("#totalPayment")
-        .innerHTML = "Total Payment : " + Math.round(totalPayment) + "($)";
+   const a = document.querySelector("#total")
+        .innerHTML = Math.round(EMI) + "($)";
+
+   const b =  document.querySelector("#totalInterest")
+        .innerHTML = Math.round(totalInterest) + "(%)";
+  const c =  document.querySelector("#totalPayment")
+        .innerHTML =  Math.round(totalPayment) + "($)";
+
+    function test() {
+        document.getElementById('totalMonth').value = a;
+        document.getElementById('yourInterest').value = b;
+        document.getElementById('yourPayment').value = c; 
+    };
+    test();
 }
 </script>
 
+<script>
+//    function test(){
+//       document.getElementById('totalMonth').value ='some text'; //s1 is the id of html button
+//    };
+//    test(); //dont forget to call function
+</script>
 
 </html>

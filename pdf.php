@@ -9,6 +9,7 @@ if(isset($_POST['submit'])){
     $interest = $_POST['interest'];
     $months = $_POST['months'];
     $totalMonth = $_POST['totalMonth'];
+    // $s1 = $_POST['s1'];
     $yourInterest = $_POST['yourInterest'];
     $yourPayment = $_POST['yourPayment'];
 

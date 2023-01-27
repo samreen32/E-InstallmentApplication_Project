@@ -124,21 +124,21 @@
                                                     <div class="col-12 col-sm-4">
                                                         <div class="card modal-body">
                                                             <a class="card-body">
-                                                            <h5 class="card-title">Total Interest:</h5>
+                                                                <h5 class="card-title">Total Interest:</h5>
                                                                 <h5 class="card-title" id="totalInterest"
                                                                     name="totalInterest"></h5>
-                                                                <input type="text" id="yourInterest"
-                                                                    name="yourInterest" hidden="">
+                                                                <input type="text" id="yourInterest" name="yourInterest"
+                                                                    hidden="">
                                                             </a>
                                                         </div>
                                                     </div>
                                                     <div class="col-12 col-sm-4">
                                                         <div class="card modal-body">
                                                             <a class="card-body">
-                                                            <h5 class="card-title">Total Payment:</h5>
+                                                                <h5 class="card-title">Total Payment:</h5>
                                                                 <h5 class="card-title" id="totalPayment"></h5>
                                                                 <input type="text" id="yourPayment" name="yourPayment"
-                                                                  hidden="">
+                                                                    hidden="">
                                                             </a>
                                                         </div>
                                                     </div>
@@ -223,28 +223,21 @@ function Calculate() {
     const totalPayment = totalInterest + parseFloat(amount);
 
 
-   const a = document.querySelector("#total")
+    const a = document.querySelector("#total")
         .innerHTML = Math.round(EMI) + "($)";
 
-   const b =  document.querySelector("#totalInterest")
+    const b = document.querySelector("#totalInterest")
         .innerHTML = Math.round(totalInterest) + "(%)";
-  const c =  document.querySelector("#totalPayment")
-        .innerHTML =  Math.round(totalPayment) + "($)";
+    const c = document.querySelector("#totalPayment")
+        .innerHTML = Math.round(totalPayment) + "($)";
 
     function test() {
         document.getElementById('totalMonth').value = a;
         document.getElementById('yourInterest').value = b;
-        document.getElementById('yourPayment').value = c; 
+        document.getElementById('yourPayment').value = c;
     };
     test();
 }
-</script>
-
-<script>
-//    function test(){
-//       document.getElementById('totalMonth').value ='some text'; //s1 is the id of html button
-//    };
-//    test(); //dont forget to call function
 </script>
 
 </html>

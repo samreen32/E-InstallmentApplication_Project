@@ -102,7 +102,7 @@
                                     <th>Product Image</th>
                                     <th>Product Name</th>
                                     <th>Customer Name</th>
-                                    <th>Installment Plan</th>
+                                    <th>Installment Plan(Months)</th>
                                     <th>Status</th>
                                     <th>Add</th>
                                     <th>Edit</th>

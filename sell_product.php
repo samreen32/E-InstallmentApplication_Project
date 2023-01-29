@@ -11,14 +11,14 @@
     $fname = $database->sanitize($_POST['fname']);
     $product_name = $database->sanitize($_POST['product_name']);
     $product_price = $database->sanitize($_POST['product_price']);
-    $installment_plan = $database->sanitize($_POST['installment_plan']);
+    // $installment_plan = $database->sanitize($_POST['installment_plan']);
     $interest_rate = $database->sanitize($_POST['interest_rate']);
     $total_months = $database->sanitize($_POST['total_months']);
     $total_payment = $database->sanitize($_POST['total_payment']);
     $total_interest = $database->sanitize($_POST['total_interest']);
-    $payment_status = $database->sanitize($_POST['payment_status']);
+    // $payment_status = $database->sanitize($_POST['payment_status']);
 
-   $res = $database->sellProduct($fname, $product_name, $product_price, $installment_plan, $interest_rate, $total_months, $total_payment, $total_interest, $payment_status);
+   $res = $database->sellProduct($fname, $product_name, $product_price, $interest_rate, $total_months, $total_payment, $total_interest);
    if($res){
        $_SESSION['status'] = "Product sold succcessfully.";
        
@@ -31,17 +31,17 @@
 
 <?php
 
-// if(isset($_POST['record'])){
-//     $connection = mysqli_connect('localhost','root','','users_auth') or die("Connection failed");
+if(isset($_POST['record'])){
+    $connection = mysqli_connect('localhost','root','','users_auth') or die("Connection failed");
 
-//     $n = $_POST['installment_plan'];
-//     for($i=1; $i<=$n; $i++){
-//         $nm = $_POST["payment_status"];
-//         $sql = "INSERT INTO sell_product (payment_status) VALUES ('$nm')";
-//         $res = mysqli_query($connection, $sql); 
-//     }
-//     echo "inserted";
-// }
+    $n = $_POST['installment_plan'];
+    for($i=1; $i<=$n; $i++){
+        $nm = $_POST[$i."nm"];
+        $sql = "INSERT INTO sell_product (payment_status) VALUES ('$nm')";
+        $res = mysqli_query($connection, $sql); 
+    }
+    echo "inserted";
+}
 ?>
 
 
@@ -175,7 +175,7 @@
                                             <label class="my-1 mr-2" for="installment_plan">Installment Plan
                                                 (Months)</label>
                                             <select class="form-control" id="installment_plan" name="installment_plan"
-                                                onchange="Calculate()">
+                                                onchange="two_Functions()">
                                                 <option selected>Choose Months...</option>
                                                 <option value="1">1 Month</option>
                                                 <option value="2">2 Months</option>
@@ -184,9 +184,9 @@
                                                 <option value="5">5 Months</option>
                                             </select>
                                         </div>
-                                        <!-- <input style="display: flex; margin: auto;" 
+                                        <input style="display: flex; margin: auto;" 
                                         class="button button--flex my-4" value="submit" 
-                                        type="submit" name="submit"> -->
+                                        type="submit" name="submit">
                                         <!-- </form>
 
                                         <form method="post"> -->
@@ -195,21 +195,21 @@
                                         <div class="form-group col-md-6">
                                             <label class="my-1 mr-2" for="payment_status">Payment Status</label>
                                             <?php
-                                                // $n = $_POST['installment_plan'];
-                                                // for($i=1; $i<=$n; $i++){
+                                                $n = $_POST['installment_plan'];
+                                                for($i=1; $i<=$n; $i++){
                                             ?>
                                             <select class="form-control" id="payment_status"
-                                                name="payment_status">
+                                                name="<?php echo $i.'nm'; ?>">
                                                 <option selected>Choose...</option>
                                                 <option value="Paid">Paid</option>
                                                 <option value="Unpaid">Unpaid</option>
-                                                <!-- <input type="hidden" id="installment_plan" name="installment_plan"
-                                                    value="<?php //echo $n; ?>"> -->
+                                                <input type="hidden" id="installment_plan" name="installment_plan"
+                                                    value="<?php echo $n; ?>">
                                             </select>
-                                            <?php //} ?>
+                                            <?php } ?>
                                         </div>
-                                        <!-- <input type="submit" class="form-control" id="record" name="record"
-                                                value="record"> -->
+                                        <input type="submit" class="form-control" id="record" name="record"
+                                                value="record">
 
                                         <!-- </form> -->
 
@@ -294,6 +294,29 @@
 <script src="jquery-3.6.3.js"></script>
 
 <script>
+function two_Functions(){
+    Calculate();
+    multiple_rows();
+}
+
+</script>
+
+<script>
+function multiple_rows(){
+    var n = document.querySelector("#installment_plan").value;
+    alert(n);  
+    for($i=1; $i<=$n; $i++){
+       
+
+    }
+}
+
+</script>
+
+
+
+
+<script>
 function Fetch_Name() {
     var product_name = document.querySelector("#product_name").value;
 
@@ -337,14 +360,8 @@ function Calculate() {
         document.getElementById('total_payment').value = c;
     };
     test();
-
-    
-
-
-
 }
 </script>
-
 
 <script>
 $(document).ready(function() {

@@ -206,9 +206,9 @@ class Database{
  		}
 	}
 
-	public function sellProduct($fname, $product_name, $product_price, $installment_plan, $interest_rate, $total_months, $total_payment, $total_interest, $payment_status){
-		$sql = "INSERT INTO sell_product (fname, product_name, product_price, installment_plan, interest_rate, total_months, total_payment, total_interest, payment_status) 
-		VALUES ('$fname', '$product_name', '$product_price', '$installment_plan', '$interest_rate', '$total_months', '$total_payment', '$total_interest', '$payment_status')";
+	public function sellProduct($fname, $product_name, $product_price, $interest_rate, $total_months, $total_payment, $total_interest){
+		$sql = "INSERT INTO sell_product (fname, product_name, product_price, interest_rate, total_months, total_payment, total_interest) 
+		VALUES ('$fname', '$product_name', '$product_price', '$interest_rate', '$total_months', '$total_payment', '$total_interest')";
 		$res = mysqli_query($this->connection, $sql);
 		if($res){
 	 		return true;

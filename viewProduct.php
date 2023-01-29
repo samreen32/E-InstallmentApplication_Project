@@ -123,8 +123,8 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <form class="d-flex" role="search" style="margin-left: 100px; width: 500px">
-                                <input class="form-control me-5 mx-5" style="text-align: center;" type="search"
-                                    placeholder="Search" aria-label="Search">
+                                <input class="form-control me-5" style="text-align: center;" type="text" id="search"
+                                    name="search" placeholder="Search" aria-label="Search" autocomplete="off">
                                 <i class="ri-search-line ri-xl my-3" style="margin-left: -45px"></i>
                             </form>
                         </ul>
@@ -164,13 +164,13 @@
                 </span>
             </div>
 
-            <div class="row row-cols-1 row-cols-md-2 g-4 my-4">
+            <div class="row row-cols-1 row-cols-md-2 g-4 my-4" id="livesearch">
                 <?php 
                         while($r = mysqli_fetch_assoc($res)){ ?>
                 <div class="row">
                     <div class="card modal-body mx-2 my-2">
                         <button class="btn btn-danger my-3" style="height: 40px; align-self: center; 
-                        margin-right: 70%">Rs. <?php echo $r['product_price']; ?></button>
+                            margin-right: 70%">Rs. <?php echo $r['product_price']; ?></button>
                         <div class="img-container">
                             <div class="image my-3">
                                 <img style="width: 150px; height: 150px; align-self: center;  margin-top: 10px;"
@@ -182,7 +182,6 @@
                             <span>&times;</span>
                             <img src="<?php echo "upload/". $r['product_img']; ?>" />
                         </div>
-
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $r['product_name']; ?></h5>
                             <p class="card-text">Your favorite <?php echo $r['product_name']; ?> is now on
@@ -249,8 +248,33 @@ document.querySelector('.popup-img span').onclick = () => {
 <script src="assets/js/scripts.js"></script>
 <script src="lightbox2/dist/js/lightbox-plus-jquery.min.js">
 </script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="jquery-3.6.3.js"></script>
+
+<script>
+$(document).ready(function() {
+    $("#search").keyup(function() {
+        var search_term = $(this).val();
+        //alert(search_term);
+
+        $.ajax({
+            url: "product_live_search.php",
+            method: "POST",
+            data: {
+                search_term: search_term
+            },
+            success: function(data) {
+                $("#livesearch").html(data);
+                //alert(data);
+            }
+        });
+    });
+});
+</script>
+
+
+
+
 
 <script>
 $(document).ready(function() {

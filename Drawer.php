@@ -64,7 +64,7 @@
                             Add Quotation</a>
                         <a type="button" class="button button--flex my-3 button__icon" href="sell_product.php"
                             style="height: 50px; width:100%;">
-                            <i class="fa fa-plus-circle img-fluid mx-2 button__icon" aria-hidden="true"></i>
+                            <i class="ri-money-dollar-circle-line img-fluid mx-2 button__icon" aria-hidden="true"></i>
                             Sell Product</a>
                         <a type="button" class="button button--flex my-3" href="addPayment.php"
                             style="height: 50px; width:100%;"><i class="fa fa-credit-card-alt mx-2 button__icon"

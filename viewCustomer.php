@@ -1,10 +1,15 @@
 <?php
     require("user_timestamp.php");
-
     require_once('database.php');
     $res = $database->viewCustomers();
 ?>
 
+
+<?php
+
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -54,8 +59,8 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <form class="d-flex" role="search" style="margin-left: 100px; width: 500px">
-                                <input class="form-control me-5" style="text-align: center;" type="search"
-                                    placeholder="Search" aria-label="Search">
+                                <input class="form-control me-5" style="text-align: center;" type="text" id="search"
+                                    name="search" placeholder="Search" aria-label="Search" autocomplete="off">
                                 <i class="ri-search-line ri-xl my-3" style="margin-left: -45px"></i>
                             </form>
                         </ul>
@@ -94,12 +99,12 @@
                     <h2>Customer Details</h2>
                 </span>
             </div>
-
             <div class="row row-header my-3">
                 <div class="card modal-body" style="width: 90rem;">
                     <div class="my-5 mx-3">
                         <div class="row">
-                            <table class="table">
+                            
+                            <table class="table" id="livesearch">
                                 <tr>
                                     <th>#</th>
                                     <th>Title</th>
@@ -113,8 +118,6 @@
                                     <th>Other Detais</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
-
-
                                 </tr>
                                 <?php 
                                     while($r = mysqli_fetch_assoc($res)){
@@ -147,6 +150,7 @@
                                     </td>
                                 </tr>
                                 <?php } ?>
+                              
                             </table>
                         </div>
                     </div>
@@ -178,8 +182,33 @@
 <script src="assets/js/scripts.js"></script>
 <script src="lightbox2/dist/js/lightbox-plus-jquery.min.js">
 </script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="jquery-3.6.3.js"></script>
+
+
+<script>
+$(document).ready(function() {
+    $("#search").keyup(function() {
+        var search_term = $(this).val();
+        //alert(search_term);
+
+        $.ajax({
+            url: "cust_live_search.php",
+            method: "POST",
+            data: {
+                search_term: search_term
+            },
+            success: function(data) {
+                $("#livesearch").html(data);
+                //alert(data);
+            }
+        });
+    });
+});
+</script>
+
+
+
 
 <script>
 $(document).ready(function() {

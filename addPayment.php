@@ -21,7 +21,10 @@ require("user_timestamp.php");
 }
 ?>
 
-
+<?php
+     $view_cust = $database->viewCustomers();
+     $view_product = $database->viewProducts();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -91,7 +94,7 @@ require("user_timestamp.php");
                     <?php 
                        unset($_SESSION['status']); 
                         } 
-                    ?>
+                    ?> 
 
                     <div class="row row-header my-3">
                         <div class="card modal-body" style="width: 90rem;">
@@ -102,8 +105,16 @@ require("user_timestamp.php");
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="fname">Customer Name</label>
-                                            <input type="text" class="form-control" id="fname" name="fname"
-                                                placeholder="e.g. Samreen">
+                                            <select class="form-control" id="fname" name="fname">
+                                                <option value="">Select Name...</option>
+                                                <?php 
+                                                    while($row = mysqli_fetch_assoc($view_cust)){
+                                                        $k = $row['id'];
+                                                        $key = $row['fname'];
+                                                        echo '<option value="'.$key.'">'.$key.'</option>';
+                                                ?>
+                                                <?php }?>
+                                            </select>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="cur_date_time">Current Date/Time</label>
@@ -117,8 +128,17 @@ require("user_timestamp.php");
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="product_name">Product Name</label>
-                                            <input type="text" class="form-control" id="product_name"
-                                                name="product_name" placeholder="e.g. Heater">
+                                            <select class="form-control" id="product_name" name="product_name">
+                                                <option value="">Select Product...</option>
+                                                <?php 
+                                                    while($r = mysqli_fetch_assoc($view_product)){
+                                                        $k = $r['id'];
+                                                        $key = $r['product_name'];
+                                                        echo '<option value="'.$key.'">'.$key.'</option>';
+                                                ?>
+
+                                                <?php } ?>
+                                            </select>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="product_img">Product Image</label>
@@ -128,12 +148,14 @@ require("user_timestamp.php");
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label class="my-1 mr-2" for="installment_plan">Installment Plan</label>
+                                            <label class="my-1 mr-2" for="installment_plan">Installment Plan(Months)</label>
                                             <select class="form-control" id="installment_plan" name="installment_plan">
-                                                <option selected>Choose...</option>
-                                                <option value="Six">Six Months</option>
-                                                <option value="One">One Year</option>
-                                                <option value="Two">Two Year</option>
+                                                <option selected>Choose Months...</option>
+                                                <option value="1">1 Month</option>
+                                                <option value="2">2 Months</option>
+                                                <option value="3">3 Months</option>
+                                                <option value="4">4 Months</option>
+                                                <option value="5">5 Months</option>
                                             </select>
                                         </div>
                                         <div class="form-group col-md-6">
